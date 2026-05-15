@@ -30,22 +30,22 @@
                 <span style="height: 8px; width: 8px; background: #2ed573; border-radius: 50%; display: inline-block; margin-right: 5px; box-shadow: 0 0 10px #2ed573;"></span>
                 <span class="online">Status: Online</span>
             </div>
-            <div id="player-count" style="font-weight: bold; color: var(--accent-green); font-family: monospace;">...</div>
+            <div id="player-count" style="font-weight: bold; color: var(--accent-green);">...</div>
         </div>
         
         <div class="server-ip-box" onclick="copyIp()">
             <div>
-                <small style="color: #666; display: block; font-size: 0.6rem; font-weight: bold;">SERVER IP</small>
+                <small style="color: #666; display: block; font-size: 0.6rem; font-weight: bold;">SERVER IP (Klick)</small>
                 <span style="font-family: monospace; letter-spacing: 1px;">ManuSMP.gleeze.com</span>
             </div>
-            <span style="font-size: 1.2rem;">📋</span>
+            <span>📋</span>
         </div>
     </div>
 
     <h2 class="glow-text" style="font-size: 1rem; margin-top: 40px;">Community</h2>
     <div class="discord-grid">
-        <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="link-card btn-discord">MANUSMP Discord</a>
-        <a href="https://guns.lol/manu1590" target="_blank" class="link-card btn-profile">Mein Profil (guns.lol)</a>
+        <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="link-btn">MANUSMP Discord</a>
+        <a href="https://guns.lol/manu1590" target="_blank" class="link-btn">Mein Profil (guns.lol)</a>
     </div>
 </div>
 
@@ -68,14 +68,13 @@
             const res = await fetch('https://mcapi.us/server/status?ip=ManuSMP.gleeze.com');
             const data = await res.json();
             document.getElementById('player-count').innerText = data.online ? data.players.now + " / " + data.players.max : "OFFLINE";
-        } catch(e) { document.getElementById('player-count').innerText = "ERROR"; }
+        } catch(e) { document.getElementById('player-count').innerText = "OFFLINE"; }
     }
     updateCount();
     setInterval(updateCount, 30000);
 
     const music = document.getElementById("bgMusic");
-    function play() { music.play(); music.volume = 0.1; document.removeEventListener('click', play); }
-    document.addEventListener('click', play);
+    document.addEventListener('click', () => { music.play(); music.volume = 0.1; }, {once: true});
 </script>
 </body>
 </html>
