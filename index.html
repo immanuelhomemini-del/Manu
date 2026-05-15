@@ -5,144 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ManuSMP | Offizielle Webseite</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
-    <style>
-        /* GLOBAL STYLES */
-        * {
-            box-sizing: border-box;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #0d0d0d;
-            color: white;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* HEADER */
-        header {
-            width: 100%;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #1e90ff 0%, #0d0d0d 100%);
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            margin: 0;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero-title:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 20px #1e90ff;
-        }
-
-        /* CONTAINER SETUP */
-        .main-wrapper {
-            width: 95%;
-            max-width: 1100px;
-            margin-top: -40px;
-            padding-bottom: 50px;
-        }
-
-        section, .f-card {
-            background: #1a1a1a;
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 20px;
-            border: 1px solid #333;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        /* HOVER & TOUCH ANIMATIONS */
-        section:hover, .f-card:hover {
-            border-color: #1e90ff;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(30, 144, 255, 0.2);
-        }
-
-        section:active, .f-card:active {
-            transform: scale(0.98);
-        }
-
-        /* SERVER BOX & IP */
-        .status-indicator {
-            display: inline-block;
-            width: 12px; height: 12px;
-            background: #2ecc71;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #2ecc71;
-            margin-right: 8px;
-        }
-
-        .ip-badge {
-            display: block;
-            background: #000;
-            padding: 20px;
-            border-radius: 12px;
-            color: #00ced1;
-            font-family: 'Courier New', monospace;
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            margin: 20px 0;
-            border: 1px dashed #444;
-            cursor: pointer;
-        }
-
-        .copy-btn {
-            width: 100%;
-            max-width: 400px;
-            background: #1e90ff;
-            color: white;
-            border: none;
-            padding: 20px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
-        }
-
-        .copy-btn:hover { background: #00ced1; transform: scale(1.05); }
-
-        /* GRID FOR PC */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        /* RULES */
-        ul { list-style: none; padding: 0; text-align: left; }
-        li {
-            padding: 15px;
-            background: #222;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            border-left: 5px solid #1e90ff;
-        }
-
-        li:hover {
-            transform: translateX(10px);
-            background: #282828;
-        }
-
-        footer { padding: 40px; opacity: 0.6; font-size: 0.9rem; width: 100%; text-align: center; }
-
-        /* RESPONSIVE ADJUSTMENTS */
-        @media (max-width: 600px) {
-            header { padding: 60px 10px; }
-            .main-wrapper { margin-top: -20px; }
-            section { padding: 20px; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -157,8 +20,11 @@
             <span class="status-indicator"></span> SERVER ONLINE
         </div>
         <h2 style="font-size: 2rem; margin: 10px 0;">BEREIT FÜR DEN START?</h2>
+        
         <div class="ip-badge" id="serverIp" onclick="copyIp()">ManuSMP.Gleeze.com</div>
+        
         <button class="copy-btn" onclick="copyIp()">IP KOPIEREN & JOINEN</button>
+        
         <p style="margin-top: 15px;">Unterstützte Version: <b>1.21.1</b></p>
     </section>
 
@@ -207,12 +73,12 @@
             
             const originalText = btn.innerText;
             btn.innerText = "KOPIERT!";
-            btn.style.backgroundColor = "#2ecc71";
+            btn.style.backgroundColor = "#2ecc71"; // Wechselt zu Grün
             badge.style.borderColor = "#2ecc71";
             
             setTimeout(() => {
                 btn.innerText = originalText;
-                btn.style.backgroundColor = "#1e90ff";
+                btn.style.backgroundColor = "#1e90ff"; // Zurück zu Blau
                 badge.style.borderColor = "#444";
             }, 2000);
         });
