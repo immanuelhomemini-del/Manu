@@ -10,9 +10,7 @@
 <body>
 
 <nav class="navbar">
-    <a href="index.html" style="text-decoration: none;">
-        <div class="nav-logo">ManuSMP</div>
-    </a>
+    <a href="index.html" style="text-decoration: none;"><div class="nav-logo">ManuSMP</div></a>
     <div class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
@@ -26,94 +24,58 @@
         <p class="subtitle">ManuSMP.gleeze.com</p>
     </header>
 
-    <div class="card status-card">
+    <div class="card">
         <div class="status-header">
-            <div class="status-indicator">
-                <span class="dot" style="height: 10px; width: 10px; background-color: #2ed573; border-radius: 50%; display: inline-block; margin-right: 5px;"></span>
-                <span class="status-label">STATUS: <span class="online">ONLINE</span></span>
+            <div>
+                <span style="height: 8px; width: 8px; background: #2ed573; border-radius: 50%; display: inline-block; margin-right: 5px; box-shadow: 0 0 10px #2ed573;"></span>
+                <span class="online">Status: Online</span>
             </div>
-            <div class="player-count">
-                <span id="player-count" style="font-weight: bold; color: #2ed573;">Lädt...</span>
-            </div>
+            <div id="player-count" style="font-weight: bold; color: var(--accent-green); font-family: monospace;">...</div>
         </div>
         
-        <div class="server-ip-box" onclick="copyIp()" style="position: relative; z-index: 5;">
-            <div class="ip-info">
-                <span class="label" style="font-size: 0.7rem; color: #555; display: block;">SERVER IP (Klicken zum Kopieren)</span>
-                <span class="ip-text">ManuSMP.gleeze.com</span>
+        <div class="server-ip-box" onclick="copyIp()">
+            <div>
+                <small style="color: #666; display: block; font-size: 0.6rem; font-weight: bold;">SERVER IP</small>
+                <span style="font-family: monospace; letter-spacing: 1px;">ManuSMP.gleeze.com</span>
             </div>
-            <div class="copy-icon">📋</div>
+            <span style="font-size: 1.2rem;">📋</span>
         </div>
     </div>
 
-    <h2 class="glow-text" style="font-size: 1.2rem; margin-top: 40px;">Community</h2>
+    <h2 class="glow-text" style="font-size: 1rem; margin-top: 40px;">Community</h2>
     <div class="discord-grid">
-        <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="discord-card">MANUSMP Discord</a>
-        <a href="https://guns.lol/manu1590" target="_blank" class="discord-card profile-btn">Mein Profil (guns.lol)</a>
+        <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="link-card btn-discord">MANUSMP Discord</a>
+        <a href="https://guns.lol/manu1590" target="_blank" class="link-card btn-profile">Mein Profil (guns.lol)</a>
     </div>
 </div>
 
-<div id="custom-alert">📋 IP erfolgreich kopiert!</div>
+<div id="custom-alert">IP KOPIERT!</div>
 
-<footer><p>ManuSMP.gleeze.com &copy; 2026</p></footer>
+<footer>ManuSMP.gleeze.com &copy; 2026</footer>
 
-<audio id="bgMusic" loop preload="auto"><source src="background.mp3" type="audio/mpeg"></audio>
+<audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
 
 <script>
     function copyIp() {
-        const ip = "ManuSMP.gleeze.com";
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(ip).then(() => {
-                showToast();
-            });
-        } else {
-            // Fallback für ältere Browser
-            const textArea = document.createElement("textarea");
-            textArea.value = ip;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            showToast();
-        }
-    }
-
-    function showToast() {
+        navigator.clipboard.writeText("ManuSMP.gleeze.com");
         const alertBox = document.getElementById('custom-alert');
         alertBox.classList.add('show');
-        setTimeout(() => { alertBox.classList.remove('show'); }, 3000);
+        setTimeout(() => alertBox.classList.remove('show'), 2500);
     }
 
-    async function updatePlayerCount() {
+    async function updateCount() {
         try {
-            const res = await fetch(`https://mcapi.us/server/status?ip=ManuSMP.gleeze.com&_=${Date.now()}`);
+            const res = await fetch('https://mcapi.us/server/status?ip=ManuSMP.gleeze.com');
             const data = await res.json();
-            if(data.online) {
-                document.getElementById('player-count').innerText = data.players.now + " / " + data.players.max;
-            } else {
-                document.getElementById('player-count').innerText = "Offline";
-            }
-        } catch (e) { 
-            document.getElementById('player-count').innerText = "Offline"; 
-        }
+            document.getElementById('player-count').innerText = data.online ? data.players.now + " / " + data.players.max : "OFFLINE";
+        } catch(e) { document.getElementById('player-count').innerText = "ERROR"; }
     }
-    
-    updatePlayerCount();
-    setInterval(updatePlayerCount, 30000);
+    updateCount();
+    setInterval(updateCount, 30000);
 
     const music = document.getElementById("bgMusic");
-    function startMusic() { 
-        music.play(); 
-        document.removeEventListener('click', startMusic); 
-        document.removeEventListener('touchstart', startMusic); 
-    }
-    document.addEventListener('click', startMusic);
-    document.addEventListener('touchstart', startMusic);
-    
-    window.addEventListener('load', () => { 
-        music.volume = 0.1; // 10% Lautstärke
-        updatePlayerCount();
-    });
+    function play() { music.play(); music.volume = 0.1; document.removeEventListener('click', play); }
+    document.addEventListener('click', play);
 </script>
 </body>
 </html>
