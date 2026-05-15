@@ -1,72 +1,56 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManuSMP | Home</title>
-    <link rel="stylesheet" href="style.css?v=2.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="nav-logo">ManuSMP</div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="about.html">About</a>
-            <a href="team.html">Team</a>
-        </div>
-    </nav>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <div class="main-content">
-        <h1 class="hero-title">MANUSMP</h1>
-        <p class="subtitle">ManuSMP.gleeze.com</p>
+body {
+    background-color: #050805 !important;
+    background-image: radial-gradient(circle at 50% -20%, #10331d, transparent 1000px) !important;
+    color: white !important;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-        <div class="server-card">
-            <div class="status-bar">
-                <span class="status-dot"></span>
-                <span class="status-text">STATUS: ONLINE</span>
-                <span class="player-count">4 / 100</span>
-            </div>
-            <div class="ip-box" onclick="copyIP()">
-                <div class="ip-text">
-                    <span class="label">SERVER IP (KLICK ZUM KOPIEREN)</span>
-                    <span class="address">ManuSMP.gleeze.com</span>
-                </div>
-                <div class="copy-icon">
-                    <span id="copy-status">IP KOPIEREN</span>
-                </div>
-            </div>
-        </div>
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 8%; background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid rgba(46, 213, 115, 0.2);
+}
 
-        <h2 class="section-title">COMMUNITY</h2>
-        <div class="button-grid">
-            <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="glass-btn">MANUSMP DISCORD</a>
-            <a href="https://guns.lol/manu1590" target="_blank" class="glass-btn">MEIN PROFIL (GUNS.LOL)</a>
-        </div>
-    </div>
+.nav-logo { color: #2ed573; font-weight: 900; font-size: 1.5rem; }
 
-    <audio id="bgMusic" loop>
-        <source src="background.mp3" type="audio/mpeg">
-    </audio>
+.nav-links a {
+    color: white !important; text-decoration: none !important;
+    margin-left: 20px; font-weight: 700;
+}
 
-    <script>
-        // IP Kopieren Funktion
-        function copyIP() {
-            const ip = "ManuSMP.gleeze.com";
-            navigator.clipboard.writeText(ip).then(() => {
-                const btn = document.getElementById('copy-status');
-                btn.innerText = 'KOPIERT!';
-                setTimeout(() => { btn.innerText = 'IP KOPIEREN'; }, 2000);
-            });
-        }
+.nav-links a:hover, .nav-links a.active { color: #2ed573 !important; }
 
-        // Musik Starten Funktion
-        const music = document.getElementById("bgMusic");
-        music.volume = 0.15; // Lautstärke auf 15%
-        
-        document.addEventListener('click', () => {
-            music.play().catch(e => console.log("Musik braucht Klick:", e));
-        }, { once: true }); // Passiert nur beim ersten Klick
-    </script>
-</body>
-</html>
+.main-content { max-width: 800px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+
+.hero-title { font-size: clamp(3rem, 10vw, 5rem); color: #2ed573; font-weight: 900; }
+
+.server-card {
+    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(46, 213, 115, 0.2);
+    border-radius: 20px; padding: 25px; margin: 30px 0;
+}
+
+.status-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: 700; }
+.status-dot { width: 10px; height: 10px; background: #2ed573; border-radius: 50%; box-shadow: 0 0 10px #2ed573; }
+
+.ip-box {
+    background: rgba(0,0,0,0.4); border: 1px solid rgba(46, 213, 115, 0.2);
+    padding: 15px; border-radius: 12px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; transition: 0.3s;
+}
+
+.ip-box:hover { background: rgba(46, 213, 115, 0.1); }
+
+.glass-btn {
+    display: block; width: 100%; padding: 20px; margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(46, 213, 115, 0.2);
+    color: white !important; text-decoration: none !important;
+    border-radius: 12px; font-weight: 900; transition: 0.3s;
+}
+
+.glass-btn:hover { background: #2ed573; color: black !important; }
+
+audio { display: none; }
