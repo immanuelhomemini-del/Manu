@@ -1,7 +1,16 @@
+/* ManuSMP Master Design */
+:root {
+    --bg-dark: #050805;
+    --accent-green: #2ed573;
+    --accent-blue: #3498db;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(46, 213, 115, 0.2);
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: #050805 !important;
+    background-color: var(--bg-dark) !important;
     background-image: radial-gradient(circle at 50% -20%, #10331d, transparent 1000px) !important;
     color: white !important;
     font-family: 'Montserrat', sans-serif;
@@ -9,48 +18,48 @@ body {
     overflow-x: hidden;
 }
 
+/* Navigation - Verhindert blaue/lila Links */
 .navbar {
     display: flex; justify-content: space-between; align-items: center;
     padding: 20px 8%; background: rgba(0,0,0,0.8);
-    border-bottom: 1px solid rgba(46, 213, 115, 0.2);
+    border-bottom: 1px solid var(--border);
 }
 
-.nav-logo { color: #2ed573; font-weight: 900; font-size: 1.5rem; }
+.nav-logo { color: var(--accent-green); font-weight: 900; font-size: 1.5rem; }
 
 .nav-links a {
     color: white !important; text-decoration: none !important;
-    margin-left: 20px; font-weight: 700;
+    margin-left: 20px; font-weight: 700; transition: 0.3s;
 }
 
-.nav-links a:hover, .nav-links a.active { color: #2ed573 !important; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent-green) !important; }
 
+/* Layout & Cards */
 .main-content { max-width: 800px; margin: 0 auto; padding: 60px 20px; text-align: center; }
 
-.hero-title { font-size: clamp(3rem, 10vw, 5rem); color: #2ed573; font-weight: 900; }
+.hero-title { font-size: clamp(3rem, 10vw, 5rem); color: var(--accent-green); font-weight: 900; text-shadow: 0 0 20px rgba(46, 213, 115, 0.3); }
 
 .server-card {
-    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(46, 213, 115, 0.2);
+    background: var(--glass); border: 1px solid var(--border);
     border-radius: 20px; padding: 25px; margin: 30px 0;
 }
 
-.status-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: 700; }
-.status-dot { width: 10px; height: 10px; background: #2ed573; border-radius: 50%; box-shadow: 0 0 10px #2ed573; }
-
 .ip-box {
-    background: rgba(0,0,0,0.4); border: 1px solid rgba(46, 213, 115, 0.2);
+    background: rgba(0,0,0,0.5); border: 1px solid var(--border);
     padding: 15px; border-radius: 12px; cursor: pointer;
     display: flex; justify-content: space-between; align-items: center; transition: 0.3s;
 }
 
-.ip-box:hover { background: rgba(46, 213, 115, 0.1); }
+.ip-box:hover { background: rgba(46, 213, 115, 0.1); transform: translateY(-2px); }
 
+/* Buttons */
 .glass-btn {
     display: block; width: 100%; padding: 20px; margin-bottom: 15px;
-    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(46, 213, 115, 0.2);
+    background: var(--glass); border: 1px solid var(--border);
     color: white !important; text-decoration: none !important;
-    border-radius: 12px; font-weight: 900; transition: 0.3s;
+    border-radius: 12px; font-weight: 900; transition: 0.3s; text-align: center;
 }
 
-.glass-btn:hover { background: #2ed573; color: black !important; }
+.glass-btn:hover { background: var(--accent-green); color: black !important; box-shadow: 0 0 20px rgba(46, 213, 115, 0.4); }
 
 audio { display: none; }
