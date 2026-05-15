@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Home</title>
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=3">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -29,7 +29,7 @@
             </div>
             <div class="ip-box" onclick="copyIP()">
                 <div class="ip-text">
-                    <span class="label">SERVER IP (KLICK ZUM KOPIEREN)</span>
+                    <span class="label">SERVER IP (KLICKEN ZUM KOPIEREN)</span>
                     <span class="address">ManuSMP.gleeze.com</span>
                 </div>
                 <div class="copy-icon">
@@ -45,12 +45,9 @@
         </div>
     </div>
 
-    <audio id="bgMusic" loop>
-        <source src="background.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
 
     <script>
-        // IP Kopieren Funktion
         function copyIP() {
             const ip = "ManuSMP.gleeze.com";
             navigator.clipboard.writeText(ip).then(() => {
@@ -60,13 +57,12 @@
             });
         }
 
-        // Musik Starten Funktion
         const music = document.getElementById("bgMusic");
-        music.volume = 0.15; // Lautstärke auf 15%
-        
+        music.volume = 0.15;
+        // Musik startet beim ersten Klick irgendwo auf die Seite
         document.addEventListener('click', () => {
-            music.play().catch(e => console.log("Musik braucht Klick:", e));
-        }, { once: true }); // Passiert nur beim ersten Klick
+            music.play().catch(e => console.log("Audio Start verhindert"));
+        }, { once: true });
     </script>
 </body>
 </html>
