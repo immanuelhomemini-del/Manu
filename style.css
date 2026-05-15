@@ -1,65 +1,82 @@
-/* ManuSMP Master Design */
 :root {
     --bg-dark: #050805;
     --accent-green: #2ed573;
-    --accent-blue: #3498db;
     --glass: rgba(255, 255, 255, 0.03);
     --border: rgba(46, 213, 115, 0.2);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body {
     background-color: var(--bg-dark) !important;
-    background-image: radial-gradient(circle at 50% -20%, #10331d, transparent 1000px) !important;
+    background-image: radial-gradient(circle at 50% -20%, #10331d, transparent 1000px);
+    background-attachment: fixed; /* Parallax Effekt */
     color: white !important;
     font-family: 'Montserrat', sans-serif;
-    min-height: 100vh;
+    margin: 0;
     overflow-x: hidden;
 }
 
-/* Navigation - Verhindert blaue/lila Links */
-.navbar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 8%; background: rgba(0,0,0,0.8);
-    border-bottom: 1px solid var(--border);
+/* Fade-In Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-.nav-logo { color: var(--accent-green); font-weight: 900; font-size: 1.5rem; }
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 8%; background: rgba(0,0,0,0.9);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 1000;
+}
 
 .nav-links a {
-    color: white !important; text-decoration: none !important;
-    margin-left: 20px; font-weight: 700; transition: 0.3s;
+    color: white !important; text-decoration: none; margin-left: 25px;
+    font-weight: 700; transition: color 0.3s ease;
 }
 
 .nav-links a:hover, .nav-links a.active { color: var(--accent-green) !important; }
 
-/* Layout & Cards */
 .main-content { max-width: 800px; margin: 0 auto; padding: 60px 20px; text-align: center; }
 
-.hero-title { font-size: clamp(3rem, 10vw, 5rem); color: var(--accent-green); font-weight: 900; text-shadow: 0 0 20px rgba(46, 213, 115, 0.3); }
+.hero-title { font-size: clamp(3rem, 10vw, 5rem); color: var(--accent-green); font-weight: 900; }
 
+/* Hover-Effekte */
 .server-card {
     background: var(--glass); border: 1px solid var(--border);
     border-radius: 20px; padding: 25px; margin: 30px 0;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.server-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-green);
+    box-shadow: 0 10px 40px rgba(46, 213, 115, 0.15);
 }
 
 .ip-box {
-    background: rgba(0,0,0,0.5); border: 1px solid var(--border);
-    padding: 15px; border-radius: 12px; cursor: pointer;
+    background: rgba(0,0,0,0.6); border: 1px solid var(--border);
+    padding: 20px; border-radius: 15px; cursor: pointer;
     display: flex; justify-content: space-between; align-items: center; transition: 0.3s;
 }
 
-.ip-box:hover { background: rgba(46, 213, 115, 0.1); transform: translateY(-2px); }
-
-/* Buttons */
 .glass-btn {
-    display: block; width: 100%; padding: 20px; margin-bottom: 15px;
+    display: block; width: 100%; padding: 22px; margin-bottom: 15px;
     background: var(--glass); border: 1px solid var(--border);
     color: white !important; text-decoration: none !important;
-    border-radius: 12px; font-weight: 900; transition: 0.3s; text-align: center;
+    border-radius: 15px; font-weight: 900; transition: all 0.3s ease;
+    text-align: center;
 }
 
-.glass-btn:hover { background: var(--accent-green); color: black !important; box-shadow: 0 0 20px rgba(46, 213, 115, 0.4); }
+.glass-btn:hover {
+    background: var(--accent-green); color: black !important;
+    transform: scale(1.03); box-shadow: 0 0 25px rgba(46, 213, 115, 0.5);
+}
 
 audio { display: none; }
