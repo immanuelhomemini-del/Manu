@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Team</title>
-    <link rel="stylesheet" href="style.css?v=35">
+    <link rel="stylesheet" href="style.css?v=45">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,42 +18,49 @@
     </nav>
 
     <div class="main-content">
-        <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 30px;">TEAM</h1>
+        <h1 class="hero-title fade-in" style="font-size: 3rem; margin-bottom: 30px;">TEAM</h1>
         
         <div style="display: grid; gap: 15px; text-align: left;">
-            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
+            <div class="server-card fade-in" style="margin: 0; border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">OWNER</span>
                 <h3 style="margin-top: 5px;">👑 Manu</h3>
             </div>
-            
-            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
+            <div class="server-card fade-in" style="margin: 0; border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">MANAGER</span>
                 <h3 style="margin-top: 5px;">💼 Leon</h3>
             </div>
-
-            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
+            <div class="server-card fade-in" style="margin: 0; border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">MOD</span>
                 <h3 style="margin-top: 5px;">🛡️ ★...★</h3>
             </div>
-
-            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
+            <div class="server-card fade-in" style="margin: 0; border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">MOD</span>
                 <h3 style="margin-top: 5px;">🛡️ WizardLocket35</h3>
             </div>
-
-            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
+            <div class="server-card fade-in" style="margin: 0; border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">HELPER</span>
                 <h3 style="margin-top: 5px;">🔨 NotMikeYT, Elias, Basti</h3>
             </div>
         </div>
 
-        <footer style="margin-top: 50px; opacity: 0.4; font-size: 0.8rem;">
+        <footer class="fade-in" style="margin-top: 80px; opacity: 0.4; font-size: 0.8rem; padding-bottom: 20px;">
             &copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.
         </footer>
     </div>
 
     <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
     <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.15 };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+
         const music = document.getElementById("bgMusic");
         music.volume = 0.15;
         document.addEventListener('click', () => { music.play(); }, { once: true });
