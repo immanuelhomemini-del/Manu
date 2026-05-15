@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Team</title>
-    <link rel="stylesheet" href="style.css?v=45">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="stylesheet" href="style.css?v=50">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -48,22 +51,16 @@
         </footer>
     </div>
 
-    <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
     <script>
         const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.15 };
         const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
                 entry.target.classList.add('appear');
                 appearOnScroll.unobserve(entry.target);
             });
-        }, appearOptions);
+        }, { threshold: 0.15 });
         faders.forEach(fader => { appearOnScroll.observe(fader); });
-
-        const music = document.getElementById("bgMusic");
-        music.volume = 0.15;
-        document.addEventListener('click', () => { music.play(); }, { once: true });
     </script>
 </body>
 </html>
