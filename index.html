@@ -1,48 +1,16 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManuSMP | Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<nav class="navbar">
-    <a href="index.html" style="text-decoration: none;"><div class="nav-logo">ManuSMP</div></a>
-    <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="team.html">Team</a>
-    </div>
-</nav>
-
 <div class="container">
     <header class="hero">
-        <h1 class="glow-text">ManuSMP</h1>
-        <p class="subtitle">ManuSMP.gleeze.com</p>
+        <h1 class="glow-text" style="color:#2ed573; text-align:center; font-weight:900;">ManuSMP</h1>
     </header>
 
     <div class="card">
-        <div class="status-header">
-            <div>
-                <span style="height: 8px; width: 8px; background: #2ed573; border-radius: 50%; display: inline-block; margin-right: 5px; box-shadow: 0 0 10px #2ed573;"></span>
-                <span class="online">Status: Online</span>
-            </div>
-            <div id="player-count" style="font-weight: bold; color: var(--accent-green);">...</div>
-        </div>
-        
-        <div class="server-ip-box" onclick="copyIp()">
-            <div>
-                <small style="color: #666; display: block; font-size: 0.6rem; font-weight: bold;">SERVER IP (Klick)</small>
-                <span style="font-family: monospace; letter-spacing: 1px;">ManuSMP.gleeze.com</span>
-            </div>
-            <span>📋</span>
+        <div class="server-ip-box" onclick="copyIp()" style="cursor:pointer; border:1px solid #2ed573; padding:15px; border-radius:10px; text-align:center;">
+            <span style="display:block; font-size:0.7rem; color:#666;">SERVER IP (KLICK)</span>
+            <span style="font-weight:bold;">ManuSMP.gleeze.com</span>
         </div>
     </div>
 
-    <h2 class="glow-text" style="font-size: 1rem; margin-top: 40px;">Community</h2>
+    <h2 style="text-align:center; font-size:1.2rem; margin-top:40px;">Community</h2>
     <div class="discord-grid">
         <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="link-btn">MANUSMP Discord</a>
         <a href="https://guns.lol/manu1590" target="_blank" class="link-btn">Mein Profil (guns.lol)</a>
@@ -51,30 +19,11 @@
 
 <div id="custom-alert">IP KOPIERT!</div>
 
-<footer>ManuSMP.gleeze.com &copy; 2026</footer>
-
-<audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
-
 <script>
-    function copyIp() {
-        navigator.clipboard.writeText("ManuSMP.gleeze.com");
-        const alertBox = document.getElementById('custom-alert');
-        alertBox.classList.add('show');
-        setTimeout(() => alertBox.classList.remove('show'), 2500);
-    }
-
-    async function updateCount() {
-        try {
-            const res = await fetch('https://mcapi.us/server/status?ip=ManuSMP.gleeze.com');
-            const data = await res.json();
-            document.getElementById('player-count').innerText = data.online ? data.players.now + " / " + data.players.max : "OFFLINE";
-        } catch(e) { document.getElementById('player-count').innerText = "OFFLINE"; }
-    }
-    updateCount();
-    setInterval(updateCount, 30000);
-
-    const music = document.getElementById("bgMusic");
-    document.addEventListener('click', () => { music.play(); music.volume = 0.1; }, {once: true});
+function copyIp() {
+    navigator.clipboard.writeText("ManuSMP.gleeze.com");
+    const alertBox = document.getElementById('custom-alert');
+    alertBox.classList.add('show');
+    setTimeout(() => alertBox.classList.remove('show'), 2500);
+}
 </script>
-</body>
-</html>
