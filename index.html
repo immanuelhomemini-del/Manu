@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Home</title>
-    <link rel="stylesheet" href="style.css?v=35">
+    <link rel="stylesheet" href="style.css?v=45">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,10 +18,10 @@
     </nav>
 
     <div class="main-content">
-        <h1 class="hero-title">MANUSMP</h1>
-        <p style="opacity: 0.5; font-family: monospace; margin-bottom: 40px;">ManuSMP.gleeze.com</p>
+        <h1 class="hero-title fade-in">MANUSMP</h1>
+        <p class="fade-in" style="opacity: 0.5; font-family: monospace; margin-bottom: 40px;">ManuSMP.gleeze.com</p>
 
-        <div class="server-card">
+        <div class="server-card fade-in">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: 700;">
                 <span style="width: 10px; height: 10px; background: #2ed573; border-radius: 50%; box-shadow: 0 0 10px #2ed573;"></span>
                 <span>STATUS: ONLINE</span>
@@ -37,13 +37,13 @@
             </div>
         </div>
 
-        <h2 style="color: #2ed573; margin-bottom: 20px; letter-spacing: 2px;">COMMUNITY</h2>
+        <h2 class="fade-in" style="color: #2ed573; margin: 40px 0 20px; letter-spacing: 2px;">COMMUNITY</h2>
         <div class="button-grid">
-            <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="glass-btn">MANUSMP DISCORD</a>
-            <a href="https://guns.lol/manu1590" target="_blank" class="glass-btn">MEIN PROFIL (GUNS.LOL)</a>
+            <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="glass-btn fade-in">MANUSMP DISCORD</a>
+            <a href="https://guns.lol/manu1590" target="_blank" class="glass-btn fade-in">MEIN PROFIL (GUNS.LOL)</a>
         </div>
 
-        <footer style="margin-top: 50px; opacity: 0.4; font-size: 0.8rem;">
+        <footer class="fade-in" style="margin-top: 80px; opacity: 0.4; font-size: 0.8rem; padding-bottom: 20px;">
             &copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.
         </footer>
     </div>
@@ -51,6 +51,19 @@
     <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
 
     <script>
+        // Fade-In Observer
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+        // IP Kopieren
         function copyIP() {
             navigator.clipboard.writeText("ManuSMP.gleeze.com").then(() => {
                 const btn = document.getElementById('copy-status');
@@ -58,9 +71,11 @@
                 setTimeout(() => { btn.innerText = 'IP KOPIEREN'; }, 2000);
             });
         }
+
+        // Musik Logik
         const music = document.getElementById("bgMusic");
         music.volume = 0.15;
-        document.addEventListener('click', () => { music.play(); }, { once: true });
+        document.addEventListener('click', () => { music.play().catch(e => console.log("Audio blockiert")); }, { once: true });
     </script>
 </body>
 </html>
