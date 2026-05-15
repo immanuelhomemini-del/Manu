@@ -1,77 +1,66 @@
-/* Haupt-Design */
+/* Erzwungener Reset für Links */
+a, a:visited, a:active {
+    text-decoration: none !important;
+    color: white !important; /* Verhindert das Lila-Werden */
+}
+
+:root {
+    --bg-dark: #050805;
+    --accent-green: #2ed573;
+    --glass: rgba(255, 255, 255, 0.03);
+}
+
 body {
-    background-color: #050805 !important;
-    background-image: radial-gradient(circle at 50% 20%, #10331d, transparent 1000px) !important;
-    color: white;
+    background-color: var(--bg-dark) !important;
+    background-image: radial-gradient(circle at 50% -20%, #10331d, transparent 800px) !important;
+    color: white !important;
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    min-height: 100vh;
 }
 
-/* Hero Section */
-.glow-text {
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: #2ed573;
-    text-shadow: 0 0 30px rgba(46, 213, 115, 0.5);
-    margin-bottom: 5px;
-}
-
-.server-url-sub { color: #444; font-family: monospace; margin-bottom: 40px; }
-
-/* Status & IP Kasten */
-.glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-}
-
-.status-bar {
+/* Navigation - Fix für das Bild image_df2f45.png */
+.navbar {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    font-size: 0.9rem;
+    justify-content: space-between;
+    padding: 20px 5%;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.status-dot { width: 10px; height: 10px; background: #2ed573; border-radius: 50%; box-shadow: 0 0 10px #2ed573; }
-.online { color: #2ed573; }
-.player-count { margin-left: auto; color: #666; }
-
-.ip-box-container {
-    background: #000;
-    border-radius: 12px;
-    padding: 15px 20px;
-    border: 1px solid #111;
-    cursor: pointer;
+.nav-links a {
+    margin-left: 20px;
+    font-weight: 700;
     transition: 0.3s;
 }
 
-.ip-box-container:hover { border-color: #2ed573; background: #050505; }
-
-.ip-label { font-size: 0.65rem; color: #444; text-transform: uppercase; margin-bottom: 5px; }
-.ip-row { display: flex; justify-content: space-between; align-items: center; }
-.ip-address { font-weight: bold; letter-spacing: 1px; }
-
-/* Community Buttons */
-.section-title { color: #2ed573; margin-top: 50px; letter-spacing: 2px; font-size: 1rem; }
-
-.neon-button {
-    background: rgba(46, 213, 115, 0.05) !important;
-    border: 1px solid #2ed573 !important;
-    color: #2ed573 !important;
-    padding: 18px !important;
-    border-radius: 12px !important;
-    text-transform: uppercase;
-    font-weight: 900 !important;
-    box-shadow: 0 0 15px rgba(46, 213, 115, 0.1);
-    transition: 0.3s !important;
+.nav-links a:hover, .nav-links a.active {
+    color: var(--accent-green) !important;
 }
 
-.neon-button:hover {
-    background: #2ed573 !important;
-    color: #000 !important;
+/* Die großen Community-Buttons */
+.discord-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.link-btn {
+    display: block;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(46, 213, 115, 0.05);
+    border: 1px solid var(--accent-green);
+    text-align: center;
+    font-weight: 900;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(46, 213, 115, 0.1);
+    transition: 0.3s;
+}
+
+.link-btn:hover {
+    background: var(--accent-green) !important;
+    color: black !important;
     box-shadow: 0 0 30px rgba(46, 213, 115, 0.4);
-    transform: translateY(-3px);
 }
