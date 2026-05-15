@@ -55,42 +55,53 @@
 
 <footer><p>ManuSMP.gleeze.com &copy; 2026</p></footer>
 
+<audio id="bgMusic" loop preload="auto">
+    <source src="background.mp3" type="audio/mpeg">
+</audio>
+
 <script>
+    // IP Kopier-Funktion
     function copyIp() {
         const ip = "ManuSMP.gleeze.com";
-        navigator.clipboard.writeText(ip).then(() => { alert("IP kopiert!"); });
+        navigator.clipboard.writeText(ip).then(() => { 
+            alert("IP kopiert!"); 
+        });
     }
+
+    // Live Player Abfrage
     async function updatePlayerCount() {
         try {
             const res = await fetch('https://mcapi.us/server/status?ip=ManuSMP.gleeze.com');
             const data = await res.json();
             document.getElementById('player-count').innerText = data.online ? data.players.now + " / " + data.players.max : "Offline";
-        } catch (e) { document.getElementById('player-count').innerText = "Offline"; }
-    }
-    <audio id="bgMusic" loop autoplay muted>
-    <source src="background.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-    const music = document.getElementById("bgMusic");
-
-    // Versucht die Musik beim Laden zu starten
-    window.addEventListener('load', () => {
-        music.play().catch(error => {
-            console.log("Autoplay wurde vom Browser blockiert. Warte auf Interaktion.");
-        });
-    });
-
-    // Sobald der User irgendwo hinklickt, wird die Musik entmutet und spielt
-    document.body.addEventListener('click', () => {
-        if (music.muted) {
-            music.muted = false;
-            music.play();
+        } catch (e) { 
+            document.getElementById('player-count').innerText = "Offline"; 
         }
-    }, { once: true }); // Das passiert nur beim allerersten Klick
-</script>
+    }
     updatePlayerCount();
     setInterval(updatePlayerCount, 30000);
+
+    // Musik-Logik für Autoplay-Fix
+    const music = document.getElementById("bgMusic");
+
+    function startMusic() {
+        music.play().then(() => {
+            console.log("Musik spielt!");
+            document.removeEventListener('click', startMusic);
+            document.removeEventListener('touchstart', startMusic);
+        }).catch(error => {
+            console.log("Browser blockiert noch...");
+        });
+    }
+
+    document.addEventListener('click', startMusic);
+    document.addEventListener('touchstart', startMusic);
+
+    window.addEventListener('load', () => {
+        music.volume = 0.4; // Lautstärke auf 40%
+        startMusic();
+    });
 </script>
+
 </body>
 </html>
