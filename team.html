@@ -7,38 +7,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav class="navbar"><div class="nav-logo">ManuSMP</div><div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="team.html" class="active">Team</a></div></nav>
+<nav class="navbar">
+    <a href="index.html" style="text-decoration: none;"><div class="nav-logo">ManuSMP</div></a>
+    <div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="team.html" class="active">Team</a></div>
+</nav>
 
 <div class="container">
     <h1 class="glow-text">ManuSMP Staff</h1>
 
-    <div class="card" style="border-left: 5px solid #ff4757;">
-        <span class="role-badge" style="background: rgba(255, 71, 87, 0.2); color: #ff4757;">OWNER</span>
+    <div class="card" style="border-left: 5px solid #2ed573;">
+        <span class="role-badge" style="background: rgba(46, 213, 115, 0.2); color: #2ed573;">OWNER</span>
         <h3>👑 Manu</h3>
     </div>
 
-    <div class="card" style="border-left: 5px solid #ffa502;">
-        <span class="role-badge" style="background: rgba(255, 165, 2, 0.2); color: #ffa502;">MANAGER</span>
+    <div class="card" style="border-left: 5px solid #2ed573; opacity: 0.9;">
+        <span class="role-badge" style="background: rgba(46, 213, 115, 0.15); color: #2ed573;">MANAGER</span>
         <h3>💼 Leon</h3>
     </div>
 
-    <div class="card" style="border-left: 5px solid #2ed573;">
-        <span class="role-badge" style="background: rgba(46, 213, 115, 0.2); color: #2ed573;">MOD</span>
+    <div class="card" style="border-left: 5px solid #2ed573; opacity: 0.8;">
+        <span class="role-badge" style="background: rgba(46, 213, 115, 0.1); color: #2ed573;">MOD</span>
         <h3>🛡️ ★...★</h3>
     </div>
 
-    <div class="card" style="border-left: 5px solid #7bed9f;">
-        <span class="role-badge" style="background: rgba(123, 237, 159, 0.2); color: #7bed9f;">T-MOD</span>
+    <div class="card" style="border-left: 5px solid #2ed573; opacity: 0.7;">
+        <span class="role-badge" style="background: rgba(46, 213, 115, 0.05); color: #2ed573;">T-MOD</span>
         <h3>🌱 Lelelog / WizardLocket35</h3>
     </div>
 
-    <div class="card" style="border-left: 5px solid #1e90ff;">
-        <span class="role-badge" style="background: rgba(30, 144, 255, 0.2); color: #1e90ff;">HELPER</span>
-        <div class="helper-list">
-            <span class="helper-item">NotMikeYT</span>
-            <span class="helper-item">Elias</span>
-            <span class="helper-item">Basti</span>
-        </div>
+    <div class="card" style="border-left: 5px solid #2ed573; opacity: 0.6;">
+        <span class="role-badge" style="background: rgba(46, 213, 115, 0.05); color: #2ed573;">HELPER</span>
+        <p style="margin-top: 10px; font-size: 0.9rem;">NotMikeYT, Elias, Basti</p>
     </div>
 </div>
 
@@ -48,7 +47,7 @@
     function playAudio() { music.play(); document.removeEventListener('click', playAudio); document.removeEventListener('touchstart', playAudio); }
     document.addEventListener('click', playAudio);
     document.addEventListener('touchstart', playAudio);
-    window.addEventListener('load', () => { music.volume = 0.4; playAudio(); });
+    window.addEventListener('load', () => { music.volume = 0.1; playAudio(); });
 </script>
 </body>
 </html>
