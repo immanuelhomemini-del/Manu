@@ -1,158 +1,135 @@
-/* Grunddesign bleibt, Animationen kommen hinzu */
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out; /* Animation für absolut ALLES */
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #0a0a0a;
-    color: #ffffff;
+    background-color: #0d0d0d;
+    color: white;
     margin: 0;
-    overflow-x: hidden;
-}
-
-/* Sanftes Einblenden der gesamten Seite beim Laden */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.container {
-    animation: fadeIn 1s ease-out;
-}
-
-/* HEADER ANIMATION */
-header {
-    background: linear-gradient(135deg, #1e90ff, #00ced1);
-    padding: 150px 0;
+    padding: 0;
+    overflow-x: hidden; /* Verhindert seitliches Scrollen */
     text-align: center;
-    transition: background 0.5s ease;
 }
 
-header:hover {
-    background: linear-gradient(135deg, #00ced1, #1e90ff);
+/* Verhindert Rauszoomen: Alles passt sich der Breite an */
+.main-wrapper {
+    max-width: 100%;
+    width: 600px; /* Kompakte Breite für bessere Übersicht */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    padding: 60px 20px;
+    background: linear-gradient(180deg, #1e90ff 0%, #0d0d0d 100%);
 }
 
 .hero-title {
-    font-size: 5rem;
-    font-weight: 900;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: inline-block;
+    font-size: clamp(3rem, 10vw, 5rem); /* Schrift passt sich Displaygröße an */
+    margin: 0;
+    cursor: default;
 }
 
 .hero-title:hover {
-    transform: scale(1.1) rotate(2deg);
-    color: #fff;
-    text-shadow: 0 0 30px #00ced1;
+    transform: scale(1.1);
+    text-shadow: 0 0 20px #00ced1;
+    letter-spacing: 5px;
 }
 
-/* SERVER BOX ANIMATION */
+/* SERVER BOX */
 .server-box {
-    background: #151515;
-    border-radius: 30px;
-    padding: 60px;
-    border: 1px solid #333;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: -40px;
+    border: 2px solid #333;
 }
 
 .server-box:hover {
-    transform: translateY(-10px);
     border-color: #1e90ff;
-    box-shadow: 0 20px 50px rgba(30, 144, 255, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(30, 144, 255, 0.2);
 }
 
-/* IP BADGE ANIMATION (Pulse & Glow) */
+/* IP & BUTTON */
 .ip-badge {
-    background: #222;
-    padding: 20px 40px;
-    border-radius: 15px;
-    font-family: 'Courier New', monospace;
-    font-size: 2.5rem;
+    display: block;
+    font-family: monospace;
+    font-size: 1.5rem;
+    background: #000;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
     color: #00ced1;
-    display: inline-block;
-    transition: all 0.3s ease;
     cursor: pointer;
-    border: 2px solid transparent;
 }
 
 .ip-badge:hover {
-    background: #000;
-    border-color: #00ced1;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px #00ced1;
-    transform: scale(1.05);
+    filter: brightness(1.5);
+    transform: scale(1.02);
 }
 
-/* BUTTON ANIMATION */
 .copy-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
     background: #1e90ff;
     color: white;
-    border: none;
-    padding: 20px 60px;
-    border-radius: 12px;
-    font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.4);
 }
 
 .copy-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 30px rgba(30, 144, 255, 0.6);
-    filter: brightness(1.2);
+    background: #00ced1;
+    transform: scale(1.05);
 }
 
-.copy-btn:active {
-    transform: scale(0.95);
-}
-
-/* FEATURE CARDS (Wiggle & Rise) */
-.features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.feature-card {
+/* CARDS & LISTS */
+.info-card, .f-card, .rules-box, footer {
     background: #1a1a1a;
-    padding: 40px;
-    border-radius: 20px;
-    transition: all 0.4s ease;
-    border-bottom: 5px solid #1e90ff;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 15px;
 }
 
-.feature-card:hover {
-    transform: translateY(-15px) rotateX(10deg);
+.info-card:hover, .f-card:hover, .rules-box:hover {
     background: #222;
-    border-bottom-color: #00ced1;
+    transform: scale(1.02);
 }
 
-.feature-card .icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    transition: transform 0.5s ease;
-    display: block;
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
-.feature-card:hover .icon {
-    transform: scale(1.3) rotate(-10deg);
+ul {
+    list-style: none;
+    padding: 0;
 }
 
-/* RULES LIST HOVER */
-.rules-list li {
-    transition: all 0.3s ease;
-    cursor: default;
-    border-left: 0 solid #1e90ff;
+li {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
 }
 
-.rules-list li:hover {
-    background: rgba(30, 144, 255, 0.1);
-    padding-left: 30px;
-    border-left: 10px solid #1e90ff;
+li:hover {
+    background: #333;
     transform: translateX(10px);
+    color: #1e90ff;
 }
 
-/* Scroll-Animation (für moderne Browser) */
-@view-transition {
-  navigation: auto;
+footer:hover {
+    color: #1e90ff;
+    letter-spacing: 1px;
+}
+
+/* Handy-Optimierung */
+@media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .main-wrapper { width: 95%; }
 }
