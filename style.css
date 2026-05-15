@@ -1,0 +1,146 @@
+/* Grundlegendes Layout */
+body {
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #0f0f0f; /* Sehr dunkles Grau/Schwarz */
+    color: #f5f5f5;
+    margin: 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header mit Farbverlauf passend zum Minecraft-Vibe */
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=1350&q=80'); /* Platzhalter für ein Hintergrundbild */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    padding: 80px 0;
+    text-align: center;
+    border-bottom: 3px solid #1e90ff;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    color: #1e90ff;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Haupt-Container */
+.container {
+    max-width: 1000px;
+    width: 90%;
+    margin-top: -50px; /* Lässt die Box in den Header ragen */
+    z-index: 10;
+}
+
+/* Die Server-Info Box */
+.server-box {
+    background: #1a1a1a;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border: 1px solid #333;
+    text-align: center;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 10px #2ecc71;
+}
+
+/* IP-Adresse Styling */
+.ip-badge {
+    background: #262626;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: #00ced1;
+    display: inline-block;
+    margin: 20px 0;
+    border: 1px dashed #444;
+}
+
+/* Button-Styling */
+button {
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+}
+
+button:hover {
+    background-color: #1c86ee;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 144, 255, 0.5);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Feature Sektion */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin: 50px 0;
+}
+
+.feature-card {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 15px;
+    border-bottom: 4px solid #1e90ff;
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    background: #222;
+    transform: scale(1.03);
+}
+
+.feature-card h3 {
+    color: #1e90ff;
+    margin-top: 0;
+}
+
+/* Footer */
+footer {
+    padding: 40px;
+    color: #555;
+    font-size: 0.85rem;
+}
+
+/* Responsive Design für Handys */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .ip-badge {
+        font-size: 1rem;
+    }
+}
