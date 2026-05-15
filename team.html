@@ -19,43 +19,42 @@
 </nav>
 
 <div class="container">
-    <h1 class="glow-text">ManuSMP Staff</h1>
+    <h1 class="glow-text" style="text-align:center; color:#2ed573; text-shadow: 0 0 20px rgba(46, 213, 115, 0.4);">ManuSMP Staff</h1>
 
-    <div class="card" style="border-left: 4px solid var(--accent-green);">
+    <div class="card" style="border-left: 5px solid #2ed573; background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
         <span class="role-badge" style="background: #2ed573; color: #000; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 900; text-transform: uppercase;">OWNER</span>
-        <h3 style="margin: 15px 0 0 0; font-size: 1.4rem;">👑 Manu</h3>
+        <h3 style="margin: 15px 0 0 0; font-size: 1.4rem; color: white;">👑 Manu</h3>
     </div>
 
-    <div class="card" style="border-left: 4px solid var(--accent-green);">
-        <span class="role-badge" style="background: rgba(46, 213, 115, 0.2); color: #2ed573; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800;">MOD</span>
-        <h3 style="margin: 15px 0 0 0;">🛡️ ★...★</h3>
+    <div class="card" style="border-left: 5px solid #2ed573; background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
+        <span class="role-badge" style="background: #2ed573; color: #000; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 900; text-transform: uppercase;">MANAGER</span>
+        <h3 style="margin: 15px 0 0 0; color: white;">💼 Leon</h3>
     </div>
 
-    <div class="card" style="border-left: 4px solid var(--accent-green);">
-        <span class="role-badge" style="background: rgba(46, 213, 115, 0.1); color: #2ed573; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800;">T-MOD</span>
-        <h3 style="margin: 15px 0 0 0;">🌱 Lelelog / WizardLocket35</h3>
+    <div class="card" style="border-left: 5px solid #2ed573; background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
+        <span class="role-badge" style="background: rgba(46, 213, 115, 0.2); color: #2ed573; border: 1px solid #2ed573; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800;">MOD</span>
+        <h3 style="margin: 15px 0 0 0; color: white;">🛡️ ★...★</h3>
     </div>
 
-    <div class="card" style="border-left: 4px solid #3498db;">
-        <span class="role-badge" style="background: rgba(52, 152, 219, 0.2); color: #3498db; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800;">HELPER</span>
-        <p style="margin: 15px 0 0 0; font-weight: bold; font-size: 1.1rem;">NotMikeYT, Elias, Basti</p>
+    <div class="card" style="border-left: 5px solid #2ed573; background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
+        <span class="role-badge" style="background: rgba(46, 213, 115, 0.1); color: #2ed573; border: 1px solid #2ed573; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800;">T-MOD</span>
+        <h3 style="margin: 15px 0 0 0; color: white;">🌱 WizardLocket35</h3>
+    </div>
+
+    <div class="card" style="border-left: 5px solid #3498db; background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
+        <span class="role-badge" style="background: rgba(52, 152, 219, 0.2); color: #3498db; border: 1px solid #3498db; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800;">HELPER</span>
+        <p style="margin: 15px 0 0 0; font-weight: bold; font-size: 1.1rem; color: white;">NotMikeYT, Elias, Basti</p>
     </div>
 </div>
 
-<audio id="bgMusic" loop preload="auto"><source src="background.mp3" type="audio/mpeg"></audio>
+<audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
 
 <script>
-    const music = document.getElementById("bgMusic");
-    // Lautstärke auf 10%
-    music.volume = 0.1;
-    
-    function startAudio() {
-        music.play();
-        document.removeEventListener('click', startAudio);
-        document.removeEventListener('touchstart', startAudio);
-    }
-    document.addEventListener('click', startAudio);
-    document.addEventListener('touchstart', startAudio);
+    const m = document.getElementById("bgMusic");
+    // 10% Lautstärke wie gewünscht
+    m.volume = 0.1;
+    document.addEventListener('click', () => { m.play(); }, {once:true});
+    document.addEventListener('touchstart', () => { m.play(); }, {once:true});
 </script>
 
 </body>
