@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Home</title>
-    <link rel="stylesheet" href="style.css?v=45">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="stylesheet" href="style.css?v=50">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -51,7 +54,6 @@
     <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
 
     <script>
-        // Fade-In Observer
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
@@ -63,7 +65,6 @@
         }, appearOptions);
         faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-        // IP Kopieren
         function copyIP() {
             navigator.clipboard.writeText("ManuSMP.gleeze.com").then(() => {
                 const btn = document.getElementById('copy-status');
@@ -72,10 +73,9 @@
             });
         }
 
-        // Musik Logik
         const music = document.getElementById("bgMusic");
         music.volume = 0.15;
-        document.addEventListener('click', () => { music.play().catch(e => console.log("Audio blockiert")); }, { once: true });
+        document.addEventListener('click', () => { music.play(); }, { once: true });
     </script>
 </body>
 </html>
