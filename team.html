@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <nav class="navbar">
     <div class="nav-logo">ManuSMP</div>
     <div class="nav-links">
@@ -38,27 +40,34 @@
     </div>
 </div>
 
+<footer><p>ManuSMP.gleeze.com &copy; 2026</p></footer>
+
 <audio id="bgMusic" loop preload="auto">
     <source src="background.mp3" type="audio/mpeg">
 </audio>
 
 <script>
     const music = document.getElementById("bgMusic");
-    
-    function startMusic() {
+
+    function playAudio() {
         music.play().then(() => {
-            console.log("Musik läuft auf Team");
-            document.removeEventListener('click', startMusic);
-            document.removeEventListener('touchstart', startMusic);
-        }).catch(err => console.log("Warte auf Interaktion..."));
+            console.log("Team-Seite Musik spielt");
+            // Entfernt die Event-Listener, damit sie nicht bei jedem Klick neu starten
+            document.removeEventListener('click', playAudio);
+            document.removeEventListener('touchstart', playAudio);
+        }).catch(error => {
+            console.log("Autoplay blockiert, warte auf Interaktion...");
+        });
     }
 
-    document.addEventListener('click', startMusic);
-    document.addEventListener('touchstart', startMusic);
-    
+    // Hört auf Klicks und Berührungen am Handy
+    document.addEventListener('click', playAudio);
+    document.addEventListener('touchstart', playAudio);
+
+    // Versucht beim Laden der Seite die Lautstärke zu setzen
     window.addEventListener('load', () => {
         music.volume = 0.4;
-        startMusic();
+        playAudio(); 
     });
 </script>
 </body>
