@@ -1,13 +1,9 @@
 :root {
     --bg-dark: #050805;
     --accent-green: #2ed573;
+    --accent-blue: #3498db;
     --card-bg: rgba(255, 255, 255, 0.03);
     --border-color: rgba(46, 213, 115, 0.2);
-}
-
-* {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -17,174 +13,39 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
-/* Navigation Fix */
+/* Nav Fix - Keine lila/blauen Links mehr */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 8%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
+    display: flex; justify-content: space-between; padding: 20px 8%;
+    background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
 }
 
-.nav-logo {
-    color: var(--accent-green);
-    font-weight: 900;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-}
-
 .nav-links a {
-    color: white !important;
-    text-decoration: none !important;
-    margin-left: 25px;
-    font-weight: 700;
-    transition: 0.3s;
-    font-size: 0.9rem;
-    text-transform: uppercase;
+    color: white !important; text-decoration: none !important;
+    margin-left: 25px; font-weight: 700; transition: 0.3s;
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: var(--accent-green) !important;
-}
+.nav-links a:hover, .nav-links a.active { color: var(--accent-green) !important; }
 
-/* Hero Section */
-.main-content {
-    flex: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.hero-title {
-    font-size: clamp(3rem, 10vw, 5rem);
-    font-weight: 900;
-    color: var(--accent-green);
-    margin: 0;
-    text-shadow: 0 0 30px rgba(46, 213, 115, 0.3);
-}
-
-.subtitle {
-    opacity: 0.5;
-    font-family: monospace;
-    margin-top: -10px;
-    margin-bottom: 40px;
-}
-
-/* Server Card & Copy Button */
-.server-card {
+/* Cards & Buttons */
+.server-card, .team-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 50px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.status-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
-.status-dot {
-    width: 10px;
-    height: 10px;
-    background: var(--accent-green);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent-green);
-}
-
-.player-count {
-    margin-left: auto;
-    opacity: 0.7;
-}
-
-.ip-box {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 15px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.ip-box:hover {
-    background: rgba(46, 213, 115, 0.1);
-    transform: translateY(-2px);
-}
-
-.ip-text {
-    text-align: left;
-}
-
-.ip-text .label {
-    display: block;
-    font-size: 0.7rem;
-    opacity: 0.5;
-    margin-bottom: 4px;
-}
-
-.ip-text .address {
-    font-weight: 900;
-    font-size: 1.2rem;
-}
-
-.copy-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.6rem;
-    color: var(--accent-green);
-    gap: 5px;
-}
-
-/* Buttons */
-.section-title {
-    color: var(--accent-green);
-    font-weight: 900;
-    letter-spacing: 2px;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
-.button-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    border-radius: 20px; padding: 25px;
 }
 
 .glass-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    color: white !important;
-    text-decoration: none !important;
-    padding: 20px;
-    border-radius: 12px;
-    font-weight: 900;
-    transition: 0.3s;
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    color: white !important; text-decoration: none !important;
+    padding: 20px; border-radius: 12px; font-weight: 900;
+    display: block; text-align: center; transition: 0.3s;
 }
 
 .glass-btn:hover {
-    background: var(--accent-green);
-    color: black !important;
+    background: var(--accent-green); color: black !important;
     box-shadow: 0 0 20px rgba(46, 213, 115, 0.4);
 }
 
-.footer {
-    margin-top: 60px;
-    opacity: 0.3;
-    font-size: 0.8rem;
-}
+audio { display: none; }
