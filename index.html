@@ -3,141 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManuSMP | Offizielle Webseite</title>
-    <style>
-        /* Modernes Dark-Design */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1e90ff, #00ced1);
-            width: 100%;
-            padding: 50px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        .container {
-            max-width: 800px;
-            padding: 20px;
-        }
-
-        .server-box {
-            background-color: #1e1e1e;
-            border-radius: 15px;
-            padding: 30px;
-            margin-top: -40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            border: 1px solid #333;
-        }
-
-        .ip-badge {
-            background-color: #333;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-family: monospace;
-            font-size: 1.2em;
-            color: #00ced1;
-            display: inline-block;
-            margin: 15px 0;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .ip-badge:hover {
-            background-color: #444;
-        }
-
-        .status {
-            color: #2ecc71;
-            font-weight: bold;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            background: #252525;
-            padding: 20px;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 0.9em;
-            color: #777;
-        }
-
-        button {
-            background-color: #1e90ff;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-size: 1em;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-    </style>
+    <title>ManuSMP | Das ultimative Minecraft-Erlebnis</title>
+    <!-- Einbindung der CSS Datei -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts für einen moderneren Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header>
-    <h1>ManuSMP</h1>
-    <p>Willkommen auf Manus offiziellem Minecraft-Netzwerk</p>
+    <div class="header-content">
+        <h1>ManuSMP</h1>
+        <p>Dein Zuhause in der Welt von Minecraft</p>
+    </div>
 </header>
 
 <div class="container">
-    <div class="server-box">
-        <h2>Server-Status: <span class="status">Online</span></h2>
-        <p>Kopiere die IP und starte dein Abenteuer:</p>
-        <div class="ip-badge" id="serverIp">ManuSMP.Gleeze.com</div>
-        <br>
-        <button onclick="copyIp()">IP Kopieren</button>
-    </div>
+    <!-- Haupt-Status-Box -->
+    <section class="server-box">
+        <div class="status-wrapper">
+            <span class="status-indicator"></span>
+            <span class="status-text">Server ist Online</span>
+        </div>
+        <h2>Bereit für dein Abenteuer?</h2>
+        <p>Tritt einer wachsenden Community bei und baue deine eigene Geschichte auf dem ManuSMP-Netzwerk.</p>
+        
+        <div class="ip-container">
+            <span class="ip-badge" id="serverIp">ManuSMP.Gleeze.com</span>
+            <button class="copy-btn" onclick="copyIp()">IP KOPIEREN</button>
+        </div>
+        <p class="version-info">Unterstützte Versionen: <b>1.21.x - 1.21.1</b></p>
+    </section>
 
+    <!-- Über den Server Sektion -->
+    <section class="about-section">
+        <h2>Was ist ManuSMP?</h2>
+        <p>
+            ManuSMP ist nicht einfach nur ein Server – es ist ein Projekt von Spielern für Spieler. 
+            Gegründet von <b>Manu</b>, liegt unser Fokus auf einer stabilen Wirtschaft, technischer Perfektion 
+            und einem respektvollen Miteinander. Egal ob du ein Profi-Redstoner oder ein begeisterter Builder bist, 
+            bei uns findest du deinen Platz.
+        </p>
+    </section>
+
+    <!-- Features / Highlights -->
     <div class="features">
         <div class="feature-card">
-            <h3>Community</h3>
-            <p>Ein freundliches Umfeld für alle Spieler. Schließ dich uns an!</p>
+            <div class="icon">⚙️</div>
+            <h3>High-End Technik</h3>
+            <p>Dank MariaDB-Anbindung und optimierten Paper-Configs bieten wir ein lagfreies Erlebnis mit High-Speed Hoppern.</p>
         </div>
         <div class="feature-card">
-            <h3>Technik</h3>
-            <p>Optimiertes Gameplay auf Version 1.21.1 mit High-Speed Hoppern.</p>
+            <div class="icon">⚖️</div>
+            <h3>Faires System</h3>
+            <p>Mit LuckPerms und EssentialsX sorgen wir für ein gerechtes Rang-System und einfache Befehle für jeden.</p>
         </div>
         <div class="feature-card">
-            <h3>Discord</h3>
-            <p>Bleib immer up-to-date und diskutiere in unserer Community mit.</p>
+            <div class="icon">🛡️</div>
+            <h3>Sicherheit</h3>
+            <p>Dein Fortschritt ist sicher. Wir nutzen moderne Plugins, um Griefer fernzuhalten und Backups zu garantieren.</p>
         </div>
     </div>
+
+    <!-- Regeln Kurzübersicht -->
+    <section class="rules-preview">
+        <h2>Unsere Grundregeln</h2>
+        <ul>
+            <li>Behandle jeden Spieler mit Respekt.</li>
+            <li>Griefen und Stehlen ist streng untersagt.</li>
+            <li>Hacks oder unerlaubte Modifikationen führen zum Ausschluss.</li>
+            <li>Hab Spaß und sei kreativ!</li>
+        </ul>
+    </section>
 </div>
 
 <footer>
-    &copy; 2026 Manu & ManuSMP | Erstellt mit Leidenschaft
+    <div class="footer-content">
+        <p><b>ManuSMP</b> &copy; 2026 | Administrator: Manu</p>
+        <p>Diese Seite steht in keiner Verbindung zu Mojang AB.</p>
+    </div>
 </footer>
 
 <script>
     function copyIp() {
         const ip = document.getElementById('serverIp').innerText;
-        navigator.clipboard.writeText(ip);
-        alert("Server-IP kopiert: " + ip);
+        navigator.clipboard.writeText(ip).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.innerText = "KOPIERT!";
+            btn.style.backgroundColor = "#2ecc71";
+            setTimeout(() => {
+                btn.innerText = "IP KOPIEREN";
+                btn.style.backgroundColor = "#1e90ff";
+            }, 2000);
+        });
     }
 </script>
 
