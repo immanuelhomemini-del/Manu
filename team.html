@@ -3,51 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManuSMP | Team</title>
-    <link rel="stylesheet" href="style.css?v=11">
+    <title>ManuSMP | Home</title>
+    <link rel="stylesheet" href="style.css?v=25">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-logo">ManuSMP</div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
-            <a href="team.html" class="active">Team</a>
+            <a href="team.html">Team</a>
         </div>
     </nav>
 
     <div class="main-content">
-        <h1 class="hero-title" style="font-size: 3rem;">TEAM</h1>
-        
-        <div style="display: grid; gap: 15px; text-align: left; margin-top: 30px;">
-            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
-                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">OWNER</span>
-                <h3 style="margin-top: 5px;">👑 Manu</h3>
+        <h1 class="hero-title">MANUSMP</h1>
+        <p style="opacity: 0.5; font-family: monospace; margin-bottom: 40px;">ManuSMP.gleeze.com</p>
+
+        <div class="server-card">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: 700;">
+                <span style="width: 10px; height: 10px; background: #2ed573; border-radius: 50%; box-shadow: 0 0 10px #2ed573;"></span>
+                <span>STATUS: ONLINE</span>
+                <span style="margin-left: auto; opacity: 0.7;">4 / 100</span>
             </div>
-            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
-                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">MANAGER</span>
-                <h3 style="margin-top: 5px;">💼 Leon</h3>
+            <div class="ip-box" onclick="copyIP()">
+                <div style="text-align: left;">
+                    <span style="display: block; font-size: 0.7rem; opacity: 0.5;">SERVER IP (KLICK ZUM KOPIEREN)</span>
+                    <span style="font-weight: 900; font-size: 1.2rem;">ManuSMP.gleeze.com</span>
+                </div>
+                <div style="text-align: right;">
+                    <span id="copy-status" style="color: #2ed573; font-weight: 900; font-size: 0.8rem;">IP KOPIEREN</span>
+                </div>
             </div>
-            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
-                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">MOD</span>
-                <h3 style="margin-top: 5px;">🛡️ ★...★</h3>
-            </div>
-            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
-                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">T-MOD</span>
-                <h3 style="margin-top: 5px;">🌱 WizardLocket35</h3>
-            </div>
-            <div class="server-card" style="margin: 0; border-left: 5px solid #3498db;">
-                <span style="color: #3498db; font-weight: 900; font-size: 0.7rem;">HELPER</span>
-                <h3 style="margin-top: 5px;">🔨 NotMikeYT, Elias, Basti</h3>
-            </div>
+        </div>
+
+        <h2 style="color: #2ed573; margin-bottom: 20px; letter-spacing: 2px;">COMMUNITY</h2>
+        <div class="button-grid">
+            <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="glass-btn">MANUSMP DISCORD</a>
+            <a href="https://guns.lol/manu1590" target="_blank" class="glass-btn">MEIN PROFIL (GUNS.LOL)</a>
         </div>
     </div>
 
     <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
+
     <script>
-        const music = document.getElementById("bgMusic"); music.volume = 0.15;
-        document.addEventListener('click', () => { music.play(); }, { once: true });
+        function copyIP() {
+            const ip = "ManuSMP.gleeze.com";
+            navigator.clipboard.writeText(ip).then(() => {
+                const btn = document.getElementById('copy-status');
+                btn.innerText = 'KOPIERT!';
+                setTimeout(() => { btn.innerText = 'IP KOPIEREN'; }, 2000);
+            });
+        }
+
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.15;
+        document.addEventListener('click', () => {
+            music.play().catch(e => console.log("Audio blockiert"));
+        }, { once: true });
     </script>
 </body>
 </html>
