@@ -24,7 +24,7 @@
         <p class="subtitle">ManuSMP.gleeze.com</p>
     </header>
 
-    <section class="status-card">
+    <div class="card status-card">
         <div class="status-header">
             <div class="status-indicator">
                 <span class="dot"></span>
@@ -38,70 +38,49 @@
         <div class="server-ip-box" onclick="copyIp()">
             <div class="ip-info">
                 <span class="label">SERVER IP</span>
-                <span class="ip-text" id="serverIp">ManuSMP.gleeze.com</span>
+                <span class="ip-text">ManuSMP.gleeze.com</span>
             </div>
             <div class="copy-icon">📋</div>
         </div>
-    </section>
+    </div>
 
-    <section class="content-section">
-        <h2 class="purple-glow">Community</h2>
-        <div class="discord-grid">
-            <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="discord-card">MANUSMP Discord</a>
-            <a href="https://guns.lol/manu1590" target="_blank" class="discord-card" style="background: #222; border: 1px solid #444;">Mein Profil (guns.lol)</a>
-        </div>
-    </section>
+    <h2 class="glow-text" style="font-size: 1.5rem; margin-top: 40px;">Community</h2>
+    <div class="discord-grid">
+        <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="discord-card">MANUSMP Discord</a>
+        <a href="https://guns.lol/manu1590" target="_blank" class="discord-card profile-btn">Mein Profil (guns.lol)</a>
+    </div>
 </div>
+
+<div id="custom-alert">📋 IP erfolgreich kopiert!</div>
 
 <footer><p>ManuSMP.gleeze.com &copy; 2026</p></footer>
 
-<audio id="bgMusic" loop preload="auto">
-    <source src="background.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgMusic" loop preload="auto"><source src="background.mp3" type="audio/mpeg"></audio>
 
 <script>
-    // IP Kopier-Funktion
     function copyIp() {
-        const ip = "ManuSMP.gleeze.com";
-        navigator.clipboard.writeText(ip).then(() => { 
-            alert("IP kopiert!"); 
+        navigator.clipboard.writeText("ManuSMP.gleeze.com").then(() => {
+            const alertBox = document.getElementById('custom-alert');
+            alertBox.classList.add('show');
+            setTimeout(() => { alertBox.classList.remove('show'); }, 3000);
         });
     }
 
-    // Live Player Abfrage
     async function updatePlayerCount() {
         try {
-            const res = await fetch('https://mcapi.us/server/status?ip=ManuSMP.gleeze.com');
+            const res = await fetch(`https://mcapi.us/server/status?ip=ManuSMP.gleeze.com&_=${Date.now()}`);
             const data = await res.json();
             document.getElementById('player-count').innerText = data.online ? data.players.now + " / " + data.players.max : "Offline";
-        } catch (e) { 
-            document.getElementById('player-count').innerText = "Offline"; 
-        }
+        } catch (e) { document.getElementById('player-count').innerText = "Offline"; }
     }
     updatePlayerCount();
     setInterval(updatePlayerCount, 30000);
 
-    // Musik-Logik für Autoplay-Fix
     const music = document.getElementById("bgMusic");
-
-    function startMusic() {
-        music.play().then(() => {
-            console.log("Musik spielt!");
-            document.removeEventListener('click', startMusic);
-            document.removeEventListener('touchstart', startMusic);
-        }).catch(error => {
-            console.log("Browser blockiert noch...");
-        });
-    }
-
+    function startMusic() { music.play(); document.removeEventListener('click', startMusic); document.removeEventListener('touchstart', startMusic); }
     document.addEventListener('click', startMusic);
     document.addEventListener('touchstart', startMusic);
-
-    window.addEventListener('load', () => {
-        music.volume = 0.4; // Lautstärke auf 40%
-        startMusic();
-    });
+    window.addEventListener('load', () => { music.volume = 0.4; startMusic(); });
 </script>
-
 </body>
 </html>
