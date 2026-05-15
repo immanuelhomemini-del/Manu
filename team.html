@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Team</title>
-    <link rel="stylesheet" href="style.css?v=25">
+    <link rel="stylesheet" href="style.css?v=30">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -41,8 +41,8 @@
                 <h3 style="margin-top: 5px;">🛡️ WizardLocket35</h3>
             </div>
 
-            <div class="server-card" style="margin: 0; border-left: 5px solid #3498db;">
-                <span style="color: #3498db; font-weight: 900; font-size: 0.7rem;">HELPER</span>
+            <div class="server-card" style="margin: 0; border-left: 5px solid #2ed573;">
+                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem;">HELPER</span>
                 <h3 style="margin-top: 5px;">🔨 NotMikeYT, Elias, Basti</h3>
             </div>
         </div>
@@ -52,9 +52,7 @@
     <script>
         const music = document.getElementById("bgMusic");
         music.volume = 0.15;
-        document.addEventListener('click', () => {
-            music.play().catch(e => console.log("Audio blockiert"));
-        }, { once: true });
+        document.addEventListener('click', () => { music.play(); }, { once: true });
     </script>
 </body>
 </html>
