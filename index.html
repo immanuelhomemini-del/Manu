@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -31,7 +31,6 @@
                 <span class="status-label">STATUS: <span class="online">ONLINE</span></span>
             </div>
             <div class="player-count">
-                <span class="count-label">LIVE PLAYER:</span>
                 <span id="player-count">Lädt...</span>
             </div>
         </div>
@@ -50,7 +49,6 @@
         <div class="discord-grid">
             <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="discord-card">MANUSMP Discord</a>
             <a href="https://discord.gg/d75gpsMQ" target="_blank" class="discord-card" style="background: #5865F2;">Zeno Discord</a>
-            <a href="https://guns.lol/manu1590" target="_blank" class="discord-card" style="background: #222; border: 1px solid #444;">Mein Profil (guns.lol)</a>
         </div>
     </section>
 </div>
@@ -67,7 +65,7 @@
             const res = await fetch('https://mcapi.us/server/status?ip=ManuSMP.gleeze.com');
             const data = await res.json();
             document.getElementById('player-count').innerText = data.online ? data.players.now + " / " + data.players.max : "Offline";
-        } catch (e) { document.getElementById('player-count').innerText = "0 Online"; }
+        } catch (e) { document.getElementById('player-count').innerText = "Offline"; }
     }
     updatePlayerCount();
     setInterval(updatePlayerCount, 30000);
