@@ -54,10 +54,12 @@
             <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="glass-btn">MANUSMP DISCORD</a>
             <a href="https://guns.lol/manu1590" target="_blank" class="glass-btn">MEIN PROFIL (GUNS.LOL)</a>
         </div>
-
-        <footer class="footer">
-            ManuSMP.gleeze.com © 2026
-        </footer>
     </div>
+
+    <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
+    <script>
+        const m = document.getElementById("bgMusic"); m.volume = 0.1;
+        document.addEventListener('click', () => { m.play().catch(e => console.log(e)); }, {once:true});
+    </script>
 </body>
 </html>
