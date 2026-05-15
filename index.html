@@ -4,18 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Home</title>
-    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="stylesheet" href="style.css?v=2.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <script>
-        function copyIP() {
-            const ip = "ManuSMP.gleeze.com";
-            navigator.clipboard.writeText(ip).then(() => {
-                const btn = document.getElementById('copy-status');
-                btn.innerText = 'KOPIERT!';
-                setTimeout(() => { btn.innerText = 'IP KOPIEREN'; }, 2000);
-            });
-        }
-    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -43,7 +33,6 @@
                     <span class="address">ManuSMP.gleeze.com</span>
                 </div>
                 <div class="copy-icon">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                     <span id="copy-status">IP KOPIEREN</span>
                 </div>
             </div>
@@ -56,10 +45,28 @@
         </div>
     </div>
 
-    <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
+    <audio id="bgMusic" loop>
+        <source src="background.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
-        const m = document.getElementById("bgMusic"); m.volume = 0.1;
-        document.addEventListener('click', () => { m.play().catch(e => console.log(e)); }, {once:true});
+        // IP Kopieren Funktion
+        function copyIP() {
+            const ip = "ManuSMP.gleeze.com";
+            navigator.clipboard.writeText(ip).then(() => {
+                const btn = document.getElementById('copy-status');
+                btn.innerText = 'KOPIERT!';
+                setTimeout(() => { btn.innerText = 'IP KOPIEREN'; }, 2000);
+            });
+        }
+
+        // Musik Starten Funktion
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.15; // Lautstärke auf 15%
+        
+        document.addEventListener('click', () => {
+            music.play().catch(e => console.log("Musik braucht Klick:", e));
+        }, { once: true }); // Passiert nur beim ersten Klick
     </script>
 </body>
 </html>
