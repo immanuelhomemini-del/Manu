@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManuSMP | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
 <nav class="navbar">
     <div class="nav-logo">ManuSMP</div>
     <div class="nav-links">
@@ -8,33 +19,39 @@
 </nav>
 
 <div class="container">
-    <header class="hero">
-        <h1 class="glow-text">MANUSMP</h1>
-        <p class="server-url-sub">ManuSMP.gleeze.com</p>
-    </header>
+    <h1 style="color: #2ed573; text-align: center; font-weight: 900; text-transform: uppercase; font-size: 2.5rem; margin-bottom: 30px;">ManuSMP</h1>
 
-    <div class="card glass-card">
-        <div class="status-bar">
-            <span class="status-dot"></span>
-            <span class="status-text">STATUS: <span class="online">ONLINE</span></span>
-            <span class="player-count">4 / 100</span>
-        </div>
-        
-        <div class="ip-box-container" onclick="copyIp()">
-            <div class="ip-label">SERVER IP (Klicken zum Kopieren)</div>
-            <div class="ip-row">
-                <span class="ip-address">ManuSMP.gleeze.com</span>
-                <span class="copy-icon">📋</span>
-            </div>
+    <div class="card">
+        <div class="server-ip-box" onclick="copyIp()">
+            <small style="color: #666; display: block; font-weight: bold; margin-bottom: 5px;">SERVER IP (KLICK ZUM KOPIEREN)</small>
+            <span style="font-size: 1.2rem; font-weight: bold; letter-spacing: 1px;">ManuSMP.gleeze.com</span>
         </div>
     </div>
 
-    <h2 class="section-title">COMMUNITY</h2>
+    <h2 style="text-align: center; font-size: 1.2rem; margin-top: 40px; text-transform: uppercase; color: #2ed573;">Community</h2>
     
     <div class="discord-grid">
-        <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="link-btn neon-button">MANUSMP Discord</a>
-        <a href="https://guns.lol/manu1590" target="_blank" class="link-btn neon-button">Mein Profil (guns.lol)</a>
+        <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="link-btn">MANUSMP Discord</a>
+        <a href="https://guns.lol/manu1590" target="_blank" class="link-btn">Mein Profil (guns.lol)</a>
     </div>
 </div>
 
 <div id="custom-alert">IP KOPIERT!</div>
+
+<audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
+
+<script>
+function copyIp() {
+    navigator.clipboard.writeText("ManuSMP.gleeze.com");
+    const alertBox = document.getElementById('custom-alert');
+    alertBox.classList.add('show');
+    setTimeout(() => alertBox.classList.remove('show'), 2500);
+}
+
+const music = document.getElementById("bgMusic");
+music.volume = 0.1; // 10% Lautstärke
+document.addEventListener('click', () => { music.play(); }, {once: true});
+</script>
+
+</body>
+</html>
