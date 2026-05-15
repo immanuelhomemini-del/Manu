@@ -1,7 +1,7 @@
 :root {
-    --bg-dark: #080808;
-    --accent-purple: #a855f7;
-    --glass: rgba(255, 255, 255, 0.03);
+    --bg-dark: #050805;
+    --accent-green: #2ed573;
+    --glass: rgba(255, 255, 255, 0.02);
     --glass-border: rgba(255, 255, 255, 0.08);
 }
 
@@ -10,49 +10,45 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: white;
     margin: 0;
-    background-image: radial-gradient(circle at 50% -10%, #3d107a, transparent 600px);
+    background-image: radial-gradient(circle at 50% -10%, #1a4d2e, transparent 600px);
 }
 
 .container { max-width: 800px; margin: 40px auto; padding: 20px; }
 
 /* Navbar & Logo */
-.navbar { display: flex; justify-content: space-between; padding: 20px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); }
+.navbar { display: flex; justify-content: space-between; padding: 20px 5%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--glass-border); }
 .nav-logo { 
     font-weight: 900; 
-    color: var(--accent-purple); 
-    text-shadow: 0 0 15px var(--accent-purple); 
+    color: var(--accent-green); 
+    text-shadow: 0 0 15px rgba(46, 213, 115, 0.5); 
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 .nav-logo:hover { transform: scale(1.05); }
 
 .nav-links a { color: #888; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
-.nav-links a.active { color: var(--accent-purple); font-weight: bold; }
+.nav-links a.active { color: var(--accent-green); font-weight: bold; }
 
 /* Texte */
-.glow-text { text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); text-shadow: 0 0 20px rgba(168, 85, 247, 0.4); margin-bottom: 30px; }
-.subtitle { text-align: center; opacity: 0.5; margin-top: -20px; font-family: monospace; }
+.glow-text { text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-green); text-shadow: 0 0 20px rgba(46, 213, 115, 0.4); margin-bottom: 30px; }
+.subtitle { text-align: center; opacity: 0.5; margin-top: -20px; font-family: monospace; color: var(--accent-green); }
 
 /* Cards */
-.card { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 25px; margin-bottom: 20px; }
+.card { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 25px; margin-bottom: 20px; transition: border-color 0.3s; }
+.card:hover { border-color: rgba(46, 213, 115, 0.3); }
 
 .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.online { color: #2ed573; font-weight: bold; }
+.online { color: var(--accent-green); font-weight: bold; }
 
-.server-ip-box { background: #000; padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; cursor: pointer; border: 1px solid #222; transition: border-color 0.3s; }
-.server-ip-box:hover { border-color: var(--accent-purple); }
-
-/* Buttons & Badges */
-.discord-card { display: block; padding: 20px; border-radius: 15px; text-decoration: none; color: white; text-align: center; font-weight: bold; background: #5865F2; margin-bottom: 10px; transition: opacity 0.2s; }
-.discord-card:hover { opacity: 0.9; }
-.profile-btn { background: #222; border: 1px solid #444; }
+.server-ip-box { background: #000; padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; cursor: pointer; border: 1px solid #1a1a1a; transition: border-color 0.3s; }
+.server-ip-box:hover { border-color: var(--accent-green); }
 
 /* Toast Notification */
 #custom-alert {
     position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
-    background: var(--accent-purple); color: white; padding: 12px 25px; border-radius: 50px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10000;
+    background: var(--accent-green); color: #000; padding: 12px 25px; border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-weight: bold; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10000;
 }
 #custom-alert.show { transform: translateX(-50%) translateY(0); }
 
-footer { text-align: center; padding: 40px; opacity: 0.2; font-size: 0.8rem; }
+footer { text-align: center; padding: 40px; opacity: 0.2; font-size: 0.8rem; color: var(--accent-green); }
