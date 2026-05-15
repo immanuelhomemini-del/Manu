@@ -2,124 +2,63 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManuSMP | Das ultimative Minecraft-Netzwerk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ManuSMP | High-End Minecraft</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Zusätzliche Styles für die Größe */
-        .hero-title {
-            font-size: 5rem; /* Richtig groß */
-            font-weight: 900;
-            margin-bottom: 10px;
-            letter-spacing: 5px;
-        }
-        
-        .big-section {
-            padding: 100px 20px;
-            font-size: 1.3rem;
-        }
-
-        .ip-badge {
-            font-size: 2.5rem !important; /* Massive IP Anzeige */
-            padding: 20px 40px !important;
-            display: block;
-            margin: 30px auto !important;
-            width: fit-content;
-        }
-
-        .copy-btn {
-            font-size: 1.5rem !important;
-            padding: 20px 60px !important;
-        }
-
-        .feature-card h3 {
-            font-size: 2rem;
-        }
-
-        .rules-list {
-            font-size: 1.8rem;
-            list-style: none;
-            padding: 0;
-        }
-
-        .rules-list li {
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header style="padding: 150px 0;">
-    <div class="header-content">
-        <h1 class="hero-title">MANUSMP</h1>
-        <p style="font-size: 1.8rem; opacity: 0.8;">Dein High-End Minecraft Erlebnis</p>
-    </div>
+<header>
+    <h1 class="hero-title">MANUSMP</h1>
+    <p class="hero-subtitle">Premium Minecraft Netzwerk</p>
 </header>
 
-<div class="container" style="max-width: 1200px;">
-    <!-- Massive Status Box -->
-    <section class="server-box" style="margin-top: -80px; padding: 60px;">
-        <div class="status-wrapper" style="font-size: 1.5rem; margin-bottom: 20px;">
-            <span class="status-indicator" style="width: 20px; height: 20px;"></span>
+<div class="main-wrapper">
+    <section class="server-box">
+        <div class="status-wrapper">
+            <span class="status-indicator"></span>
             <span class="status-text">SERVER ONLINE</span>
         </div>
-        <h2 style="font-size: 3rem;">BEREIT FÜR DAS ABENTEUER?</h2>
+        <h2 class="section-title">START DEIN ABENTEUER</h2>
         
         <div class="ip-container">
-            <span class="ip-badge" id="serverIp">ManuSMP.Gleeze.com</span>
-            <button class="copy-btn" onclick="copyIp()">JETZT BEITRETEN</button>
+            <span class="ip-badge" id="serverIp" onclick="copyIp()">ManuSMP.Gleeze.com</span>
+            <button class="copy-btn" onclick="copyIp()">JETZT JOINEN</button>
         </div>
-        <p style="font-size: 1.4rem; margin-top: 20px;">Version: <b>1.21.1</b></p>
+        <p class="version-tag">Version 1.21.1</p>
     </section>
 
-    <!-- Über den Server (Breiter & Größer) -->
-    <section class="big-section">
-        <h2 style="font-size: 3.5rem; color: #1e90ff;">WILLKOMMEN AUF MANUSMP</h2>
-        <p style="line-height: 1.8; font-size: 1.5rem;">
-            ManuSMP ist ein technisches Meisterwerk. Geleitet von <b>Manu</b>, bieten wir eine Plattform für Spieler, 
-            die mehr von Minecraft erwarten. Mit einer voll optimierten <b>MariaDB-Datenbank</b>, perfekt 
-            abgestimmten Plugins und einer Hardware, die keine Lags kennt, setzen wir neue Maßstäbe.
-        </p>
+    <section class="info-card">
+        <h2>ÜBER DAS PROJEKT</h2>
+        <p>ManuSMP bietet dir maximale Performance. Mit <b>MariaDB</b> und optimierten <b>High-Speed Hoppern</b> setzen wir auf Technik, die funktioniert. Manu sorgt persönlich für die beste Server-Stabilität.</p>
     </section>
 
-    <!-- Features -->
-    <div class="features" style="gap: 40px;">
-        <div class="feature-card" style="padding: 40px;">
-            <div class="icon" style="font-size: 4rem;">🚀</div>
-            <h3>Performance</h3>
-            <p>Maximale Render-Distance und High-Speed Hopper für technische Großprojekte.</p>
+    <div class="features-grid">
+        <div class="f-card">
+            <div class="f-icon">🚀</div>
+            <h3>Technik</h3>
+            <p>Keine Lags dank High-End Hardware.</p>
         </div>
-        <div class="feature-card" style="padding: 40px;">
-            <div class="icon" style="font-size: 4rem;">💎</div>
-            <h3>Wirtschaft</h3>
-            <p>Ein faires System für Handel und Fortschritt, unterstützt durch EssentialsX.</p>
-        </div>
-        <div class="feature-card" style="padding: 40px;">
-            <div class="icon" style="font-size: 4rem;">👑</div>
-            <h3>Ränge</h3>
-            <p>Ein transparentes Rechtesystem via LuckPerms für alle Spieler-Level.</p>
+        <div class="f-card">
+            <div class="f-icon">🛡️</div>
+            <h3>Sicher</h3>
+            <p>Deine Bauten sind bei uns geschützt.</p>
         </div>
     </div>
 
-    <!-- Neue Regeln (Größer & ohne Griefing/Stehlen) -->
-    <section class="big-section" style="background: #151515; border-radius: 30px; margin: 50px 0;">
-        <h2 style="font-size: 3.5rem;">DIE MANUSMP REGELN</h2>
-        <ul class="rules-list">
-            <li>✅ Respektvoller Umgang im Chat</li>
-            <li>✅ Fairplay gegenüber allen Mitspielern</li>
-            <li>✅ Keine Hacks oder Client-Modifikationen</li>
-            <li>✅ Support gibt es jederzeit im Discord</li>
+    <section class="rules-box">
+        <h2>REGELLISTE</h2>
+        <ul>
+            <li>✨ Respektiere alle Mitspieler</li>
+            <li>✨ Fairplay steht an erster Stelle</li>
+            <li>✨ Support erhältst du im Discord</li>
         </ul>
     </section>
 </div>
 
-<footer style="padding: 60px; font-size: 1.1rem;">
-    <p><b>MANUSMP NETWORK</b> | Administrator: Manu</p>
-    <p style="opacity: 0.5;">2026 Alle Rechte vorbehalten.</p>
+<footer>
+    <p>&copy; 2026 ManuSMP | Admin: Manu</p>
 </footer>
 
 <script>
@@ -127,12 +66,8 @@
         const ip = document.getElementById('serverIp').innerText;
         navigator.clipboard.writeText(ip).then(() => {
             const btn = document.querySelector('.copy-btn');
-            btn.innerText = "IP KOPIERT!";
-            btn.style.backgroundColor = "#2ecc71";
-            setTimeout(() => {
-                btn.innerText = "JETZT BEITRETEN";
-                btn.style.backgroundColor = "#1e90ff";
-            }, 2000);
+            btn.innerText = "KOPIERT!";
+            setTimeout(() => { btn.innerText = "JETZT JOINEN"; }, 2000);
         });
     }
 </script>
