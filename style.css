@@ -15,25 +15,39 @@ body {
 
 .container { max-width: 800px; margin: 40px auto; padding: 20px; }
 
+/* Navbar & Logo */
 .navbar { display: flex; justify-content: space-between; padding: 20px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); }
-.nav-logo { font-weight: 900; color: var(--accent-purple); text-shadow: 0 0 15px var(--accent-purple); }
-.nav-links a { color: #888; text-decoration: none; margin-left: 20px; }
+.nav-logo { 
+    font-weight: 900; 
+    color: var(--accent-purple); 
+    text-shadow: 0 0 15px var(--accent-purple); 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.nav-logo:hover { transform: scale(1.05); }
+
+.nav-links a { color: #888; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
 .nav-links a.active { color: var(--accent-purple); font-weight: bold; }
 
+/* Texte */
 .glow-text { text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); text-shadow: 0 0 20px rgba(168, 85, 247, 0.4); margin-bottom: 30px; }
+.subtitle { text-align: center; opacity: 0.5; margin-top: -20px; font-family: monospace; }
 
+/* Cards */
 .card { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 25px; margin-bottom: 20px; }
 
-.role-badge { display: inline-block; padding: 5px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: bold; margin-bottom: 10px; }
+.status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.online { color: #2ed573; font-weight: bold; }
 
-.helper-list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
-.helper-item { background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 10px; font-size: 0.9rem; }
+.server-ip-box { background: #000; padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; cursor: pointer; border: 1px solid #222; transition: border-color 0.3s; }
+.server-ip-box:hover { border-color: var(--accent-purple); }
 
-.server-ip-box { background: #000; padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; cursor: pointer; border: 1px solid #222; }
-
-.discord-card { display: block; padding: 20px; border-radius: 15px; text-decoration: none; color: white; text-align: center; font-weight: bold; background: #5865F2; margin-bottom: 10px; }
+/* Buttons & Badges */
+.discord-card { display: block; padding: 20px; border-radius: 15px; text-decoration: none; color: white; text-align: center; font-weight: bold; background: #5865F2; margin-bottom: 10px; transition: opacity 0.2s; }
+.discord-card:hover { opacity: 0.9; }
 .profile-btn { background: #222; border: 1px solid #444; }
 
+/* Toast Notification */
 #custom-alert {
     position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
     background: var(--accent-purple); color: white; padding: 12px 25px; border-radius: 50px;
@@ -41,4 +55,4 @@ body {
 }
 #custom-alert.show { transform: translateX(-50%) translateY(0); }
 
-footer { text-align: center; padding: 40px; opacity: 0.3; font-size: 0.8rem; }
+footer { text-align: center; padding: 40px; opacity: 0.2; font-size: 0.8rem; }
