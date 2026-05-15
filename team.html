@@ -3,38 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManuSMP | Team</title>
-    <link rel="stylesheet" href="style.css?v=1.2">
+    <title>ManuSMP | Home</title>
+    <link rel="stylesheet" href="style.css?v=3">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-logo">ManuSMP</div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
-            <a href="team.html" class="active">Team</a>
+            <a href="team.html">Team</a>
         </div>
     </nav>
 
-    <div style="max-width: 800px; margin: 40px auto; padding: 20px;">
-        <h1 style="text-align: center; color: var(--accent-green);">TEAM</h1>
-        <div style="display: grid; gap: 15px;">
-            <div class="team-card" style="border-left: 5px solid var(--accent-green);">
-                <span style="background: var(--accent-green); color: black; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 900;">OWNER</span>
-                <h3 style="margin: 10px 0 0 0;">👑 Manu</h3>
+    <div class="main-content">
+        <h1 class="hero-title">MANUSMP</h1>
+        <p class="subtitle">ManuSMP.gleeze.com</p>
+
+        <div class="server-card">
+            <div class="status-bar">
+                <span class="status-dot"></span>
+                <span class="status-text">STATUS: ONLINE</span>
+                <span class="player-count">4 / 100</span>
             </div>
-            <div class="team-card" style="border-left: 5px solid var(--accent-blue);">
-                <span style="background: var(--accent-blue); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 900;">HELPER</span>
-                <p style="margin: 10px 0 0 0;">NotMikeYT, Elias, Basti</p>
+            <div class="ip-box" onclick="copyIP()">
+                <div class="ip-text">
+                    <span class="label">SERVER IP (KLICKEN ZUM KOPIEREN)</span>
+                    <span class="address">ManuSMP.gleeze.com</span>
+                </div>
+                <div class="copy-icon">
+                    <span id="copy-status">IP KOPIEREN</span>
+                </div>
             </div>
+        </div>
+
+        <h2 class="section-title">COMMUNITY</h2>
+        <div class="button-grid">
+            <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="glass-btn">MANUSMP DISCORD</a>
+            <a href="https://guns.lol/manu1590" target="_blank" class="glass-btn">MEIN PROFIL (GUNS.LOL)</a>
         </div>
     </div>
 
     <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
+
     <script>
-        const m = document.getElementById("bgMusic"); m.volume = 0.1;
-        document.addEventListener('click', () => { m.play().catch(e => console.log(e)); }, {once:true});
+        function copyIP() {
+            const ip = "ManuSMP.gleeze.com";
+            navigator.clipboard.writeText(ip).then(() => {
+                const btn = document.getElementById('copy-status');
+                btn.innerText = 'KOPIERT!';
+                setTimeout(() => { btn.innerText = 'IP KOPIEREN'; }, 2000);
+            });
+        }
+
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.15;
+        // Musik startet beim ersten Klick irgendwo auf die Seite
+        document.addEventListener('click', () => {
+            music.play().catch(e => console.log("Audio Start verhindert"));
+        }, { once: true });
     </script>
 </body>
 </html>
