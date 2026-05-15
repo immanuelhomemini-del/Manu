@@ -67,6 +67,28 @@
             document.getElementById('player-count').innerText = data.online ? data.players.now + " / " + data.players.max : "Offline";
         } catch (e) { document.getElementById('player-count').innerText = "Offline"; }
     }
+    <audio id="bgMusic" loop autoplay muted>
+    <source src="background.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const music = document.getElementById("bgMusic");
+
+    // Versucht die Musik beim Laden zu starten
+    window.addEventListener('load', () => {
+        music.play().catch(error => {
+            console.log("Autoplay wurde vom Browser blockiert. Warte auf Interaktion.");
+        });
+    });
+
+    // Sobald der User irgendwo hinklickt, wird die Musik entmutet und spielt
+    document.body.addEventListener('click', () => {
+        if (music.muted) {
+            music.muted = false;
+            music.play();
+        }
+    }, { once: true }); // Das passiert nur beim allerersten Klick
+</script>
     updatePlayerCount();
     setInterval(updatePlayerCount, 30000);
 </script>
