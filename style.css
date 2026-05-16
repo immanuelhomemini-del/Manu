@@ -1,10 +1,10 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - DARK GLASS DESIGN WITH GREEN ACCENTS
+   MANUSMP GLOBAL CORE STYLES - STABLE & FIXED PLAYER
    ========================================================================= */
 :root {
-    --bg-dark: #121212;        /* Edler, dunkler Hintergrund von gestern */
-    --accent-green: #2ed573;   /* Das giftgrüne Minecraft-Grün für Akzente */
-    --card-bg: rgba(20, 20, 20, 0.6); 
+    --bg-dark: #121212;
+    --accent-green: #2ed573;
+    --card-bg: rgba(20, 20, 20, 0.8); /* Etwas dunkler für besseren Kontrast */
     --text-main: #ffffff;
 }
 
@@ -15,18 +15,20 @@
 }
 
 html, body {
-    background-color: var(--bg-dark) !important; /* Zurück zum dunklen Design! */
+    background-color: var(--bg-dark) !important;
     color: var(--text-main) !important;
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     width: 100%;
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* FADE IN EFFECT */
+/* FADE IN EFFECT - WIRD NUR EINMAL GELADEN */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -55,12 +57,6 @@ html, body {
     color: var(--text-main) !important;
     text-decoration: none;
     letter-spacing: 1px;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.nav-logo:hover {
-    transform: scale(1.05);
-    color: var(--accent-green) !important;
 }
 
 .nav-links {
@@ -73,19 +69,15 @@ html, body {
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
-    transition: color 0.2s ease, transform 0.2s ease;
-    display: inline-block;
+    transition: color 0.2s ease;
 }
 
-/* Hover-Effekt für die Menü-Links */
 .nav-links a:hover {
     color: var(--accent-green) !important;
-    transform: translateY(-2px);
 }
 
 .nav-links a.active {
     color: var(--accent-green) !important;
-    border-bottom: 2px solid var(--accent-green);
 }
 
 /* CONTENT LAYOUT */
@@ -107,14 +99,12 @@ html, body {
     letter-spacing: 4px;
     margin-bottom: 10px;
     color: var(--text-main) !important;
-    text-shadow: 0 0 20px rgba(46, 213, 115, 0.2);
 }
 
-/* SERVER CARDS WITH GREEN HOVER EFFECTS */
+/* SERVER CARDS & SECTIONS - FIX: KEIN VERGRÖSSERN BEIM HOVER */
 .server-card {
     background: var(--card-bg) !important;
     border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-left: 5px solid var(--accent-green) !important; /* Grüne Linie links */
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 25px;
@@ -122,13 +112,11 @@ html, body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     width: 100%;
     box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: border-color 0.3s ease; /* NUR DER RAND ÄNDERT SICH */
 }
 
-/* Hover-Effekt für die Boxen auf Home, Team und About */
+/* Hover-Effekt: NUR SANFTER GRÜNER RAND, KEINE GRÖSSENÄNDERUNG */
 .server-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(46, 213, 115, 0.15);
     border-color: rgba(46, 213, 115, 0.4) !important;
 }
 
@@ -151,7 +139,7 @@ html, body {
     border-color: var(--accent-green) !important;
 }
 
-/* BUTTONS GRID & HOVER */
+/* BUTTONS GRID */
 .button-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -183,25 +171,26 @@ html, body {
 .glass-btn:hover {
     background: rgba(46, 213, 115, 0.1) !important;
     border-color: var(--accent-green) !important;
-    color: var(--accent-green) !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(46, 213, 115, 0.1);
 }
 
-/* MUSIC CONTROL PANEL */
+/* MUSIC CONTROL PANEL - REPAIRED & FIXED */
 #music-container {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
+    position: fixed; /* FIXIERT AM BILDSCHIRM */
+    bottom: 24px;   /* ABSTAND UNTEN */
+    right: 24px;    /* ABSTAND RECHTS */
     background: rgba(15, 15, 15, 0.95) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 30px;
-    display: flex;
+    display: flex; /* ZENTRIERT DEN INHALT */
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 6px 12px;
-    z-index: 9000;
+    height: 54px; /* FIXE HÖHE */
+    width: auto;  /* BREITE PASST SICH AN */
+    z-index: 9999; /* IMMER GANZ OBEN */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    pointer-events: auto; /* KANN ANGEKLICKT WERDEN */
 }
 
 #music-main-btn {
@@ -217,10 +206,12 @@ html, body {
     justify-content: center;
     transition: transform 0.2s;
     font-weight: bold;
+    padding: 0;
+    margin: 0;
 }
 
 #music-main-btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .music-sub-btn {
@@ -236,6 +227,8 @@ html, body {
     justify-content: center;
     opacity: 0.6;
     transition: opacity 0.2s, color 0.2s;
+    padding: 0;
+    margin: 0;
 }
 
 .music-sub-btn:hover {
