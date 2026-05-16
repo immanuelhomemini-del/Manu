@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Home</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="./style.css?v=101">
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
@@ -43,28 +43,29 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="./index.html" class="nav-logo">ManuSMP</a>
+        <a href="index.html" class="nav-logo" style="color: #2ed573;">ManuSMP</a>
         <div class="nav-links">
-            <a href="./index.html" class="active">Home</a>
-            <a href="./about.html">About</a>
-            <a href="./team.html">Team</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="team.html">Team</a>
+            <a href="impressum.html">Impressum</a>
         </div>
     </nav>
 
     <div class="main-content">
-        <h1 class="hero-title fade-in">MANUSMP</h1>
-        <p class="fade-in" style="opacity: 0.5; font-family: monospace; margin-bottom: 40px;">ManuSMP.gleeze.com</p>
+        <h1 class="hero-title fade-in" style="color: #2ed573;">MANUSMP</h1>
+        <p class="fade-in" style="opacity: 0.6; font-family: monospace; margin-bottom: 40px; color: #2ed573;">ManuSMP.gleeze.com</p>
 
         <div class="server-card fade-in">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: 700;">
                 <span id="status-dot" style="width: 10px; height: 10px; background: #747d8c; border-radius: 50%; box-shadow: 0 0 10px #747d8c;"></span>
-                <span id="status-text">LÄDT...</span>
-                <span id="player-count" style="margin-left: auto; opacity: 0.7;">0 / 0</span>
+                <span id="status-text" style="color: #2ed573;">LÄDT...</span>
+                <span id="player-count" style="margin-left: auto; opacity: 0.8; color: #2ed573;">0 / 0</span>
             </div>
             <div class="ip-box" onclick="copyIP()">
                 <div style="text-align: left;">
-                    <span style="display: block; font-size: 0.7rem; opacity: 0.5;">SERVER IP (KLICK ZUM KOPIEREN)</span>
-                    <span style="font-weight: 900; font-size: 1.2rem;">ManuSMP.gleeze.com</span>
+                    <span style="display: block; font-size: 0.7rem; opacity: 0.5; color: #ffffff;">SERVER IP (KLICK ZUM KOPIEREN)</span>
+                    <span style="font-weight: 900; font-size: 1.2rem; color: #2ed573;">ManuSMP.gleeze.com</span>
                 </div>
                 <div style="text-align: right;">
                     <span id="copy-status" style="color: #2ed573; font-weight: 900; font-size: 0.8rem;">IP KOPIEREN</span>
@@ -139,6 +140,6 @@
             });
         }
     </script>
-    <script src="./music-player.js"></script>
+    <script src="music-player.js"></script>
 </body>
 </html>
