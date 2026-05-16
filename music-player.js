@@ -1,22 +1,35 @@
 /* ==========================================================================
-   MANUSMP GLOBAL MUSIC PLAYER WITH PERSISTENT STATE & AUTOPLAY FIX
+   MANUSMP GLOBAL MUSIC PLAYER WITH PLAYLIST & SKIP FUNCTION
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
     const audio = document.getElementById("bgMusic");
-    
-    // Verhindern, dass das Skript abbricht, falls das Audio-Element fehlt
     if (!audio) return;
 
-    // Lautstärke standardmäßig angenehm leise einstellen (30%)
-    audio.volume = 0.3;
+    // DEINE PLAYLIST (Hier einfach die Dateinamen deiner Songs eintragen)
+    const playlist = [
+        "song1.mp3",
+        "song2.mp3",
+        "song3.mp3"
+    ];
 
-    // Erstelle das Control-Panel unten rechts dynamisch, falls nicht vorhanden
+    // Aktuellen Song-Index aus dem Speicher laden oder bei 0 anfangen
+    let currentTrackIndex = parseInt(localStorage.getItem("currentTrackIndex")) || 0;
+    
+    // Falls der Index ungültig ist, auf 0 zurücksetzen
+    if (currentTrackIndex >= playlist.length) currentTrackIndex = 0;
+
+    // Erste Quelle setzen
+    audio.src = playlist[currentTrackIndex];
+    audio.volume = 0.3; // Angenehme Lautstärke
+
+    // Steuerungs-Panel unten rechts erstellen, falls es noch fehlt
     if (!document.getElementById("music-container")) {
         const musicContainer = document.createElement("div");
         musicContainer.id = "music-container";
         musicContainer.innerHTML = `
             <button id="music-main-btn">▶</button>
+            <button class="music-sub-btn" id="music-skip-btn">⏭</button>
             <button class="music-sub-btn" id="vol-down">-</button>
             <button class="music-sub-btn" id="vol-up">+</button>
         `;
@@ -24,39 +37,58 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const mainBtn = document.getElementById("music-main-btn");
+    const skipBtn = document.getElementById("music-skip-btn");
     const volDown = document.getElementById("vol-down");
     const volUp = document.getElementById("vol-up");
 
-    // Funktion zum Speichern der aktuellen Musik-Zeit vor dem Seitenwechsel
+    // Musik-Zustand für Seitenwechsel sichern
     function saveMusicState() {
         localStorage.setItem("musicTime", audio.currentTime);
         localStorage.setItem("musicPlaying", !audio.paused);
+        localStorage.setItem("currentTrackIndex", currentTrackIndex);
     }
 
-    // Zustand beim Laden der Seite wiederherstellen
+    // Gespeicherten Zustand laden
     const savedTime = localStorage.getItem("musicTime");
     const wasPlaying = localStorage.getItem("musicPlaying");
 
-    if (savedTime) {
+    if (savedTime && localStorage.getItem("lastPageTrackIndex") === String(currentTrackIndex)) {
         audio.currentTime = parseFloat(savedTime);
     }
+    localStorage.setItem("lastPageTrackIndex", currentTrackIndex);
 
-    // Funktion, um das Audio sicher abzuspielen (Browser-Autoplay-Block umgehen)
     function tryPlayAudio() {
         audio.play().then(() => {
             mainBtn.innerText = "⏸";
         }).catch(err => {
-            console.log("Browser blockiert Autoplay. Warte auf User-Klick.");
             mainBtn.innerText = "▶";
         });
     }
 
-    // Wenn es vorher lief, versuchen abzuspielen
     if (wasPlaying === "true") {
         tryPlayAudio();
     }
 
-    // Event-Listener für den Main-Button (Play / Pause)
+    // Song wechseln (Skip)
+    function nextTrack() {
+        currentTrackIndex = (currentTrackIndex + 1) % playlist.length; // Springt nach dem letzten Song wieder zu 0
+        audio.src = playlist[currentTrackIndex];
+        audio.currentTime = 0;
+        localStorage.setItem("currentTrackIndex", currentTrackIndex);
+        
+        // Direkt abspielen
+        audio.play().then(() => {
+            mainBtn.innerText = "⏸";
+            localStorage.setItem("musicPlaying", "true");
+        }).catch(() => {
+            mainBtn.innerText = "▶";
+        });
+    }
+
+    // Wenn ein Song von alleine zu Ende geht -> Nächster Song
+    audio.addEventListener("ended", nextTrack);
+
+    // Play / Pause Button
     mainBtn.addEventListener("click", () => {
         if (audio.paused) {
             audio.play().then(() => {
@@ -70,27 +102,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Lautstärke-Steuerung (+ / - Buttons)
+    // Skip Button Klick
+    skipBtn.addEventListener("click", nextTrack);
+
+    // Lautstärke Buttons
     volUp.addEventListener("click", () => {
-        if (audio.volume < 0.9) {
-            audio.volume = Math.min(1.0, audio.volume + 0.1);
-        }
+        if (audio.volume < 0.9) audio.volume = Math.min(1.0, audio.volume + 0.1);
     });
 
     volDown.addEventListener("click", () => {
-        if (audio.volume > 0.1) {
-            audio.volume = Math.max(0.0, audio.volume - 0.1);
-        }
+        if (audio.volume > 0.1) audio.volume = Math.max(0.0, audio.volume - 0.1);
     });
 
-    // WICHTIG: Sobald der User irgendwo auf die Seite klickt, versuchen wir abzuspielen,
-    // falls der Zustand eigentlich auf "playing" stand.
+    // Autoplay-Aktivierung beim ersten Klick des Users auf der Website
     document.body.addEventListener("click", () => {
         if (localStorage.getItem("musicPlaying") === "true" && audio.paused) {
             tryPlayAudio();
         }
-    }, { once: true }); // Führt sich nur beim ersten Klick aus
+    }, { once: true });
 
-    // Vor dem Verlassen der Seite Zustand sichern
     window.addEventListener("beforeunload", saveMusicState);
 });
