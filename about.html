@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | About</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,38 +20,27 @@
     </nav>
 
     <div class="main-content">
-        <h1 class="hero-title fade-in" style="font-size: 3rem; margin-bottom: 30px;">ABOUT ME</h1>
+        <h1 class="hero-title fade-in">ABOUT ME</h1>
         
-        <div style="display: grid; gap: 20px; text-align: left; width: 100%;">
-            <div class="server-card fade-in" style="border-left: 5px solid #2ed573; padding: 30px;">
-                <h2 style="color: #2ed573; margin-top: 0; font-weight: 900; letter-spacing: 1px; margin-bottom: 10px;">👑 WER IST MANU?</h2>
-                <p style="line-height: 1.6; opacity: 0.9; font-size: 1.05rem; color: #ffffff;">
-                    Hi! Ich bin <strong>Manu</strong>, der Gründer und Owner von <strong>ManuSMP</strong>. Ich leite und entwickle das gesamte Server-Netzwerk sowie diese Website. Mein Ziel ist es, eine starke, aktive und einzigartige Minecraft-Community aufzubauen, auf der jeder Spaß am gemeinsamen Zocken hat.
+        <div style="display: grid; gap: 20px; text-align: left; width: 100%; margin-top: 20px;">
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
+                <h2 style="color: #2ed573; margin-bottom: 10px; font-weight: 900;">👑 WER IST MANU?</h2>
+                <p style="line-height: 1.6; opacity: 0.9;">
+                    Hi! Ich bin <strong>Manu</strong>, der Gründer und Owner von <strong>ManuSMP</strong>. Ich leite und entwickle das gesamte Server-Netzwerk sowie diese Website. Mein Ziel ist es, eine starke, aktive und einzigartige Minecraft-Community aufzubauen.
                 </p>
             </div>
 
-            <div class="server-card fade-in" style="border-left: 5px solid #2ed573; padding: 30px;">
-                <h2 style="color: #2ed573; margin-top: 0; font-weight: 900; letter-spacing: 1px; margin-bottom: 10px;">💻 MEINE AUFGABEN</h2>
-                <p style="line-height: 1.6; opacity: 0.9; font-size: 1.05rem; margin-bottom: 15px; color: #ffffff;">
-                    Als Owner kümmere ich mich um alles, was im Hintergrund läuft, damit das Gameplay für euch perfekt läuft:
-                </p>
-                <ul style="list-style: none; padding: 0; margin: 0; font-size: 1rem; line-height: 2; color: #ffffff;">
-                    <li>🛠️ <strong style="color: #2ed573;">Server-Management:</strong> Einrichtung, Updates und Optimierung der gesamten Infrastruktur.</li>
-                    <li>🔌 <strong style="color: #2ed573;">Plugin- & System-Konfiguration:</strong> Einstellen aller Permissions, Befehle und Plugins für maximale Performance.</li>
-                    <li>🌐 <strong style="color: #2ed573;">Web-Development:</strong> Programmierung und Design unseres offiziellen Community-Auftritts.</li>
-                    <li>👥 <strong style="color: #2ed573;">Teamleitung:</strong> Koordination der Manager, Moderatoren und Helper, um ein faires Miteinander zu sichern.</li>
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
+                <h2 style="color: #2ed573; margin-bottom: 10px; font-weight: 900;">💻 MEINE AUFGABEN</h2>
+                <ul style="list-style: none; line-height: 2;">
+                    <li>🛠️ <strong style="color: #2ed573;">Server-Management:</strong> Einrichtung, Updates und Optimierung der Infrastruktur.</li>
+                    <li>🔌 <strong style="color: #2ed573;">Plugin-Konfiguration:</strong> Einstellen aller Permissions und Plugins.</li>
+                    <li>🌐 <strong style="color: #2ed573;">Web-Development:</strong> Programmierung und Design dieser Website.</li>
                 </ul>
-            </div>
-
-            <div class="server-card fade-in" style="border-left: 5px solid #2ed573; padding: 30px;">
-                <h2 style="color: #2ed573; margin-top: 0; font-weight: 900; letter-spacing: 1px; margin-bottom: 10px;">🚀 ÜBER DAS PROJEKT</h2>
-                <p style="line-height: 1.6; opacity: 0.9; font-size: 1.05rem; color: #ffffff;">
-                    ManuSMP ist nicht einfach nur ein normaler Server – es ist ein leidenschaftliches Langzeitprojekt. Zusammen mit einem engagierten Admin- und Mod-Team arbeite ich täglich an neuen Updates, Events und Features für die Community. 
-                </p>
             </div>
         </div>
 
-        <footer class="fade-in" style="margin-top: 80px; opacity: 0.6; font-size: 0.8rem; padding-bottom: 20px; color: #000000; font-weight: bold;">
+        <footer class="fade-in" style="margin-top: 60px; opacity: 0.6; font-size: 0.8rem; color: #000000; font-weight: bold;">
             &copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.
         </footer>
     </div>
@@ -59,8 +48,7 @@
     <audio id="bgMusic"></audio>
 
     <script>
-        const faders = document.querySelectorAll('.fade-in');
-        faders.forEach(fader => { fader.classList.add('appear'); });
+        document.querySelectorAll('.fade-in').forEach(fader => { fader.classList.add('appear'); });
     </script>
     <script src="music-player.js"></script>
 </body>
