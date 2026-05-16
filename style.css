@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - 1:1 REAL HANDY BACKGROUND MATCH
+   MANUSMP GLOBAL CORE STYLES - TEAM HOVER EFFECT UPDATE
    ========================================================================= */
 :root {
     --accent-green: #2ed573;
@@ -12,10 +12,9 @@
 }
 
 html, body {
-    /* Exakter Verlauf aus deinen Screenshots: Dunkles Center-Grün zu absolutem Schwarz */
     background: radial-gradient(circle at 50% 30%, #0d2916 0%, #05120a 50%, #000000 100%) !important;
     background-attachment: fixed !important;
-    color: #ffffff !important; /* Text auf Weiß für perfekte Lesbarkeit auf dem Handy */
+    color: #ffffff !important; 
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     width: 100%;
@@ -39,7 +38,7 @@ html, body {
     transform: translateY(0) !important;
 }
 
-/* NAVBAR DESIGN (Kein Einknicken mehr auf iOS/Android!) */
+/* NAVBAR DESIGN */
 .navbar {
     width: 100%;
     max-width: 1200px;
@@ -123,9 +122,9 @@ h2 {
     letter-spacing: 2px;
 }
 
-/* SERVER CARDS / TEAM BOXEN (Die abgerundeten Ecken bleiben perfekt erhalten!) */
+/* SERVER CARDS / TEAM BOXEN (Mit flüssigem Übergang für den Hover-Effekt) */
 .server-card {
-    background: rgba(12, 28, 18, 0.6) !important; /* Transparentes Dunkelgrün aus dem Bild */
+    background: rgba(12, 28, 18, 0.6) !important; 
     border: 1px solid rgba(46, 213, 115, 0.15) !important;
     border-radius: 20px;
     padding: 25px;
@@ -136,9 +135,23 @@ h2 {
     text-align: left;
     position: relative;
     overflow: hidden; 
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; /* Macht den Hover geschmeidig */
 }
 
-/* Der leuchtende linke Balken geht exakt mit der Rundung mit */
+/* DER HOVER EFFEKT: Karte hebt sich ab und glüht grün */
+.server-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-green) !important;
+    box-shadow: 0 20px 40px rgba(46, 213, 115, 0.25), 0 15px 35px rgba(0, 0, 0, 0.7);
+}
+
+/* Blauer Glüh-Effekt, falls es eine Helfer-Box ist */
+.server-card.helper:hover {
+    border-color: #38a1f3 !important;
+    box-shadow: 0 20px 40px rgba(56, 161, 243, 0.25), 0 15px 35px rgba(0, 0, 0, 0.7);
+}
+
+/* Linker farbiger Balken */
 .server-card::before {
     content: "";
     position: absolute;
@@ -149,7 +162,6 @@ h2 {
     background: var(--accent-green);
 }
 
-/* Für die Helfer-Box unten zieht das Script ein schönes Blau auf */
 .server-card.helper::before {
     background: #38a1f3 !important;
 }
@@ -159,7 +171,7 @@ h2 {
     padding-left: 12px;
 }
 
-/* IP-BOX (Keine Textüberlappung mehr bei "IP KOPIEREN") */
+/* IP-BOX */
 .ip-box {
     background: rgba(0, 0, 0, 0.6) !important;
     border: 1px solid rgba(46, 213, 115, 0.25) !important;
@@ -172,6 +184,12 @@ h2 {
     width: 100%;
     box-sizing: border-box;
     gap: 15px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.ip-box:hover {
+    border-color: var(--accent-green) !important;
+    background: rgba(46, 213, 115, 0.05) !important;
 }
 
 .ip-box span {
@@ -226,7 +244,7 @@ h2 {
     font-weight: 700;
     font-size: 0.95rem;
     letter-spacing: 1px;
-    transition: background 0.2s, transform 0.2s;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
     text-align: center;
     display: block;
 }
@@ -234,6 +252,8 @@ h2 {
 .glass-btn:hover {
     background: rgba(20, 50, 30, 0.8) !important;
     color: var(--accent-green) !important;
+    transform: translateY(-3px);
+    border-color: var(--accent-green) !important;
 }
 
 /* FOOTER */
@@ -290,7 +310,7 @@ footer {
     align-items: center;
     justify-content: center;
     opacity: 0.5;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, color 0.2s;
     padding: 0;
 }
 
