@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Home</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=70">
+    <link rel="stylesheet" href="style.css?v=85">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* Style für die reinfliegende Kopier-Benachrichtigung */
         .copy-notification {
             position: fixed;
-            bottom: -100px; /* Startet außerhalb des Bildschirms unten */
+            bottom: -100px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(46, 213, 115, 0.95);
@@ -22,7 +21,7 @@
             border-radius: 50px;
             box-shadow: 0 10px 30px rgba(46, 213, 115, 0.4);
             z-index: 9999;
-            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Flüssiger Reinflieg-Effekt */
+            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 1px;
             font-size: 0.9rem;
@@ -30,7 +29,7 @@
         }
 
         .copy-notification.show {
-            bottom: 30px; /* Fliegt hoch ins Bild */
+            bottom: 30px;
         }
     </style>
 </head>
@@ -83,19 +82,22 @@
     <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
 
     <script>
-        // Fade-In Observer für Animationen beim Scrollen
         const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const appearOptions = { threshold: 0.05, rootMargin: "0px 0px -20px 0px" };
+        
+        // Unendliche Animation (Rein und Raus beim Scrollen)
         const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
             entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('appear');
-                appearOnScroll.unobserve(entry.target);
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                } else {
+                    entry.target.classList.remove('appear');
+                }
             });
         }, appearOptions);
         faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-        // Live Playercount Abfrage
+        // Live Playercount
         function updatePlayerCount() {
             fetch('https://api.mcstatus.io/v2/status/java/ManuSMP.gleeze.com')
                 .then(response => response.json())
@@ -117,33 +119,25 @@
                     }
                 })
                 .catch(error => {
-                    console.log('Fehler beim Laden');
                     document.getElementById('status-text').innerText = 'STATUS: ONLINE';
                     document.getElementById('player-count').innerText = '0 / 100';
                 });
         }
         updatePlayerCount();
 
-        // Altes IP Kopieren mit Reinflieg-Animation von unten
+        // IP Kopieren
         function copyIP() {
             navigator.clipboard.writeText("ManuSMP.gleeze.com").then(() => {
-                // Text in der Box kurz ändern
                 const statusBtn = document.getElementById('copy-status');
                 statusBtn.innerText = 'KOPIERT!';
                 setTimeout(() => { statusBtn.innerText = 'IP KOPIEREN'; }, 2500);
 
-                // Benachrichtigung von unten hochfliegen lassen
                 const toast = document.getElementById('copy-toast');
                 toast.classList.add('show');
-
-                // Nach 2.5 Sekunden wieder nach unten verschwinden lassen
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2500);
+                setTimeout(() => { toast.classList.remove('show'); }, 2500);
             });
         }
-
-</script>
+    </script>
     <script src="music-player.js"></script>
 </body>
 </html>
