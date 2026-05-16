@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Home</title>
-    
     <link rel="icon" type="image/png" href="favicon.png">
-    
-    <link rel="stylesheet" href="style.css?v=50">
+    <link rel="stylesheet" href="style.css?v=65">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -26,8 +24,9 @@
 
         <div class="server-card fade-in">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: 700;">
-                <span style="width: 10px; height: 10px; background: #2ed573; border-radius: 50%; box-shadow: 0 0 10px #2ed573;"></span>
-                <span>STATUS: ONLINE</span>
+                <span id="status-dot" style="width: 10px; height: 10px; background: #747d8c; border-radius: 50%; box-shadow: 0 0 10px #747d8c;"></span>
+                <span id="status-text">LÄDT...</span>
+                <span id="player-count" style="margin-left: auto; opacity: 0.7;">0 / 0</span>
             </div>
             <div class="ip-box" onclick="copyIP()">
                 <div style="text-align: left;">
@@ -54,6 +53,7 @@
     <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
 
     <script>
+        // Fade-In Observer für Animationen
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
@@ -65,6 +65,38 @@
         }, appearOptions);
         faders.forEach(fader => { appearOnScroll.observe(fader); });
 
+        // ECHTER LIVE PLAYERCOUNT ABFRAGE
+        function updatePlayerCount() {
+            fetch('https://api.mcstatus.io/v2/status/java/ManuSMP.gleeze.com')
+                .then(response => response.json())
+                .then(data => {
+                    const dot = document.getElementById('status-dot');
+                    const text = document.getElementById('status-text');
+                    const count = document.getElementById('player-count');
+
+                    if (data.online) {
+                        dot.style.background = '#2ed573';
+                        dot.style.boxShadow = '0 0 10px #2ed573';
+                        text.innerText = 'STATUS: ONLINE';
+                        count.innerText = data.players.online + ' / ' + data.players.max;
+                    } else {
+                        dot.style.background = '#ff4757';
+                        dot.style.boxShadow = '0 0 10px #ff4757';
+                        text.innerText = 'STATUS: OFFLINE';
+                        count.innerText = '0 / 0';
+                    }
+                })
+                .catch(error => {
+                    console.log('Fehler beim Laden des Server-Status');
+                    document.getElementById('status-text').innerText = 'STATUS: ONLINE';
+                    document.getElementById('player-count').innerText = '0 / 100';
+                });
+        }
+
+        // Ruft den Status sofort beim Laden auf
+        updatePlayerCount();
+
+        // IP Kopieren Funktion
         function copyIP() {
             navigator.clipboard.writeText("ManuSMP.gleeze.com").then(() => {
                 const btn = document.getElementById('copy-status');
@@ -73,9 +105,10 @@
             });
         }
 
+        // Musik Logik
         const music = document.getElementById("bgMusic");
         music.volume = 0.15;
-        document.addEventListener('click', () => { music.play(); }, { once: true });
+        document.addEventListener('click', () => { music.play().catch(e => console.log("Audio blockiert")); }, { once: true });
     </script>
 </body>
 </html>
