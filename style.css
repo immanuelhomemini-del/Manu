@@ -1,3 +1,150 @@
+/* ==========================================================================
+   MANUSMP GLOBAL CORE STYLES
+   ========================================================================== */
+:root {
+    --bg-dark: #0f0f12;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --accent-green: #2ed573;
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.6);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark) !important;
+    color: var(--text-main) !important;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* NAVBAR DESIGN */
+.navbar {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 100;
+}
+
+.nav-logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--accent-green);
+}
+
+/* CONTENT LAYOUT */
+.main-content {
+    width: 100%;
+    max-width: 800px;
+    padding: 60px 20px;
+    text-align: center;
+    flex: 1;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+/* SERVER CARDS & SECTIONS */
+.server-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+.ip-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(46, 213, 115, 0.2);
+    border-radius: 12px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.3s, transform 0.2s;
+}
+
+.ip-box:hover {
+    border-color: var(--accent-green);
+    transform: scale(1.01);
+}
+
+/* BUTTONS */
+.button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.glass-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    padding: 18px;
+    border-radius: 12px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.glass-btn:hover {
+    background: rgba(46, 213, 115, 0.1);
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+    box-shadow: 0 0 20px rgba(46, 213, 115, 0.15);
+}
+
+/* PLAY PANEL CONTROLS */
 #music-container {
     position: fixed;
     bottom: 24px;
@@ -13,13 +160,14 @@
     backdrop-filter: blur(10px);
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
 }
+
 #music-main-btn {
     width: 42px;
     height: 42px;
     border-radius: 50%;
     background: rgba(46, 213, 115, 0.15);
-    border: 1px solid #2ed573;
-    color: #2ed573;
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -27,15 +175,17 @@
     transition: all 0.2s ease;
     padding: 0;
 }
+
 #music-main-btn:hover {
-    background: #2ed573;
-    color: black;
+    background: var(--accent-green);
+    color: #000000;
     transform: scale(1.08);
 }
+
 .music-sub-btn {
     background: transparent;
     border: none;
-    color: white;
+    color: #ffffff;
     font-size: 1.6rem;
     cursor: pointer;
     width: 30px;
@@ -48,7 +198,8 @@
     padding: 0;
     line-height: 1;
 }
+
 .music-sub-btn:hover {
     opacity: 1;
-    color: #2ed573;
+    color: var(--accent-green);
 }
