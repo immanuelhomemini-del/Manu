@@ -87,3 +87,30 @@ body {
 }
 
 audio { display: none; }
+
+#music-player-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(46, 213, 115, 0.12);
+    border: 1px solid rgba(46, 213, 115, 0.4);
+    color: var(--accent-green);
+    cursor: pointer;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    padding: 0;
+}
+
+#music-player-btn:hover {
+    background: rgba(46, 213, 115, 0.28);
+    box-shadow: 0 0 22px rgba(46, 213, 115, 0.45);
+    transform: scale(1.12);
+}
