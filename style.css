@@ -5,7 +5,7 @@
     --bg-dark: #0f0f12;
     --card-bg: rgba(255, 255, 255, 0.03);
     --card-border: rgba(255, 255, 255, 0.08);
-    --accent-green: #2ed573;
+    --accent-green: #2ed573; /* Das originale, hellere Grün */
     --text-main: #ffffff;
     --text-muted: rgba(255, 255, 255, 0.6);
 }
@@ -16,11 +16,14 @@
     padding: 0;
 }
 
-body {
-    background-color: var(--bg-dark) !important;
-    color: var(--text-main) !important;
+html, body {
+    background-color: #0f0f12 !important;
+    color: #ffffff !important;
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -60,7 +63,7 @@ body {
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: var(--accent-green);
+    color: var(--accent-green) !important;
 }
 
 /* CONTENT LAYOUT */
@@ -70,6 +73,10 @@ body {
     padding: 60px 20px;
     text-align: center;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .hero-title {
@@ -77,23 +84,26 @@ body {
     font-weight: 900;
     letter-spacing: 4px;
     margin-bottom: 10px;
+    color: #ffffff;
 }
 
 /* SERVER CARDS & SECTIONS */
 .server-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    background: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 25px;
     margin-bottom: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
 }
 
 .ip-box {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(46, 213, 115, 0.2);
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(46, 213, 115, 0.2) !important;
     border-radius: 12px;
     padding: 15px 20px;
     display: flex;
@@ -101,10 +111,12 @@ body {
     align-items: center;
     cursor: pointer;
     transition: border-color 0.3s, transform 0.2s;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .ip-box:hover {
-    border-color: var(--accent-green);
+    border-color: var(--accent-green) !important;
     transform: scale(1.01);
 }
 
@@ -114,6 +126,7 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     width: 100%;
+    max-width: 800px;
 }
 
 @media (max-width: 600px) {
@@ -123,11 +136,11 @@ body {
 }
 
 .glass-btn {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid var(--card-border) !important;
     padding: 18px;
     border-radius: 12px;
-    color: var(--text-main);
+    color: var(--text-main) !important;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
@@ -138,9 +151,9 @@ body {
 }
 
 .glass-btn:hover {
-    background: rgba(46, 213, 115, 0.1);
-    border-color: var(--accent-green);
-    color: var(--accent-green);
+    background: rgba(46, 213, 115, 0.1) !important;
+    border-color: var(--accent-green) !important;
+    color: var(--accent-green) !important;
     box-shadow: 0 0 20px rgba(46, 213, 115, 0.15);
 }
 
@@ -149,8 +162,8 @@ body {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background: rgba(0, 0, 0, 0.85);
-    border: 1px solid rgba(46, 213, 115, 0.4);
+    background: rgba(0, 0, 0, 0.85) !important;
+    border: 1px solid rgba(46, 213, 115, 0.4) !important;
     border-radius: 30px;
     display: flex;
     align-items: center;
@@ -165,9 +178,9 @@ body {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    background: rgba(46, 213, 115, 0.15);
-    border: 1px solid var(--accent-green);
-    color: var(--accent-green);
+    background: rgba(46, 213, 115, 0.15) !important;
+    border: 1px solid var(--accent-green) !important;
+    color: var(--accent-green) !important;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -177,15 +190,15 @@ body {
 }
 
 #music-main-btn:hover {
-    background: var(--accent-green);
-    color: #000000;
+    background: var(--accent-green) !important;
+    color: #000000 !important;
     transform: scale(1.08);
 }
 
 .music-sub-btn {
-    background: transparent;
-    border: none;
-    color: #ffffff;
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
     font-size: 1.6rem;
     cursor: pointer;
     width: 30px;
@@ -201,5 +214,5 @@ body {
 
 .music-sub-btn:hover {
     opacity: 1;
-    color: var(--accent-green);
+    color: var(--accent-green) !important;
 }
