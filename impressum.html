@@ -57,11 +57,11 @@
         </footer>
     </div>
 
-    <audio id="bgMusic"><source src="background.mp3" type="audio/mpeg"></audio>
+    <audio id="bgMusic"></audio>
 
     <script>
         const faders = document.querySelectorAll('.fade-in');
-        faders.forEach(fader => { fader.classList.add('appear'); }); // Sofort anzeigen, um Fehler auf kurzen Seiten zu verhindern
+        faders.forEach(fader => { fader.classList.add('appear'); });
     </script>
     <script src="music-player.js"></script>
 </body>
