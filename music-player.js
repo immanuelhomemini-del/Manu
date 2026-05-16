@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MANUSMP GLOBAL MUSIC PLAYER WITH PLAYLIST & SKIP FUNCTION
+   MANUSMP GLOBAL MUSIC PLAYER WITH REPAIRED PLAYLIST & SKIP FUNCTION
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -61,12 +61,18 @@ document.addEventListener("DOMContentLoaded", () => {
         audio.play().then(() => {
             mainBtn.innerText = "⏸";
         }).catch(err => {
+            console.log("Browser blockiert Autoplay. Warte auf User-Interaktion.");
             mainBtn.innerText = "▶";
         });
     }
 
     if (wasPlaying === "true") {
-        tryPlayAudio();
+        // Da wir das Autoplay blockieren, müssen wir auf den ersten Klick warten
+        document.body.addEventListener("click", () => {
+            if (localStorage.getItem("musicPlaying") === "true" && audio.paused) {
+                tryPlayAudio();
+            }
+        }, { once: true });
     }
 
     // Song wechseln (Skip)
@@ -89,7 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.addEventListener("ended", nextTrack);
 
     // Play / Pause Button
-    mainBtn.addEventListener("click", () => {
+    mainBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Klick nicht an body weiterleiten
         if (audio.paused) {
             audio.play().then(() => {
                 mainBtn.innerText = "⏸";
@@ -103,23 +110,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Skip Button Klick
-    skipBtn.addEventListener("click", nextTrack);
+    skipBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Klick nicht an body weiterleiten
+        nextTrack();
+    });
 
     // Lautstärke Buttons
-    volUp.addEventListener("click", () => {
+    volUp.addEventListener("click", (e) => {
+        e.stopPropagation();
         if (audio.volume < 0.9) audio.volume = Math.min(1.0, audio.volume + 0.1);
     });
 
-    volDown.addEventListener("click", () => {
+    volDown.addEventListener("click", (e) => {
+        e.stopPropagation();
         if (audio.volume > 0.1) audio.volume = Math.max(0.0, audio.volume - 0.1);
     });
-
-    // Autoplay-Aktivierung beim ersten Klick des Users auf der Website
-    document.body.addEventListener("click", () => {
-        if (localStorage.getItem("musicPlaying") === "true" && audio.paused) {
-            tryPlayAudio();
-        }
-    }, { once: true });
 
     window.addEventListener("beforeunload", saveMusicState);
 });
