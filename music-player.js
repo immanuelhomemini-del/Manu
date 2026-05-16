@@ -1,16 +1,11 @@
 /* ==========================================================================
-   MANUSMP GLOBAL MUSIC PLAYER - DEFAULT TRACK: SONG1.MP3
+   MANUSMP GLOBAL MUSIC PLAYER - NO BACKUP LINKS
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("[ManuSMP Player] Initialisiere ausfallsicheren Musik-Player...");
+    console.log("[ManuSMP Player] Initialisiere reinen Musik-Player...");
 
-    // song1.mp3 steht jetzt fest an Platz 1 der Playlist
+    // Nur deine eigenen Dateien - absolut keine fremden Musik-Links mehr!
     const localPlaylist = ["song1.mp3", "song2.mp3", "song3.mp3"];
-    const backupPlaylist = [
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
-    ];
 
     let audio = document.getElementById("bgMusic");
     if (!audio) {
@@ -20,20 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let currentTrackIndex = 0;
-    let isUsingBackup = false;
 
     try {
         const savedIndex = localStorage.getItem("currentTrackIndex");
         if (savedIndex !== null) currentTrackIndex = parseInt(savedIndex, 10);
-        if (localStorage.getItem("isUsingBackup") === "true") isUsingBackup = true;
     } catch (e) { currentTrackIndex = 0; }
 
     if (isNaN(currentTrackIndex) || currentTrackIndex >= localPlaylist.length || currentTrackIndex < 0) {
         currentTrackIndex = 0;
     }
 
-    audio.src = isUsingBackup ? backupPlaylist[currentTrackIndex] : localPlaylist[currentTrackIndex];
-    audio.volume = 0.1; // Angenehme, leise Start-Lautstärke (10%)
+    audio.src = localPlaylist[currentTrackIndex];
+    audio.volume = 0.1; // 10% Lautstärke
     audio.preload = "auto";
 
     let musicContainer = document.getElementById("music-container");
@@ -62,26 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (e) {}
 
     function playAudio() {
-        const currentSource = isUsingBackup ? backupPlaylist[currentTrackIndex] : localPlaylist[currentTrackIndex];
-        console.log("[ManuSMP Player] Versuche abzuspielen:", currentSource);
+        console.log("[ManuSMP Player] Spiele Track ab:", localPlaylist[currentTrackIndex]);
         
         audio.play().then(() => {
             mainBtn.innerText = "⏸";
             localStorage.setItem("musicPlaying", "true");
         }).catch(err => {
-            if (!isUsingBackup) {
-                isUsingBackup = true;
-                localStorage.setItem("isUsingBackup", "true");
-                audio.src = backupPlaylist[currentTrackIndex];
-                audio.load();
-                audio.play().then(() => {
-                    mainBtn.innerText = "⏸";
-                    localStorage.setItem("musicPlaying", "true");
-                }).catch(e => console.error("[ManuSMP Player] Backup blockiert:", e));
-            } else {
-                mainBtn.innerText = "▶";
-                localStorage.setItem("musicPlaying", "false");
-            }
+            console.log("[ManuSMP Player] Wiedergabe wartet auf Klick oder Datei fehlt.");
+            mainBtn.innerText = "▶";
+            localStorage.setItem("musicPlaying", "false");
         });
     }
 
@@ -94,8 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function nextTrack() {
         currentTrackIndex = (currentTrackIndex + 1) % localPlaylist.length;
         localStorage.setItem("currentTrackIndex", currentTrackIndex);
-        isUsingBackup = false; 
-        localStorage.setItem("isUsingBackup", "false");
         audio.src = localPlaylist[currentTrackIndex];
         audio.load();
         playAudio();
