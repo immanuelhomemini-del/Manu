@@ -27,9 +27,10 @@
         <div class="server-card">
             <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 900;">
                 <span style="color: var(--accent-green);">● STATUS: ONLINE</span>
-                <span id="player-count">1 / 100</span>
+                <span id="player-count">Lade...</span>
             </div>
-            <div class="ip-box" onclick="navigator.clipboard.writeText('ManuSMP.gleeze.com'); document.getElementById('copy-status').innerText = 'KOPIERT!'; setTimeout(() => document.getElementById('copy-status').innerText = 'IP KOPIEREN', 2000)">
+            
+            <div class="ip-box" id="ipBox">
                 <div>
                     <p style="font-size: 0.75rem; opacity: 0.6; padding: 0;">SERVER IP (KLICK ZUM KOPIEREN)</p>
                     <span style="padding: 0;">ManuSMP.gleeze.com</span>
@@ -45,6 +46,56 @@
         </div>
 
         <footer>&copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.</footer>
+    </main>
+
+    <script>
+        // API für Live-Spielerzahlen abfragen
+        fetch('https://api.mcsrvstat.us/2/ManuSMP.gleeze.com')
+            .then(response => response.json())
+            .then(data => {
+                const countSpan = document.getElementById('player-count');
+                if(data.online && data.players) {
+                    countSpan.innerText = data.players.online + " / " + data.players.max;
+                } else {
+                    countSpan.innerText = "0 / 100";
+                }
+            })
+            .catch(() => {
+                document.getElementById('player-count').innerText = "ONLINE";
+            });
+
+        // Der originale Reinflieg-Kopier-Effekt
+        document.getElementById('ipBox').addEventListener('click', function() {
+            navigator.clipboard.writeText('ManuSMP.gleeze.com').then(() => {
+                // Erstelle das reinfliogende Element
+                const alertBox = document.createElement('div');
+                alertBox.innerText = 'IP ERFOLGREICH KOPIERT!';
+                alertBox.style.position = 'fixed';
+                alertBox.style.top = '20px';
+                alertBox.style.right = '-300px';
+                alertBox.style.background = '#2ed573';
+                alertBox.style.color = '#000000';
+                alertBox.style.padding = '15px 25px';
+                alertBox.style.borderRadius = '10px';
+                alertBox.style.fontFamily = "'Montserrat', sans-serif";
+                alertBox.style.fontWeight = '900';
+                alertBox.style.fontSize = '0.9rem';
+                alertBox.style.boxShadow = '0 10px 25px rgba(46, 213, 115, 0.4)';
+                alertBox.style.zIndex = '99999';
+                alertBox.style.transition = 'right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                
+                document.body.appendChild(alertBox);
+                
+                // Einfliegen lassen
+                setTimeout(() => { alertBox.style.right = '20px'; }, 100);
+                
+                // Ausfliegen und löschen nach 2.5 Sekunden
+                setTimeout(() => {
+                    alertBox.style.right = '-300px';
+                    setTimeout(() => { alertBox.remove(); }, 500);
+                }, 2500);
+            });
+        });
     </main>
 
     <script src="music-player.js"></script>
