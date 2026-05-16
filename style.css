@@ -1,13 +1,10 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - FULL GREEN BACKGROUND (YESTERDAY)
+   MANUSMP GLOBAL CORE STYLES - PERFECT GREEN & HOVER EFFECTS
    ========================================================================= */
 :root {
-    --bg-green: #2ed573; /* Das originale, giftige Minecraft-Grün */
-    --card-bg: rgba(0, 0, 0, 0.4); /* Dunklere Boxen für perfekten Kontrast auf Grün */
-    --card-border: rgba(0, 0, 0, 0.2);
-    --accent-dark: #1e90ff;
+    --bg-green: #2ed573;
+    --card-bg: rgba(0, 0, 0, 0.75);
     --text-main: #ffffff;
-    --text-muted: rgba(255, 255, 255, 0.8);
 }
 
 * {
@@ -17,20 +14,18 @@
 }
 
 html, body {
-    background-color: #2ed573 !important; /* Voller giftgrüner Background von gestern! */
+    background-color: #2ed573 !important;
     color: #ffffff !important;
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     width: 100%;
-    margin: 0;
-    padding: 0;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* FADE IN EFFECT FIX FOR ALL PAGES */
+/* FADE IN EFFECT */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -42,7 +37,7 @@ html, body {
     transform: translateY(0) !important;
 }
 
-/* NAVBAR DESIGN */
+/* NAVBAR DESIGN & HOVER EFFECTS */
 .navbar {
     width: 100%;
     max-width: 1200px;
@@ -56,9 +51,14 @@ html, body {
 .nav-logo {
     font-weight: 900;
     font-size: 1.5rem;
-    color: #000000 !important; /* Schwarz für brutal guten Kontrast auf Grün */
+    color: #000000 !important;
     text-decoration: none;
     letter-spacing: 1px;
+    transition: transform 0.2s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
 }
 
 .nav-links {
@@ -71,18 +71,26 @@ html, body {
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: #000000 !important; /* Aktive Links werden tiefschwarz */
+/* Hover-Effekt für die Menü-Links */
+.nav-links a:hover {
+    color: #000000 !important;
+    transform: translateY(-2px);
+}
+
+.nav-links a.active {
+    color: #000000 !important;
+    border-bottom: 2px solid #000000;
 }
 
 /* CONTENT LAYOUT */
 .main-content {
     width: 100%;
     max-width: 800px;
-    padding: 60px 20px;
+    padding: 40px 20px;
     text-align: center;
     flex: 1;
     display: flex;
@@ -99,46 +107,53 @@ html, body {
     color: #000000 !important;
 }
 
-/* SERVER CARDS & SECTIONS */
+/* SERVER CARDS WITH HOVER EFFECTS */
 .server-card {
-    background: rgba(0, 0, 0, 0.75) !important; /* Extra dunkel, damit man die Schrift auf Grün perfekt lesen kann */
+    background: rgba(0, 0, 0, 0.8) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     width: 100%;
-    max-width: 800px;
     box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover-Effekt für die Team- und About-Boxen */
+.server-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border-color: rgba(46, 213, 115, 0.6) !important;
 }
 
 .ip-box {
-    background: rgba(0, 0, 0, 0.4) !important;
-    border: 1px solid rgba(46, 213, 115, 0.4) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(46, 213, 115, 0.3) !important;
     border-radius: 12px;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    transition: border-color 0.3s, transform 0.2s;
+    transition: background 0.2s, border-color 0.2s;
     width: 100%;
     box-sizing: border-box;
 }
 
 .ip-box:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
     border-color: #2ed573 !important;
-    transform: scale(1.01);
 }
 
-/* BUTTONS */
+/* BUTTONS GRID & HOVER */
 .button-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     width: 100%;
-    max-width: 800px;
+    margin-top: 10px;
 }
 
 @media (max-width: 600px) {
@@ -148,7 +163,7 @@ html, body {
 }
 
 .glass-btn {
-    background: rgba(0, 0, 0, 0.75) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     padding: 18px;
     border-radius: 12px;
@@ -158,18 +173,17 @@ html, body {
     font-size: 0.9rem;
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    display: inline-block;
     text-align: center;
 }
 
 .glass-btn:hover {
     background: #000000 !important;
-    border-color: #000000 !important;
     color: #2ed573 !important;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* PLAY PANEL CONTROLS - REPAIRED */
+/* MUSIC CONTROL PANEL */
 #music-container {
     position: fixed;
     bottom: 24px;
@@ -182,7 +196,6 @@ html, body {
     gap: 8px;
     padding: 6px 12px;
     z-index: 9000;
-    backdrop-filter: blur(10px);
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
 }
 
@@ -191,26 +204,25 @@ html, body {
     height: 42px;
     border-radius: 50%;
     background: #2ed573 !important;
-    border: 1px solid #2ed573 !important;
+    border: none;
     color: #000000 !important;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
-    padding: 0;
+    transition: transform 0.2s;
     font-weight: bold;
 }
 
 #music-main-btn:hover {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 
 .music-sub-btn {
     background: transparent !important;
     border: none !important;
     color: #ffffff !important;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     cursor: pointer;
     width: 30px;
     height: 30px;
@@ -219,8 +231,6 @@ html, body {
     justify-content: center;
     opacity: 0.6;
     transition: opacity 0.2s, color 0.2s;
-    padding: 0;
-    line-height: 1;
 }
 
 .music-sub-btn:hover {
