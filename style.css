@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - ULTIMATE HANDY & DESIGN MATCH
+   MANUSMP ULTIMATE CORE STYLES - ALL-IN-ONE MASTER FILE
    ========================================================================= */
 :root {
     --accent-green: #2ed573;
@@ -12,6 +12,7 @@
 }
 
 html, body {
+    /* Exakter Verlauf aus deinen Screenshots: Dunkles Center-Grün zu absolutem Schwarz */
     background: radial-gradient(circle at 50% 30%, #0d2916 0%, #05120a 50%, #000000 100%) !important;
     background-attachment: fixed !important;
     color: #ffffff !important; 
@@ -38,7 +39,7 @@ html, body {
     transform: translateY(0) !important;
 }
 
-/* NAVBAR DESIGN */
+/* NAVBAR DESIGN (Mobilfreundlich und zieht sich nicht zusammen) */
 .navbar {
     width: 100%;
     max-width: 1200px;
@@ -138,18 +139,20 @@ h2 {
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-/* TEAM HOVER EFFEKT */
+/* GREEN TEAM HOVER EFFECT */
 .server-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-green) !important;
     box-shadow: 0 20px 40px rgba(46, 213, 115, 0.25), 0 15px 35px rgba(0, 0, 0, 0.7);
 }
 
+/* BLUE HELPER HOVER EFFECT */
 .server-card.helper:hover {
-    border-color: #38a1f3 !important;
-    box-shadow: 0 20px 40px rgba(56, 161, 243, 0.25), 0 15px 35px rgba(0, 0, 0, 0.7);
+    border-color: #00a8ff !important;
+    box-shadow: 0 20px 40px rgba(0, 168, 255, 0.25), 0 15px 35px rgba(0, 0, 0, 0.7) !important;
 }
 
+/* Linker farbiger Indikator-Balken */
 .server-card::before {
     content: "";
     position: absolute;
@@ -161,15 +164,25 @@ h2 {
 }
 
 .server-card.helper::before {
-    background: #38a1f3 !important;
+    background: #00a8ff !important; /* Leuchtendes Blau für Helper */
 }
 
+/* Text-Verschiebung wegen des linken Balkens */
 .server-card *, .server-card p, .server-card h2, .server-card h3, .server-card li {
     color: #ffffff !important;
     padding-left: 12px;
 }
 
-/* IP-BOX */
+/* Abstände für die kleinen Team-Labels über den Namen */
+.server-card p {
+    margin: 0;
+}
+
+.server-card h3 {
+    margin-top: 2px;
+}
+
+/* IP-BOX (Klickbar & responsive) */
 .ip-box {
     background: rgba(0, 0, 0, 0.6) !important;
     border: 1px solid rgba(46, 213, 115, 0.25) !important;
