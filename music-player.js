@@ -1,106 +1,96 @@
-(function () {
-    // Playlist (Läuft über background.mp3, track2.mp3 und track3.mp3)
-    var playlist = [
-        'background.mp3',
-        'track2.mp3',
-        'track3.mp3'
-    ];
+/* ==========================================================================
+   MANUSMP GLOBAL MUSIC PLAYER WITH PERSISTENT STATE & AUTOPLAY FIX
+   ========================================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("bgMusic");
     
-    var currentTrackIndex = parseInt(localStorage.getItem('currentTrackIndex')) || 0;
-    if (currentTrackIndex >= playlist.length) currentTrackIndex = 0;
+    // Verhindern, dass das Skript abbricht, falls das Audio-Element fehlt
+    if (!audio) return;
 
-    var music = document.getElementById('bgMusic');
-    if (!music) {
-        music = document.createElement('audio');
-        music.id = 'bgMusic';
-        document.body.appendChild(music);
-    }
-    music.volume = 0.15;
+    // Lautstärke standardmäßig angenehm leise einstellen (30%)
+    audio.volume = 0.3;
 
-    function loadTrack(index) {
-        music.src = playlist[index];
-        localStorage.setItem('currentTrackIndex', index);
-    }
-    
-    loadTrack(currentTrackIndex);
-
-    var container = document.createElement('div');
-    container.id = 'music-container';
-    
-    var prevBtn = document.createElement('button');
-    prevBtn.className = 'music-sub-btn';
-    prevBtn.innerHTML = '‹';
-
-    var mainBtn = document.createElement('button');
-    mainBtn.id = 'music-main-btn';
-    mainBtn.innerHTML =
-        '<svg id="mp-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>' +
-        '<svg id="mp-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-
-    var nextBtn = document.createElement('button');
-    nextBtn.className = 'music-sub-btn';
-    nextBtn.innerHTML = '›';
-
-    container.appendChild(prevBtn);
-    container.appendChild(mainBtn);
-    container.appendChild(nextBtn);
-    document.body.appendChild(container);
-
-    var playing = false;
-
-    function updateIcon() {
-        document.getElementById('mp-play').style.display = playing ? 'none' : 'block';
-        document.getElementById('mp-pause').style.display = playing ? 'block' : 'none';
+    // Erstelle das Control-Panel unten rechts dynamisch, falls nicht vorhanden
+    if (!document.getElementById("music-container")) {
+        const musicContainer = document.createElement("div");
+        musicContainer.id = "music-container";
+        musicContainer.innerHTML = `
+            <button id="music-main-btn">▶</button>
+            <button class="music-sub-btn" id="vol-down">-</button>
+            <button class="music-sub-btn" id="vol-up">+</button>
+        `;
+        document.body.appendChild(musicContainer);
     }
 
-    function tryPlay() {
-        music.play().then(function () {
-            playing = true;
-            localStorage.setItem('musicPlaying', '1');
-            updateIcon();
-        }).catch(function (e) {
-            console.log("Autoplay blockiert. Warte auf Klick.");
+    const mainBtn = document.getElementById("music-main-btn");
+    const volDown = document.getElementById("vol-down");
+    const volUp = document.getElementById("vol-up");
+
+    // Funktion zum Speichern der aktuellen Musik-Zeit vor dem Seitenwechsel
+    function saveMusicState() {
+        localStorage.setItem("musicTime", audio.currentTime);
+        localStorage.setItem("musicPlaying", !audio.paused);
+    }
+
+    // Zustand beim Laden der Seite wiederherstellen
+    const savedTime = localStorage.getItem("musicTime");
+    const wasPlaying = localStorage.getItem("musicPlaying");
+
+    if (savedTime) {
+        audio.currentTime = parseFloat(savedTime);
+    }
+
+    // Funktion, um das Audio sicher abzuspielen (Browser-Autoplay-Block umgehen)
+    function tryPlayAudio() {
+        audio.play().then(() => {
+            mainBtn.innerText = "⏸";
+        }).catch(err => {
+            console.log("Browser blockiert Autoplay. Warte auf User-Klick.");
+            mainBtn.innerText = "▶";
         });
     }
 
-    mainBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        if (playing) {
-            music.pause();
-            playing = false;
-            localStorage.setItem('musicPlaying', '0');
-            updateIcon();
+    // Wenn es vorher lief, versuchen abzuspielen
+    if (wasPlaying === "true") {
+        tryPlayAudio();
+    }
+
+    // Event-Listener für den Main-Button (Play / Pause)
+    mainBtn.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play().then(() => {
+                mainBtn.innerText = "⏸";
+                localStorage.setItem("musicPlaying", "true");
+            });
         } else {
-            tryPlay();
+            audio.pause();
+            mainBtn.innerText = "▶";
+            localStorage.setItem("musicPlaying", "false");
         }
     });
 
-    function nextTrack() {
-        currentTrackIndex++;
-        if (currentTrackIndex >= playlist.length) currentTrackIndex = 0;
-        loadTrack(currentTrackIndex);
-        if (playing) tryPlay();
-    }
-
-    function prevTrack() {
-        currentTrackIndex--;
-        if (currentTrackIndex < 0) currentTrackIndex = playlist.length - 1;
-        loadTrack(currentTrackIndex);
-        if (playing) tryPlay();
-    }
-
-    nextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextTrack(); });
-    prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevTrack(); });
-
-    music.addEventListener('ended', function() {
-        nextTrack();
-        tryPlay();
+    // Lautstärke-Steuerung (+ / - Buttons)
+    volUp.addEventListener("click", () => {
+        if (audio.volume < 0.9) {
+            audio.volume = Math.min(1.0, audio.volume + 0.1);
+        }
     });
 
-    if (localStorage.getItem('musicPlaying') === '1') {
-        document.addEventListener('click', function onFirst() {
-            tryPlay();
-            document.removeEventListener('click', onFirst);
-        }, { once: true });
-    }
-})();
+    volDown.addEventListener("click", () => {
+        if (audio.volume > 0.1) {
+            audio.volume = Math.max(0.0, audio.volume - 0.1);
+        }
+    });
+
+    // WICHTIG: Sobald der User irgendwo auf die Seite klickt, versuchen wir abzuspielen,
+    // falls der Zustand eigentlich auf "playing" stand.
+    document.body.addEventListener("click", () => {
+        if (localStorage.getItem("musicPlaying") === "true" && audio.paused) {
+            tryPlayAudio();
+        }
+    }, { once: true }); // Führt sich nur beim ersten Klick aus
+
+    // Vor dem Verlassen der Seite Zustand sichern
+    window.addEventListener("beforeunload", saveMusicState);
+});
