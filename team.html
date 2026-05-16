@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManuSMP | Team</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=2">
+    <title>ManuSMP - Team</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <nav class="navbar">
         <a href="index.html" class="nav-logo">ManuSMP</a>
         <div class="nav-links">
@@ -16,45 +16,31 @@
             <a href="about.html">About</a>
             <a href="team.html" class="active">Team</a>
             <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
         </div>
     </nav>
 
-    <div class="main-content">
-        <h1 class="hero-title fade-in">TEAM</h1>
+    <main class="main-content fade-in appear">
+        <h1 class="hero-title">TEAM</h1>
         
-        <div style="display: grid; gap: 15px; text-align: left; width: 100%; margin-top: 20px;">
-            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
-                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">OWNER</span>
-                <h3 style="color: #2ed573; font-size: 1.3rem;">👑 Manu</h3>
-            </div>
-            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
-                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">MANAGER</span>
-                <h3 style="color: #ffffff; font-size: 1.3rem;">💼 Leon</h3>
-            </div>
-            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
-                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">MOD</span>
-                <h3 style="color: #ffffff; font-size: 1.3rem;">🛡️ ★...★</h3>
-            </div>
-            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
-                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">MOD</span>
-                <h3 style="color: #ffffff; font-size: 1.3rem;">🛡️ WizardLocket35</h3>
-            </div>
-            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
-                <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">HELPER</span>
-                <h3 style="color: #ffffff; font-size: 1.2rem;">🔨 NotMikeYT, Elias, Basti</h3>
-            </div>
+        <div class="server-card">
+            <h2>Inhaber / Admin</h2>
+            <p><strong>Manu (Sleepingsoul)</strong> - Projektleitung & Entwicklung</p>
         </div>
 
-        <footer class="fade-in" style="margin-top: 60px; opacity: 0.6; font-size: 0.8rem; color: #000000; font-weight: bold;">
-            &copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.
-        </footer>
-    </div>
+        <div class="server-card">
+            <h2>Management</h2>
+            <p><strong>Leon</strong> - Server-Verwaltung & Organisation</p>
+        </div>
 
-    <audio id="bgMusic"></audio>
+        <div class="server-card">
+            <h2>Moderation</h2>
+            <p><strong>Wizzart</strong> - Support & Community-Schutz</p>
+        </div>
 
-    <script>
-        document.querySelectorAll('.fade-in').forEach(fader => { fader.classList.add('appear'); });
-    </script>
+        <footer>&copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.</footer>
+    </main>
+
     <script src="music-player.js"></script>
 </body>
 </html>
