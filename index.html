@@ -14,12 +14,12 @@
             bottom: -100px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(46, 213, 115, 0.95);
-            color: black;
+            background: #000000;
+            color: #2ed573;
             font-weight: 900;
             padding: 15px 30px;
             border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(46, 213, 115, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             z-index: 9999;
             transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-family: 'Montserrat', sans-serif;
@@ -34,7 +34,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="nav-logo" style="color: #2ed573;">ManuSMP</a>
+        <a href="index.html" class="nav-logo">ManuSMP</a>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
@@ -44,13 +44,13 @@
     </nav>
 
     <div class="main-content">
-        <h1 class="hero-title fade-in" style="color: #2ed573;">MANUSMP</h1>
-        <p class="fade-in" style="opacity: 0.6; font-family: monospace; margin-bottom: 40px; color: #2ed573;">ManuSMP.gleeze.com</p>
+        <h1 class="hero-title fade-in">MANUSMP</h1>
+        <p class="fade-in" style="opacity: 0.7; font-family: monospace; margin-bottom: 40px; color: #000000; font-weight: bold;">ManuSMP.gleeze.com</p>
 
         <div class="server-card fade-in">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: 700;">
-                <span id="status-dot" style="width: 10px; height: 10px; background: #747d8c; border-radius: 50%; box-shadow: 0 0 10px #747d8c;"></span>
-                <span id="status-text" style="color: #2ed573;">LÄDT...</span>
+                <span id="status-dot" style="width: 10px; height: 10px; background: #747d8c; border-radius: 50%;"></span>
+                <span id="status-text" style="color: #ffffff;">LÄDT...</span>
                 <span id="player-count" style="margin-left: auto; opacity: 0.8; color: #2ed573;">0 / 0</span>
             </div>
             <div class="ip-box" onclick="copyIP()">
@@ -64,13 +64,13 @@
             </div>
         </div>
 
-        <h2 class="fade-in" style="color: #2ed573; margin: 40px 0 20px; letter-spacing: 2px;">COMMUNITY</h2>
+        <h2 class="fade-in" style="color: #000000; margin: 40px 0 20px; letter-spacing: 2px; font-weight: 900;">COMMUNITY</h2>
         <div class="button-grid">
             <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="glass-btn fade-in">MANUSMP DISCORD</a>
             <a href="https://guns.lol/manu1590" target="_blank" class="glass-btn fade-in">MEIN PROFIL (GUNS.LOL)</a>
         </div>
 
-        <footer class="fade-in" style="margin-top: 80px; opacity: 0.4; font-size: 0.8rem; padding-bottom: 20px;">
+        <footer class="fade-in" style="margin-top: 80px; opacity: 0.6; font-size: 0.8rem; padding-bottom: 20px; color: #000000; font-weight: bold;">
             &copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.
         </footer>
     </div>
@@ -87,11 +87,9 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('appear');
-                } else {
-                    entry.target.classList.remove('appear');
                 }
             });
-        }, { threshold: 0.01 });
+        }, { rootMargin: "0px 0px 200px 0px", threshold: 0.0 });
         faders.forEach(fader => { appearOnScroll.observe(fader); });
 
         function updatePlayerCount() {
@@ -103,12 +101,10 @@
                     const count = document.getElementById('player-count');
                     if (data.online) {
                         dot.style.background = '#2ed573';
-                        dot.style.boxShadow = '0 0 10px #2ed573';
                         text.innerText = 'STATUS: ONLINE';
                         count.innerText = data.players.online + ' / ' + data.players.max;
                     } else {
                         dot.style.background = '#ff4757';
-                        dot.style.boxShadow = '0 0 10px #ff4757';
                         text.innerText = 'STATUS: OFFLINE';
                         count.innerText = '0 / 0';
                     }
