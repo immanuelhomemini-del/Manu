@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - PERFECT 1:1 GRADIENT MATCH
+   MANUSMP GLOBAL CORE STYLES - 1:1 REAL HANDY BACKGROUND MATCH
    ========================================================================= */
 :root {
     --accent-green: #2ed573;
@@ -12,10 +12,10 @@
 }
 
 html, body {
-    /* Exakter linearer Verlauf von oben links nach unten rechts wie auf dem Bild */
-    background: linear-gradient(135deg, #249952 0%, #176335 50%, #0b3319 100%) !important;
+    /* Exakter Verlauf aus deinen Screenshots: Dunkles Center-Grün zu absolutem Schwarz */
+    background: radial-gradient(circle at 50% 30%, #0d2916 0%, #05120a 50%, #000000 100%) !important;
     background-attachment: fixed !important;
-    color: #000000 !important; /* Haupttext in Schwarz wie auf dem Screenshot */
+    color: #ffffff !important; /* Text auf Weiß für perfekte Lesbarkeit auf dem Handy */
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     width: 100%;
@@ -39,32 +39,32 @@ html, body {
     transform: translateY(0) !important;
 }
 
-/* NAVBAR DESIGN (Mattschwarz, schiebt sich auf Handys nicht zusammen) */
+/* NAVBAR DESIGN (Kein Einknicken mehr auf iOS/Android!) */
 .navbar {
     width: 100%;
     max-width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 40px;
+    padding: 25px 30px;
     z-index: 100;
 }
 
 .nav-logo {
     font-weight: 900;
     font-size: 1.6rem;
-    color: #000000 !important;
+    color: var(--accent-green) !important;
     text-decoration: none;
     letter-spacing: 1px;
 }
 
 .nav-links {
     display: flex;
-    gap: 25px;
+    gap: 20px;
 }
 
 .nav-links a {
-    color: rgba(0, 0, 0, 0.6) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.95rem;
@@ -72,14 +72,10 @@ html, body {
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: #000000 !important;
+    color: var(--accent-green) !important;
 }
 
-.nav-links a.active {
-    border-bottom: 2px solid #000000;
-}
-
-@media (max-width: 500px) {
+@media (max-width: 480px) {
     .navbar {
         flex-direction: column;
         gap: 12px;
@@ -94,7 +90,7 @@ html, body {
 .main-content {
     width: 100%;
     max-width: 800px;
-    padding: 40px 20px;
+    padding: 30px 20px;
     text-align: center;
     flex: 1;
     display: flex;
@@ -103,66 +99,79 @@ html, body {
     margin: 0 auto;
 }
 
-/* GLÜHENDE ÜBERSCHRIFT AUS DEM BILD */
+/* GLÜHENDE GREEN ÜBERSCHRIFT */
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     font-weight: 900;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin-bottom: 5px;
-    color: #000000 !important;
-    text-shadow: 0 0 25px rgba(46, 213, 115, 0.8); /* Starker Glow-Effekt */
+    color: var(--accent-green) !important;
+    text-shadow: 0 0 25px rgba(46, 213, 115, 0.5);
 }
 
 @media (min-width: 768px) {
     .hero-title {
         font-size: 4.8rem;
-        letter-spacing: 5px;
+        letter-spacing: 4px;
     }
 }
 
 h2 {
-    color: #000000 !important;
+    color: var(--accent-green) !important;
     font-weight: 900;
     margin: 40px 0 20px;
     letter-spacing: 2px;
 }
 
-/* SERVER CARDS / CONTAINER (Dunkelgrün-Schwarz aus dem Screenshot) */
+/* SERVER CARDS / TEAM BOXEN (Die abgerundeten Ecken bleiben perfekt erhalten!) */
 .server-card {
-    background: #09170e !important; /* Sehr dunkles, edles Box-Grün */
-    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    background: rgba(12, 28, 18, 0.6) !important; /* Transparentes Dunkelgrün aus dem Bild */
+    border: 1px solid rgba(46, 213, 115, 0.15) !important;
     border-radius: 20px;
     padding: 25px;
     margin-bottom: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     width: 100%;
     box-sizing: border-box;
     text-align: left;
-    transition: transform 0.2s ease;
+    position: relative;
+    overflow: hidden; 
 }
 
-.server-card:hover {
-    transform: translateY(-2px);
+/* Der leuchtende linke Balken geht exakt mit der Rundung mit */
+.server-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 6px;
+    background: var(--accent-green);
 }
 
-/* Text IN den Boxen bleibt natürlich weiß, damit man ihn lesen kann */
-.server-card, .server-card p, .server-card h2, .server-card h3, .server-card li {
+/* Für die Helfer-Box unten zieht das Script ein schönes Blau auf */
+.server-card.helper::before {
+    background: #38a1f3 !important;
+}
+
+.server-card *, .server-card p, .server-card h2, .server-card h3, .server-card li {
     color: #ffffff !important;
+    padding-left: 12px;
 }
 
-/* IP-BOX (Handy-sicher und bricht nicht mehr um) */
+/* IP-BOX (Keine Textüberlappung mehr bei "IP KOPIEREN") */
 .ip-box {
-    background: rgba(0, 0, 0, 0.4) !important;
-    border: 1px solid rgba(46, 213, 115, 0.15) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid rgba(46, 213, 115, 0.25) !important;
     border-radius: 14px;
-    padding: 15px 20px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     width: 100%;
     box-sizing: border-box;
-    gap: 10px;
+    gap: 15px;
 }
 
 .ip-box span {
@@ -170,17 +179,26 @@ h2 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--accent-green) !important;
+    font-weight: 700;
 }
 
-@media (min-width: 480px) {
-    .ip-box span {
-        font-size: 1.05rem;
-    }
-}
-
-#player-count, #copy-status, .ip-box span[style*="color: #2ed573"] {
+#player-count, #copy-status {
     color: var(--accent-green) !important;
     font-weight: 900;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 400px) {
+    .ip-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    .ip-box span {
+        white-space: normal;
+    }
 }
 
 /* BUTTONS GRID */
@@ -199,8 +217,8 @@ h2 {
 }
 
 .glass-btn {
-    background: #09170e !important;
-    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    background: rgba(12, 28, 18, 0.6) !important;
+    border: 1px solid rgba(46, 213, 115, 0.15) !important;
     padding: 18px;
     border-radius: 14px;
     color: #ffffff !important;
@@ -214,41 +232,40 @@ h2 {
 }
 
 .glass-btn:hover {
-    background: #112b1a !important;
+    background: rgba(20, 50, 30, 0.8) !important;
     color: var(--accent-green) !important;
-    transform: translateY(-2px);
 }
 
-/* FOOTER (Schwarz, fett im Bild) */
+/* FOOTER */
 footer {
     margin-top: 50px;
-    opacity: 0.8;
+    opacity: 0.6;
     font-size: 0.85rem;
-    color: #000000 !important;
-    font-weight: bold;
+    color: #ffffff !important;
     text-align: center;
+    padding-bottom: 90px; 
 }
 
 /* MUSIC CONTROL PANEL */
 #music-container {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    bottom: 20px;
+    right: 20px;
     background: #000000 !important;
     border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 6px 14px;
-    height: 54px;
+    gap: 8px;
+    padding: 4px 12px;
+    height: 50px;
     z-index: 9999;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
 #music-main-btn {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     background: var(--accent-green) !important;
     border: none;
@@ -265,15 +282,15 @@ footer {
     background: transparent !important;
     border: none !important;
     color: #ffffff !important;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0.5;
-    transition: opacity 0.2s, color 0.2s;
+    transition: opacity 0.2s;
     padding: 0;
 }
 
