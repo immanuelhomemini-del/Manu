@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - TEAM HOVER EFFECT UPDATE
+   MANUSMP GLOBAL CORE STYLES - ULTIMATE HANDY & DESIGN MATCH
    ========================================================================= */
 :root {
     --accent-green: #2ed573;
@@ -98,7 +98,7 @@ html, body {
     margin: 0 auto;
 }
 
-/* GLÜHENDE GREEN ÜBERSCHRIFT */
+/* GLÜHENDE ÜBERSCHRIFT */
 .hero-title {
     font-size: 3.2rem;
     font-weight: 900;
@@ -122,7 +122,7 @@ h2 {
     letter-spacing: 2px;
 }
 
-/* SERVER CARDS / TEAM BOXEN (Mit flüssigem Übergang für den Hover-Effekt) */
+/* SERVER CARDS / TEAM BOXEN */
 .server-card {
     background: rgba(12, 28, 18, 0.6) !important; 
     border: 1px solid rgba(46, 213, 115, 0.15) !important;
@@ -135,23 +135,21 @@ h2 {
     text-align: left;
     position: relative;
     overflow: hidden; 
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; /* Macht den Hover geschmeidig */
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-/* DER HOVER EFFEKT: Karte hebt sich ab und glüht grün */
+/* TEAM HOVER EFFEKT */
 .server-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-green) !important;
     box-shadow: 0 20px 40px rgba(46, 213, 115, 0.25), 0 15px 35px rgba(0, 0, 0, 0.7);
 }
 
-/* Blauer Glüh-Effekt, falls es eine Helfer-Box ist */
 .server-card.helper:hover {
     border-color: #38a1f3 !important;
     box-shadow: 0 20px 40px rgba(56, 161, 243, 0.25), 0 15px 35px rgba(0, 0, 0, 0.7);
 }
 
-/* Linker farbiger Balken */
 .server-card::before {
     content: "";
     position: absolute;
