@@ -1,13 +1,13 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - FIXED FADE & ORIGINAL DARK BG
-   ========================================================================== */
+   MANUSMP GLOBAL CORE STYLES - FULL GREEN BACKGROUND (YESTERDAY)
+   ========================================================================= */
 :root {
-    --bg-dark: #0f0f12;
-    --card-bg: rgba(255, 255, 255, 0.03);
-    --card-border: rgba(255, 255, 255, 0.08);
-    --accent-green: #2ed573;
+    --bg-green: #2ed573; /* Das originale, giftige Minecraft-Grün */
+    --card-bg: rgba(0, 0, 0, 0.4); /* Dunklere Boxen für perfekten Kontrast auf Grün */
+    --card-border: rgba(0, 0, 0, 0.2);
+    --accent-dark: #1e90ff;
     --text-main: #ffffff;
-    --text-muted: rgba(255, 255, 255, 0.6);
+    --text-muted: rgba(255, 255, 255, 0.8);
 }
 
 * {
@@ -17,7 +17,7 @@
 }
 
 html, body {
-    background-color: #0f0f12 !important; /* Zurück zum dunklen Background von heute Morgen! */
+    background-color: #2ed573 !important; /* Voller giftgrüner Background von gestern! */
     color: #ffffff !important;
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
@@ -30,11 +30,11 @@ html, body {
     align-items: center;
 }
 
-/* FADE IN EFFECT CORRECTION */
+/* FADE IN EFFECT FIX FOR ALL PAGES */
 .fade-in {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .fade-in.appear {
@@ -42,7 +42,7 @@ html, body {
     transform: translateY(0) !important;
 }
 
-/* NAVBAR DESIGN WITH WORKING HOVER */
+/* NAVBAR DESIGN */
 .navbar {
     width: 100%;
     max-width: 1200px;
@@ -56,7 +56,7 @@ html, body {
 .nav-logo {
     font-weight: 900;
     font-size: 1.5rem;
-    color: var(--text-main);
+    color: #000000 !important; /* Schwarz für brutal guten Kontrast auf Grün */
     text-decoration: none;
     letter-spacing: 1px;
 }
@@ -67,15 +67,15 @@ html, body {
 }
 
 .nav-links a {
-    color: var(--text-muted) !important;
+    color: rgba(0, 0, 0, 0.6) !important;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
-    transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease;
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: var(--accent-green) !important;
+    color: #000000 !important; /* Aktive Links werden tiefschwarz */
 }
 
 /* CONTENT LAYOUT */
@@ -96,26 +96,26 @@ html, body {
     font-weight: 900;
     letter-spacing: 4px;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: #000000 !important;
 }
 
 /* SERVER CARDS & SECTIONS */
 .server-card {
-    background: var(--card-bg) !important;
-    border: 1px solid var(--card-border) !important;
+    background: rgba(0, 0, 0, 0.75) !important; /* Extra dunkel, damit man die Schrift auf Grün perfekt lesen kann */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 25px;
     margin-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 800px;
     box-sizing: border-box;
 }
 
 .ip-box {
-    background: rgba(0, 0, 0, 0.3) !important;
-    border: 1px solid rgba(46, 213, 115, 0.2) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(46, 213, 115, 0.4) !important;
     border-radius: 12px;
     padding: 15px 20px;
     display: flex;
@@ -128,7 +128,7 @@ html, body {
 }
 
 .ip-box:hover {
-    border-color: var(--accent-green) !important;
+    border-color: #2ed573 !important;
     transform: scale(1.01);
 }
 
@@ -148,11 +148,11 @@ html, body {
 }
 
 .glass-btn {
-    background: rgba(255, 255, 255, 0.02) !important;
-    border: 1px solid var(--card-border) !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     padding: 18px;
     border-radius: 12px;
-    color: var(--text-main) !important;
+    color: #ffffff !important;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
@@ -163,10 +163,10 @@ html, body {
 }
 
 .glass-btn:hover {
-    background: rgba(46, 213, 115, 0.1) !important;
-    border-color: var(--accent-green) !important;
-    color: var(--accent-green) !important;
-    box-shadow: 0 0 20px rgba(46, 213, 115, 0.15);
+    background: #000000 !important;
+    border-color: #000000 !important;
+    color: #2ed573 !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 /* PLAY PANEL CONTROLS */
@@ -174,8 +174,8 @@ html, body {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background: rgba(0, 0, 0, 0.85) !important;
-    border: 1px solid rgba(46, 213, 115, 0.4) !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     border-radius: 30px;
     display: flex;
     align-items: center;
@@ -183,27 +183,26 @@ html, body {
     padding: 6px 12px;
     z-index: 9000;
     backdrop-filter: blur(10px);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
 }
 
 #music-main-btn {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    background: rgba(46, 213, 115, 0.15) !important;
-    border: 1px solid var(--accent-green) !important;
-    color: var(--accent-green) !important;
+    background: #2ed573 !important;
+    border: 1px solid #2ed573 !important;
+    color: #000000 !important;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
     padding: 0;
+    font-weight: bold;
 }
 
 #music-main-btn:hover {
-    background: var(--accent-green) !important;
-    color: #000000 !important;
     transform: scale(1.08);
 }
 
@@ -226,5 +225,5 @@ html, body {
 
 .music-sub-btn:hover {
     opacity: 1;
-    color: var(--accent-green) !important;
+    color: #2ed573 !important;
 }
