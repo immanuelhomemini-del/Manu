@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Team</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,32 +20,32 @@
     </nav>
 
     <div class="main-content">
-        <h1 class="hero-title fade-in" style="font-size: 3rem; margin-bottom: 30px;">TEAM</h1>
+        <h1 class="hero-title fade-in">TEAM</h1>
         
-        <div style="display: grid; gap: 15px; text-align: left; width: 100%;">
-            <div class="server-card fade-in" style="margin-bottom: 15px; border-left: 5px solid #2ed573;">
+        <div style="display: grid; gap: 15px; text-align: left; width: 100%; margin-top: 20px;">
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">OWNER</span>
-                <h3 style="color: #2ed573;">👑 Manu</h3>
+                <h3 style="color: #2ed573; font-size: 1.3rem;">👑 Manu</h3>
             </div>
-            <div class="server-card fade-in" style="margin-bottom: 15px; border-left: 5px solid #2ed573;">
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">MANAGER</span>
-                <h3 style="color: #ffffff;">💼 Leon</h3>
+                <h3 style="color: #ffffff; font-size: 1.3rem;">💼 Leon</h3>
             </div>
-            <div class="server-card fade-in" style="margin-bottom: 15px; border-left: 5px solid #2ed573;">
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">MOD</span>
-                <h3 style="color: #ffffff;">🛡️ ★...★</h3>
+                <h3 style="color: #ffffff; font-size: 1.3rem;">🛡️ ★...★</h3>
             </div>
-            <div class="server-card fade-in" style="margin-bottom: 15px; border-left: 5px solid #2ed573;">
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">MOD</span>
-                <h3 style="color: #ffffff;">🛡️ WizardLocket35</h3>
+                <h3 style="color: #ffffff; font-size: 1.3rem;">🛡️ WizardLocket35</h3>
             </div>
-            <div class="server-card fade-in" style="margin-bottom: 15px; border-left: 5px solid #2ed573;">
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573;">
                 <span style="color: #2ed573; font-weight: 900; font-size: 0.7rem; display: block; margin-bottom: 5px;">HELPER</span>
-                <h3 style="color: #ffffff;">🔨 NotMikeYT, Elias, Basti</h3>
+                <h3 style="color: #ffffff; font-size: 1.2rem;">🔨 NotMikeYT, Elias, Basti</h3>
             </div>
         </div>
 
-        <footer class="fade-in" style="margin-top: 80px; opacity: 0.6; font-size: 0.8rem; padding-bottom: 20px; color: #000000; font-weight: bold;">
+        <footer class="fade-in" style="margin-top: 60px; opacity: 0.6; font-size: 0.8rem; color: #000000; font-weight: bold;">
             &copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.
         </footer>
     </div>
@@ -53,9 +53,7 @@
     <audio id="bgMusic"></audio>
 
     <script>
-        const faders = document.querySelectorAll('.fade-in');
-        // Sofort anzeigen, da die Seite sehr kurz ist
-        faders.forEach(fader => { fader.classList.add('appear'); });
+        document.querySelectorAll('.fade-in').forEach(fader => { fader.classList.add('appear'); });
     </script>
     <script src="music-player.js"></script>
 </body>
