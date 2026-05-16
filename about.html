@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | About</title>
-    <link rel="stylesheet" href="style.css?v=1.2">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="stylesheet" href="style.css?v=75">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -17,11 +20,62 @@
         </div>
     </nav>
 
-    <div style="max-width: 800px; margin: 40px auto; padding: 20px;">
-        <h1 style="color: var(--accent-green);">Über mich</h1>
-        <div class="team-card">
-            <p>Ich bin <strong>Manu</strong>, ein 14-jähriger Developer. Mein Fokus liegt auf der Entwicklung von Minecraft-Servern und der Optimierung von Systemen. Ich leite das ManuSMP Netzwerk.</p>
+    <div class="main-content">
+        <h1 class="hero-title fade-in" style="font-size: 3rem; margin-bottom: 30px;">ABOUT ME</h1>
+        
+        <div style="display: grid; gap: 20px; text-align: left;">
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573; padding: 30px;">
+                <h2 style="color: #2ed573; margin-top: 0; font-weight: 900; letter-spacing: 1px;">👑 WER IST MANU?</h2>
+                <p style="line-height: 1.6; opacity: 0.9; font-size: 1.05rem;">
+                    Hi! Ich bin <strong>Manu</strong>, der Gründer und Owner von <strong>ManuSMP</strong>. Ich leite und entwickle das gesamte Server-Netzwerk sowie diese Website. Mein Ziel ist es, eine starke, aktive und einzigartige Minecraft-Community aufzubauen, auf der jeder Spaß am gemeinsamen Zocken hat.
+                </p>
+            </div>
+
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573; padding: 30px;">
+                <h2 style="color: #2ed573; margin-top: 0; font-weight: 900; letter-spacing: 1px;">💻 MEINE AUFGABEN</h2>
+                <p style="line-height: 1.6; opacity: 0.9; font-size: 1.05rem; margin-bottom: 15px;">
+                    Als Owner kümmere ich mich um alles, was im Hintergrund läuft, damit das Gameplay für euch perfekt läuft:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 1rem; line-height: 2;">
+                    <li>🛠️ <strong>Server-Management:</strong> Einrichtung, Updates und Optimierung der gesamten Infrastruktur.</li>
+                    <li>🔌 <strong>Plugin- & System-Konfiguration:</strong> Einstellen aller Permissions, Befehle und Plugins für maximale Performance.</li>
+                    <li>🌐 <strong>Web-Development:</strong> Programmierung und Design unseres offiziellen Community-Auftritts.</li>
+                    <li>👥 <strong>Teamleitung:</strong> Koordination der Manager, Moderatoren und Helper, um ein faires Miteinander zu sichern.</li>
+                </ul>
+            </div>
+
+            <div class="server-card fade-in" style="border-left: 5px solid #2ed573; padding: 30px;">
+                <h2 style="color: #2ed573; margin-top: 0; font-weight: 900; letter-spacing: 1px;">🚀 ÜBER DAS PROJEKT</h2>
+                <p style="line-height: 1.6; opacity: 0.9; font-size: 1.05rem;">
+                    ManuSMP ist nicht einfach nur ein normaler Server – es ist ein leidenschaftliches Langzeitprojekt. Zusammen mit einem engagierten Admin- und Mod-Team arbeite ich täglich an neuen Updates, Events und Features für die Community. 
+                </p>
+            </div>
         </div>
+
+        <footer class="fade-in" style="margin-top: 80px; opacity: 0.4; font-size: 0.8rem; padding-bottom: 20px;">
+            &copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.
+        </footer>
     </div>
+
+    <audio id="bgMusic" loop><source src="background.mp3" type="audio/mpeg"></audio>
+
+    <script>
+        // Fade-In Observer für Animationen beim Scrollen
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+        // Musik Logik
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.15;
+        document.addEventListener('click', () => { music.play().catch(e => console.log("Audio blockiert")); }, { once: true });
+    </script>
 </body>
 </html>
