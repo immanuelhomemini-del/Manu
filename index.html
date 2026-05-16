@@ -48,6 +48,8 @@
         <footer>&copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.</footer>
     </main>
 
+    <script src="music-player.js"></script>
+
     <script>
         // API für Live-Spielerzahlen abfragen
         fetch('https://api.mcsrvstat.us/2/ManuSMP.gleeze.com')
@@ -67,7 +69,7 @@
         // Der originale Reinflieg-Kopier-Effekt
         document.getElementById('ipBox').addEventListener('click', function() {
             navigator.clipboard.writeText('ManuSMP.gleeze.com').then(() => {
-                // Erstelle das reinfliogende Element
+                // Erstelle das reinfliegende Element
                 const alertBox = document.createElement('div');
                 alertBox.innerText = 'IP ERFOLGREICH KOPIERT!';
                 alertBox.style.position = 'fixed';
@@ -96,8 +98,7 @@
                 }, 2500);
             });
         });
-    </main>
+    </script>
 
-    <script src="music-player.js"></script>
 </body>
 </html>
