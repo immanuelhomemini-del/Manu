@@ -1,5 +1,5 @@
 (function () {
-    // 1. DEINE PLAYLIST (Hier einfach deine MP3-Dateien eintragen!)
+    // Playlist (Läuft über background.mp3, track2.mp3 und track3.mp3)
     var playlist = [
         'background.mp3',
         'track2.mp3',
@@ -24,7 +24,6 @@
     
     loadTrack(currentTrackIndex);
 
-    // 2. STEUERUNGS-PANEL (Breitere Leiste für Skippen + Play)
     var container = document.createElement('div');
     container.id = 'music-container';
     
@@ -60,7 +59,7 @@
             localStorage.setItem('musicPlaying', '1');
             updateIcon();
         }).catch(function (e) {
-            console.log("Autoplay blockiert. Warte auf User-Interaktion.");
+            console.log("Autoplay blockiert. Warte auf Klick.");
         });
     }
 
@@ -76,7 +75,6 @@
         }
     });
 
-    // VORWÄRTS SKIPPEN
     function nextTrack() {
         currentTrackIndex++;
         if (currentTrackIndex >= playlist.length) currentTrackIndex = 0;
@@ -84,7 +82,6 @@
         if (playing) tryPlay();
     }
 
-    // RÜCKWÄRTS SKIPPEN
     function prevTrack() {
         currentTrackIndex--;
         if (currentTrackIndex < 0) currentTrackIndex = playlist.length - 1;
@@ -95,7 +92,6 @@
     nextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextTrack(); });
     prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevTrack(); });
 
-    // 3. AUTO-PLAY-NEXT (Spielt direkt den nächsten Track wenn einer endet)
     music.addEventListener('ended', function() {
         nextTrack();
         tryPlay();
