@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManuSMP | Home</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=99">
+    <link rel="stylesheet" href="./style.css?v=101">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
@@ -14,12 +14,10 @@
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-
         .fade-in.appear {
             opacity: 1;
             transform: translateY(0);
         }
-
         .copy-notification {
             position: fixed;
             bottom: -100px;
@@ -38,7 +36,6 @@
             font-size: 0.9rem;
             pointer-events: none;
         }
-
         .copy-notification.show {
             bottom: 30px;
         }
@@ -46,11 +43,11 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="nav-logo">ManuSMP</a>
+        <a href="./index.html" class="nav-logo">ManuSMP</a>
         <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="about.html">About</a>
-            <a href="team.html">Team</a>
+            <a href="./index.html" class="active">Home</a>
+            <a href="./about.html">About</a>
+            <a href="./team.html">Team</a>
         </div>
     </nav>
 
@@ -94,7 +91,6 @@
 
     <script>
         const faders = document.querySelectorAll('.fade-in');
-        
         const appearOnScroll = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -103,8 +99,7 @@
                     entry.target.classList.remove('appear');
                 }
             });
-        }, { threshold: 0.01, rootMargin: "0px 0px 0px 0px" });
-        
+        }, { threshold: 0.01 });
         faders.forEach(fader => { appearOnScroll.observe(fader); });
 
         function updatePlayerCount() {
@@ -114,7 +109,6 @@
                     const dot = document.getElementById('status-dot');
                     const text = document.getElementById('status-text');
                     const count = document.getElementById('player-count');
-
                     if (data.online) {
                         dot.style.background = '#2ed573';
                         dot.style.boxShadow = '0 0 10px #2ed573';
@@ -139,13 +133,12 @@
                 const statusBtn = document.getElementById('copy-status');
                 statusBtn.innerText = 'KOPIERT!';
                 setTimeout(() => { statusBtn.innerText = 'IP KOPIEREN'; }, 2500);
-
                 const toast = document.getElementById('copy-toast');
                 toast.classList.add('show');
                 setTimeout(() => { toast.classList.remove('show'); }, 2500);
             });
         }
     </script>
-    <script src="music-player.js"></script>
+    <script src="./music-player.js"></script>
 </body>
 </html>
