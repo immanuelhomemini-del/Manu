@@ -1,9 +1,10 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - PERFECT GREEN & HOVER EFFECTS
+   MANUSMP GLOBAL CORE STYLES - DARK GLASS DESIGN WITH GREEN ACCENTS
    ========================================================================= */
 :root {
-    --bg-green: #2ed573;
-    --card-bg: rgba(0, 0, 0, 0.75);
+    --bg-dark: #121212;        /* Edler, dunkler Hintergrund von gestern */
+    --accent-green: #2ed573;   /* Das giftgrüne Minecraft-Grün für Akzente */
+    --card-bg: rgba(20, 20, 20, 0.6); 
     --text-main: #ffffff;
 }
 
@@ -14,8 +15,8 @@
 }
 
 html, body {
-    background-color: #2ed573 !important;
-    color: #ffffff !important;
+    background-color: var(--bg-dark) !important; /* Zurück zum dunklen Design! */
+    color: var(--text-main) !important;
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     width: 100%;
@@ -37,7 +38,7 @@ html, body {
     transform: translateY(0) !important;
 }
 
-/* NAVBAR DESIGN & HOVER EFFECTS */
+/* NAVBAR DESIGN */
 .navbar {
     width: 100%;
     max-width: 1200px;
@@ -51,14 +52,15 @@ html, body {
 .nav-logo {
     font-weight: 900;
     font-size: 1.5rem;
-    color: #000000 !important;
+    color: var(--text-main) !important;
     text-decoration: none;
     letter-spacing: 1px;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .nav-logo:hover {
     transform: scale(1.05);
+    color: var(--accent-green) !important;
 }
 
 .nav-links {
@@ -67,7 +69,7 @@ html, body {
 }
 
 .nav-links a {
-    color: rgba(0, 0, 0, 0.6) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
@@ -77,13 +79,13 @@ html, body {
 
 /* Hover-Effekt für die Menü-Links */
 .nav-links a:hover {
-    color: #000000 !important;
+    color: var(--accent-green) !important;
     transform: translateY(-2px);
 }
 
 .nav-links a.active {
-    color: #000000 !important;
-    border-bottom: 2px solid #000000;
+    color: var(--accent-green) !important;
+    border-bottom: 2px solid var(--accent-green);
 }
 
 /* CONTENT LAYOUT */
@@ -104,32 +106,34 @@ html, body {
     font-weight: 900;
     letter-spacing: 4px;
     margin-bottom: 10px;
-    color: #000000 !important;
+    color: var(--text-main) !important;
+    text-shadow: 0 0 20px rgba(46, 213, 115, 0.2);
 }
 
-/* SERVER CARDS WITH HOVER EFFECTS */
+/* SERVER CARDS WITH GREEN HOVER EFFECTS */
 .server-card {
-    background: rgba(0, 0, 0, 0.8) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: var(--card-bg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-left: 5px solid var(--accent-green) !important; /* Grüne Linie links */
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 25px;
     margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     width: 100%;
     box-sizing: border-box;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-/* Hover-Effekt für die Team- und About-Boxen */
+/* Hover-Effekt für die Boxen auf Home, Team und About */
 .server-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    border-color: rgba(46, 213, 115, 0.6) !important;
+    box-shadow: 0 15px 35px rgba(46, 213, 115, 0.15);
+    border-color: rgba(46, 213, 115, 0.4) !important;
 }
 
 .ip-box {
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: rgba(0, 0, 0, 0.3) !important;
     border: 1px solid rgba(46, 213, 115, 0.3) !important;
     border-radius: 12px;
     padding: 15px 20px;
@@ -143,8 +147,8 @@ html, body {
 }
 
 .ip-box:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border-color: #2ed573 !important;
+    background: rgba(46, 213, 115, 0.05) !important;
+    border-color: var(--accent-green) !important;
 }
 
 /* BUTTONS GRID & HOVER */
@@ -163,8 +167,8 @@ html, body {
 }
 
 .glass-btn {
-    background: rgba(0, 0, 0, 0.8) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: var(--card-bg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     padding: 18px;
     border-radius: 12px;
     color: #ffffff !important;
@@ -177,10 +181,11 @@ html, body {
 }
 
 .glass-btn:hover {
-    background: #000000 !important;
-    color: #2ed573 !important;
+    background: rgba(46, 213, 115, 0.1) !important;
+    border-color: var(--accent-green) !important;
+    color: var(--accent-green) !important;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 20px rgba(46, 213, 115, 0.1);
 }
 
 /* MUSIC CONTROL PANEL */
@@ -188,22 +193,22 @@ html, body {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background: rgba(0, 0, 0, 0.9) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    background: rgba(15, 15, 15, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 30px;
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 6px 12px;
     z-index: 9000;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
 #music-main-btn {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    background: #2ed573 !important;
+    background: var(--accent-green) !important;
     border: none;
     color: #000000 !important;
     cursor: pointer;
@@ -235,5 +240,5 @@ html, body {
 
 .music-sub-btn:hover {
     opacity: 1;
-    color: #2ed573 !important;
+    color: var(--accent-green) !important;
 }
