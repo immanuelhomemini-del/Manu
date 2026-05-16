@@ -1,11 +1,10 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - FIXED TEXT VISIBILITY & DARK DESIGN
+   MANUSMP GLOBAL CORE STYLES - ULTIMATE TEXT VISIBILITY FIX
    ========================================================================= */
 :root {
     --bg-dark: #121212;
     --accent-green: #2ed573;
-    --card-bg: rgba(25, 25, 25, 0.85); /* Schön dunkel für den Kontrast */
-    --text-main: #ffffff !important;   /* Zwingt alle Haupttexte auf Weiß */
+    --card-bg: #1e1e1e; /* Fester, gut sichtbarer Hintergrund für die Boxen */
 }
 
 * {
@@ -16,7 +15,7 @@
 
 html, body {
     background-color: var(--bg-dark) !important;
-    color: #ffffff !important; /* Standard-Textfarbe ist WEISS */
+    color: #ffffff !important; /* Standardmäßig ALLES in Weiß */
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     width: 100%;
@@ -54,7 +53,7 @@ html, body {
 .nav-logo {
     font-weight: 900;
     font-size: 1.5rem;
-    color: #ffffff !important; /* Weißes Logo */
+    color: #ffffff !important;
     text-decoration: none;
     letter-spacing: 1px;
 }
@@ -65,7 +64,7 @@ html, body {
 }
 
 .nav-links a {
-    color: rgba(255, 255, 255, 0.6) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
@@ -94,51 +93,60 @@ html, body {
     font-weight: 900;
     letter-spacing: 4px;
     margin-bottom: 10px;
-    color: #ffffff !important; /* Weißer Titel */
+    color: #ffffff !important;
 }
 
-/* SERVER CARDS & SECTIONS (Texte auf Weiß fixiert) */
+/* ÜBERSCHRIFTEN (Zwingt z.B. "COMMUNITY" auf Weiß) */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+    font-weight: 900;
+}
+
+h2 {
+    margin: 40px 0 20px;
+    letter-spacing: 2px;
+}
+
+/* SERVER CARDS & BOXEN */
 .server-card {
     background: var(--card-bg) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    backdrop-filter: blur(10px);
+    border: 2px solid rgba(46, 213, 115, 0.3) !important; /* Sichtbarer grüner Rand */
     border-radius: 16px;
     padding: 25px;
     margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     width: 100%;
     box-sizing: border-box;
-    transition: border-color 0.3s ease;
-    color: #ffffff !important; /* Macht allen Text in den Boxen WEISS */
+    color: #ffffff !important;
     text-align: left;
 }
 
-/* Erzwingt Weiß für alle Absätze, Listen und Überschriften in den Boxen */
-.server-card p, .server-card li, .server-card h2, .server-card h3 {
+/* Erzwingt absolute Lesbarkeit für jeglichen Text innerhalb der Karten */
+.server-card *, .server-card p, .server-card span, .server-card div {
     color: #ffffff !important;
 }
 
 .server-card:hover {
-    border-color: rgba(46, 213, 115, 0.4) !important;
+    border-color: var(--accent-green) !important;
 }
 
 .ip-box {
-    background: rgba(0, 0, 0, 0.4) !important;
-    border: 1px solid rgba(46, 213, 115, 0.3) !important;
+    background: #121212 !important;
+    border: 1px solid var(--accent-green) !important;
     border-radius: 12px;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
     width: 100%;
     box-sizing: border-box;
 }
 
-.ip-box:hover {
-    background: rgba(46, 213, 115, 0.05) !important;
-    border-color: var(--accent-green) !important;
+/* IP-Text-Highlights im hellen Grün */
+.ip-box span[style*="color: #2ed573"], #player-count, #copy-status {
+    color: var(--accent-green) !important;
+    font-weight: 900;
 }
 
 /* BUTTONS GRID */
@@ -158,40 +166,40 @@ html, body {
 
 .glass-btn {
     background: var(--card-bg) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important;
     padding: 18px;
     border-radius: 12px;
-    color: #ffffff !important;
+    color: #ffffff !important; /* Text IN den Buttons WEISS */
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
     letter-spacing: 1px;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     text-align: center;
+    display: block;
 }
 
 .glass-btn:hover {
-    background: rgba(46, 213, 115, 0.1) !important;
     border-color: var(--accent-green) !important;
     color: var(--accent-green) !important;
+    background: #252525 !important;
 }
 
-/* FOOTER WEISS STATT SCHWARZ */
+/* FOOTER */
 footer {
     margin-top: 60px;
-    opacity: 0.5;
+    opacity: 0.6;
     font-size: 0.8rem;
     color: #ffffff !important;
-    font-weight: bold;
 }
 
-/* MUSIC CONTROL PANEL - FIXED STABLE */
+/* MUSIC CONTROL PANEL */
 #music-container {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background: rgba(15, 15, 15, 0.95) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: #1e1e1e !important;
+    border: 2px solid var(--accent-green) !important;
     border-radius: 30px;
     display: flex;
     align-items: center;
@@ -200,7 +208,7 @@ footer {
     padding: 6px 12px;
     height: 54px;
     z-index: 9999;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
 #music-main-btn {
@@ -214,13 +222,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s;
     font-weight: bold;
     padding: 0;
-}
-
-#music-main-btn:hover {
-    transform: scale(1.05);
 }
 
 .music-sub-btn {
@@ -234,8 +237,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.6;
-    transition: opacity 0.2s, color 0.2s;
+    opacity: 0.7;
+    transition: color 0.2s;
     padding: 0;
 }
 
