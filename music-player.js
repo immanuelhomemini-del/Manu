@@ -1,24 +1,51 @@
 (function () {
+    // 1. DEINE PLAYLIST (Hier einfach deine MP3-Dateien eintragen!)
+    var playlist = [
+        'background.mp3',
+        'track2.mp3',
+        'track3.mp3'
+    ];
+    
+    var currentTrackIndex = parseInt(localStorage.getItem('currentTrackIndex')) || 0;
+    if (currentTrackIndex >= playlist.length) currentTrackIndex = 0;
+
     var music = document.getElementById('bgMusic');
     if (!music) {
         music = document.createElement('audio');
         music.id = 'bgMusic';
-        music.loop = true;
-        var src = document.createElement('source');
-        src.src = 'background.mp3';
-        src.type = 'audio/mpeg';
-        music.appendChild(src);
         document.body.appendChild(music);
     }
     music.volume = 0.15;
 
-    var btn = document.createElement('button');
-    btn.id = 'music-player-btn';
-    btn.setAttribute('aria-label', 'Musik Play/Pause');
-    btn.innerHTML =
+    function loadTrack(index) {
+        music.src = playlist[index];
+        localStorage.setItem('currentTrackIndex', index);
+    }
+    
+    loadTrack(currentTrackIndex);
+
+    // 2. STEUERUNGS-PANEL (Breitere Leiste für Skippen + Play)
+    var container = document.createElement('div');
+    container.id = 'music-container';
+    
+    var prevBtn = document.createElement('button');
+    prevBtn.className = 'music-sub-btn';
+    prevBtn.innerHTML = '‹';
+
+    var mainBtn = document.createElement('button');
+    mainBtn.id = 'music-main-btn';
+    mainBtn.innerHTML =
         '<svg id="mp-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>' +
         '<svg id="mp-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-    document.body.appendChild(btn);
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'music-sub-btn';
+    nextBtn.innerHTML = '›';
+
+    container.appendChild(prevBtn);
+    container.appendChild(mainBtn);
+    container.appendChild(nextBtn);
+    document.body.appendChild(container);
 
     var playing = false;
 
@@ -32,10 +59,13 @@
             playing = true;
             localStorage.setItem('musicPlaying', '1');
             updateIcon();
-        }).catch(function () {});
+        }).catch(function (e) {
+            console.log("Autoplay blockiert. Warte auf User-Interaktion.");
+        });
     }
 
-    btn.addEventListener('click', function () {
+    mainBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
         if (playing) {
             music.pause();
             playing = false;
@@ -44,6 +74,31 @@
         } else {
             tryPlay();
         }
+    });
+
+    // VORWÄRTS SKIPPEN
+    function nextTrack() {
+        currentTrackIndex++;
+        if (currentTrackIndex >= playlist.length) currentTrackIndex = 0;
+        loadTrack(currentTrackIndex);
+        if (playing) tryPlay();
+    }
+
+    // RÜCKWÄRTS SKIPPEN
+    function prevTrack() {
+        currentTrackIndex--;
+        if (currentTrackIndex < 0) currentTrackIndex = playlist.length - 1;
+        loadTrack(currentTrackIndex);
+        if (playing) tryPlay();
+    }
+
+    nextBtn.addEventListener('click', function(e) { e.stopPropagation(); nextTrack(); });
+    prevBtn.addEventListener('click', function(e) { e.stopPropagation(); prevTrack(); });
+
+    // 3. AUTO-PLAY-NEXT (Spielt direkt den nächsten Track wenn einer endet)
+    music.addEventListener('ended', function() {
+        nextTrack();
+        tryPlay();
     });
 
     if (localStorage.getItem('musicPlaying') === '1') {
