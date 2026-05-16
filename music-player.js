@@ -1,29 +1,27 @@
 /* ==========================================================================
-   MANUSMP GLOBAL MUSIC PLAYER WITH REPAIRED PLAYLIST & SKIP FUNCTION
+   MANUSMP GLOBAL MUSIC PLAYER WITH REPAIRED PLAYLIST & AUTO-START
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
     const audio = document.getElementById("bgMusic");
     if (!audio) return;
 
-    // DEINE PLAYLIST (Hier einfach die Dateinamen deiner Songs eintragen)
+    // DEINE PLAYLIST (Achte darauf, dass song1.mp3, song2.mp3, song3.mp3 auf GitHub liegen!)
     const playlist = [
         "song1.mp3",
         "song2.mp3",
         "song3.mp3"
     ];
 
-    // Aktuellen Song-Index aus dem Speicher laden oder bei 0 anfangen
+    // Aktuellen Track-Index laden
     let currentTrackIndex = parseInt(localStorage.getItem("currentTrackIndex")) || 0;
-    
-    // Falls der Index ungültig ist, auf 0 zurücksetzen
     if (currentTrackIndex >= playlist.length) currentTrackIndex = 0;
 
-    // Erste Quelle setzen
+    // Audio initialisieren
     audio.src = playlist[currentTrackIndex];
-    audio.volume = 0.3; // Angenehme Lautstärke
+    audio.volume = 0.3; 
 
-    // Steuerungs-Panel unten rechts erstellen, falls es noch fehlt
+    // Steuerungs-Panel erstellen, falls es fehlt
     if (!document.getElementById("music-container")) {
         const musicContainer = document.createElement("div");
         musicContainer.id = "music-container";
@@ -41,14 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const volDown = document.getElementById("vol-down");
     const volUp = document.getElementById("vol-up");
 
-    // Musik-Zustand für Seitenwechsel sichern
+    // Zustand speichern vor dem Seitenwechsel
     function saveMusicState() {
         localStorage.setItem("musicTime", audio.currentTime);
         localStorage.setItem("musicPlaying", !audio.paused);
         localStorage.setItem("currentTrackIndex", currentTrackIndex);
     }
 
-    // Gespeicherten Zustand laden
+    // Zustand laden
     const savedTime = localStorage.getItem("musicTime");
     const wasPlaying = localStorage.getItem("musicPlaying");
 
@@ -57,51 +55,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     localStorage.setItem("lastPageTrackIndex", currentTrackIndex);
 
-    function tryPlayAudio() {
-        audio.play().then(() => {
-            mainBtn.innerText = "⏸";
-        }).catch(err => {
-            console.log("Browser blockiert Autoplay. Warte auf User-Interaktion.");
-            mainBtn.innerText = "▶";
-        });
-    }
-
-    if (wasPlaying === "true") {
-        // Da wir das Autoplay blockieren, müssen wir auf den ersten Klick warten
-        document.body.addEventListener("click", () => {
-            if (localStorage.getItem("musicPlaying") === "true" && audio.paused) {
-                tryPlayAudio();
-            }
-        }, { once: true });
-    }
-
-    // Song wechseln (Skip)
-    function nextTrack() {
-        currentTrackIndex = (currentTrackIndex + 1) % playlist.length; // Springt nach dem letzten Song wieder zu 0
-        audio.src = playlist[currentTrackIndex];
-        audio.currentTime = 0;
-        localStorage.setItem("currentTrackIndex", currentTrackIndex);
-        
-        // Direkt abspielen
+    function playTrack() {
         audio.play().then(() => {
             mainBtn.innerText = "⏸";
             localStorage.setItem("musicPlaying", "true");
-        }).catch(() => {
+        }).catch(err => {
+            console.log("Autoplay blockiert. Warte auf Klick.");
             mainBtn.innerText = "▶";
         });
     }
 
-    // Wenn ein Song von alleine zu Ende geht -> Nächster Song
+    // Wenn es vorher lief, versuchen abzuspielen
+    if (wasPlaying === "true") {
+        playTrack();
+    }
+
+    // SKIP-FUNKTION (Nächster Song)
+    function nextTrack() {
+        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+        audio.src = playlist[currentTrackIndex];
+        audio.currentTime = 0;
+        localStorage.setItem("currentTrackIndex", currentTrackIndex);
+        playTrack();
+    }
+
+    // Wenn der Song vorbei ist -> Nächster Song
     audio.addEventListener("ended", nextTrack);
 
-    // Play / Pause Button
+    // Klick auf Play/Pause Button
     mainBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // Klick nicht an body weiterleiten
+        e.stopPropagation();
         if (audio.paused) {
-            audio.play().then(() => {
-                mainBtn.innerText = "⏸";
-                localStorage.setItem("musicPlaying", "true");
-            });
+            playTrack();
         } else {
             audio.pause();
             mainBtn.innerText = "▶";
@@ -109,13 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Skip Button Klick
+    // Klick auf Skip Button
     skipBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // Klick nicht an body weiterleiten
+        e.stopPropagation();
         nextTrack();
     });
 
-    // Lautstärke Buttons
+    // Lautstärke Regler
     volUp.addEventListener("click", (e) => {
         e.stopPropagation();
         if (audio.volume < 0.9) audio.volume = Math.min(1.0, audio.volume + 0.1);
@@ -125,6 +110,13 @@ document.addEventListener("DOMContentLoaded", () => {
         e.stopPropagation();
         if (audio.volume > 0.1) audio.volume = Math.max(0.0, audio.volume - 0.1);
     });
+
+    // WICHTIG: Sobald der User IRGENDWO auf die Seite klickt, startet der Player, falls er laufen sollte
+    document.body.addEventListener("click", () => {
+        if (audio.paused && (localStorage.getItem("musicPlaying") === "true" || localStorage.getItem("musicPlaying") === null)) {
+            playTrack();
+        }
+    }, { once: true });
 
     window.addEventListener("beforeunload", saveMusicState);
 });
