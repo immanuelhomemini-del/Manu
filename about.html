@@ -72,10 +72,8 @@
         }, appearOptions);
         faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-        // Musik Logik
-        const music = document.getElementById("bgMusic");
-        music.volume = 0.15;
-        document.addEventListener('click', () => { music.play().catch(e => console.log("Audio blockiert")); }, { once: true });
-    </script>
+        // Musik Logik wird von music-player.js übernommen
+</script>
+    <script src="music-player.js"></script>
 </body>
 </html>
