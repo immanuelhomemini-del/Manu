@@ -1,10 +1,8 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - ULTIMATE TEXT VISIBILITY FIX
+   MANUSMP GLOBAL CORE STYLES - ULTIMATE MOBILE & GRADIENT FIX
    ========================================================================= */
 :root {
-    --bg-dark: #121212;
     --accent-green: #2ed573;
-    --card-bg: #1e1e1e; /* Fester, gut sichtbarer Hintergrund für die Boxen */
 }
 
 * {
@@ -14,8 +12,9 @@
 }
 
 html, body {
-    background-color: var(--bg-dark) !important;
-    color: #ffffff !important; /* Standardmäßig ALLES in Weiß */
+    background: radial-gradient(circle at center, #155e30 0%, #0d3d1e 70%, #051f0f 100%) !important;
+    background-attachment: fixed !important;
+    color: #ffffff !important; /* Haupttext auf Weiß für bessere Lesbarkeit */
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     width: 100%;
@@ -39,35 +38,35 @@ html, body {
     transform: translateY(0) !important;
 }
 
-/* NAVBAR DESIGN */
+/* NAVBAR DESIGN (Überarbeitet für Handy) */
 .navbar {
     width: 100%;
     max-width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 20px 25px;
     z-index: 100;
 }
 
 .nav-logo {
     font-weight: 900;
     font-size: 1.5rem;
-    color: #ffffff !important;
+    color: var(--accent-green) !important; /* Geiles giftgrün für das Logo */
     text-decoration: none;
     letter-spacing: 1px;
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 15px;
 }
 
 .nav-links a {
     color: rgba(255, 255, 255, 0.7) !important;
     text-decoration: none;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: color 0.2s ease;
 }
 
@@ -75,11 +74,22 @@ html, body {
     color: var(--accent-green) !important;
 }
 
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    .nav-links {
+        gap: 12px;
+    }
+}
+
 /* CONTENT LAYOUT */
 .main-content {
     width: 100%;
     max-width: 800px;
-    padding: 40px 20px;
+    padding: 20px 15px;
     text-align: center;
     flex: 1;
     display: flex;
@@ -88,132 +98,167 @@ html, body {
     margin: 0 auto;
 }
 
+/* GLÜHENDE ÜBERSCHRIFT */
 .hero-title {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 900;
-    letter-spacing: 4px;
-    margin-bottom: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
     color: #ffffff !important;
+    text-shadow: 0 0 20px rgba(46, 213, 115, 0.6);
 }
 
-/* ÜBERSCHRIFTEN (Zwingt z.B. "COMMUNITY" auf Weiß) */
-h1, h2, h3, h4, h5, h6 {
-    color: #ffffff !important;
-    font-weight: 900;
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 4.5rem;
+        letter-spacing: 4px;
+    }
 }
 
 h2 {
-    margin: 40px 0 20px;
+    color: var(--accent-green) !important;
+    font-weight: 900;
+    margin: 30px 0 15px;
     letter-spacing: 2px;
 }
 
-/* SERVER CARDS & BOXEN */
+/* SERVER CARDS / TEAM BOXEN WITH FIX FOR ROUNDED CORNERS */
 .server-card {
-    background: var(--card-bg) !important;
-    border: 2px solid rgba(46, 213, 115, 0.3) !important; /* Sichtbarer grüner Rand */
+    background: rgba(10, 25, 15, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
     border-radius: 16px;
-    padding: 25px;
-    margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     width: 100%;
     box-sizing: border-box;
-    color: #ffffff !important;
     text-align: left;
+    position: relative;
+    overflow: hidden; /* Verhindert, dass der farbige Rand die Ecken zerstört */
 }
 
-/* Erzwingt absolute Lesbarkeit für jeglichen Text innerhalb der Karten */
-.server-card *, .server-card p, .server-card span, .server-card div {
+/* Generiert den farbigen linken Rand, OHNE die Eckenrundung zu zerstören! */
+.server-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--accent-green);
+}
+
+/* Helper-Farbe (Blau) überschreiben, falls vorhanden */
+.server-card.helper::before {
+    background: #00a8ff !important;
+}
+
+.server-card *, .server-card p, .server-card h2, .server-card h3, .server-card li {
     color: #ffffff !important;
+    padding-left: 10px; /* Schiebt den Text leicht weg vom linken Rand */
 }
 
-.server-card:hover {
-    border-color: var(--accent-green) !important;
-}
-
+/* IP-BOX (KOMPLETT HANDY-SICHER) */
 .ip-box {
-    background: #121212 !important;
-    border: 1px solid var(--accent-green) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(46, 213, 115, 0.3) !important;
     border-radius: 12px;
-    padding: 15px 20px;
+    padding: 12px 15px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     width: 100%;
     box-sizing: border-box;
+    gap: 10px;
 }
 
-/* IP-Text-Highlights im hellen Grün */
-.ip-box span[style*="color: #2ed573"], #player-count, #copy-status {
+/* Verhindert Text-Überlappung auf kleinen Displays */
+.ip-box span {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width: 480px) {
+    .ip-box span {
+        font-size: 1rem;
+    }
+}
+
+#player-count, #copy-status, .ip-box span[style*="color: #2ed573"] {
     color: var(--accent-green) !important;
     font-weight: 900;
 }
 
-/* BUTTONS GRID */
+/* BUTTONS GRID & HOVER */
 .button-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 15px;
     width: 100%;
     margin-top: 10px;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 600px) {
     .button-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
 .glass-btn {
-    background: var(--card-bg) !important;
-    border: 2px solid rgba(255, 255, 255, 0.1) !important;
-    padding: 18px;
+    background: rgba(10, 25, 15, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 16px;
     border-radius: 12px;
-    color: #ffffff !important; /* Text IN den Buttons WEISS */
+    color: #ffffff !important;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
     letter-spacing: 1px;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease;
     text-align: center;
     display: block;
+    position: relative;
 }
 
 .glass-btn:hover {
-    border-color: var(--accent-green) !important;
+    background: rgba(20, 55, 30, 0.9) !important;
     color: var(--accent-green) !important;
-    background: #252525 !important;
 }
 
 /* FOOTER */
 footer {
-    margin-top: 60px;
+    margin-top: 40px;
     opacity: 0.6;
     font-size: 0.8rem;
     color: #ffffff !important;
+    text-align: center;
+    padding-bottom: 80px; /* Platzhalter wegen dem Musikplayer unten */
 }
 
-/* MUSIC CONTROL PANEL */
+/* MUSIC CONTROL PANEL - RESPONSIVE & MOBILE READY */
 #music-container {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: #1e1e1e !important;
-    border: 2px solid var(--accent-green) !important;
+    bottom: 16px;
+    right: 16px;
+    background: #000000 !important;
     border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 6px 12px;
-    height: 54px;
+    padding: 4px 10px;
+    height: 48px;
     z-index: 9999;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
 #music-main-btn {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: var(--accent-green) !important;
     border: none;
@@ -230,15 +275,14 @@ footer {
     background: transparent !important;
     border: none !important;
     color: #ffffff !important;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.7;
-    transition: color 0.2s;
+    opacity: 0.6;
     padding: 0;
 }
 
