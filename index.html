@@ -3,36 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManuSMP | Home</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=2">
+    <title>ManuSMP - Home</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        .copy-notification {
-            position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #000000;
-            color: #2ed573;
-            font-weight: 900;
-            padding: 15px 30px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            pointer-events: none;
-        }
-        .copy-notification.show {
-            bottom: 30px;
-        }
-    </style>
 </head>
 <body>
+
     <nav class="navbar">
         <a href="index.html" class="nav-logo">ManuSMP</a>
         <div class="nav-links">
@@ -40,93 +16,37 @@
             <a href="about.html">About</a>
             <a href="team.html">Team</a>
             <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
         </div>
     </nav>
 
-    <div class="main-content">
-        <h1 class="hero-title fade-in">MANUSMP</h1>
-        <p class="fade-in" style="opacity: 0.7; font-family: monospace; margin-bottom: 40px; color: #000000; font-weight: bold;">ManuSMP.gleeze.com</p>
+    <main class="main-content fade-in appear">
+        <h1 class="hero-title">MANUSMP</h1>
+        <p style="color: #ffffff; margin-bottom: 25px; font-weight: bold; opacity: 0.8;">ManuSMP.gleeze.com</p>
 
-        <div class="server-card fade-in">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: 700;">
-                <span id="status-dot" style="width: 10px; height: 10px; background: #747d8c; border-radius: 50%;"></span>
-                <span id="status-text" style="color: #ffffff;">LÄDT...</span>
-                <span id="player-count" style="margin-left: auto; opacity: 0.8; color: #2ed573;">0 / 0</span>
+        <div class="server-card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 900;">
+                <span style="color: var(--accent-green);">● STATUS: ONLINE</span>
+                <span id="player-count">1 / 100</span>
             </div>
-            <div class="ip-box" onclick="copyIP()">
-                <div style="text-align: left;">
-                    <span style="display: block; font-size: 0.7rem; opacity: 0.5; color: #ffffff;">SERVER IP (KLICK ZUM KOPIEREN)</span>
-                    <span style="font-weight: 900; font-size: 1.2rem; color: #2ed573;">ManuSMP.gleeze.com</span>
+            <div class="ip-box" onclick="navigator.clipboard.writeText('ManuSMP.gleeze.com'); document.getElementById('copy-status').innerText = 'KOPIERT!'; setTimeout(() => document.getElementById('copy-status').innerText = 'IP KOPIEREN', 2000)">
+                <div>
+                    <p style="font-size: 0.75rem; opacity: 0.6; padding: 0;">SERVER IP (KLICK ZUM KOPIEREN)</p>
+                    <span style="padding: 0;">ManuSMP.gleeze.com</span>
                 </div>
-                <div style="text-align: right;">
-                    <span id="copy-status" style="color: #2ed573; font-weight: 900; font-size: 0.8rem;">IP KOPIEREN</span>
-                </div>
+                <span id="copy-status">IP KOPIEREN</span>
             </div>
         </div>
 
-        <h2 class="fade-in" style="color: #000000; margin: 40px 0 20px; letter-spacing: 2px; font-weight: 900;">COMMUNITY</h2>
+        <h2>COMMUNITY</h2>
         <div class="button-grid">
-            <a href="https://discord.gg/XBbZRa7HPs" target="_blank" class="glass-btn fade-in">MANUSMP DISCORD</a>
-            <a href="https://guns.lol/manu1590" target="_blank" class="glass-btn fade-in">MEIN PROFIL (GUNS.LOL)</a>
+            <a href="https://discord.gg/manusmp" target="_blank" class="glass-btn">MANUSMP DISCORD</a>
+            <a href="https://guns.lol/sleepingsoul" target="_blank" class="glass-btn">MEIN PROFIL (GUNS.LOL)</a>
         </div>
 
-        <footer class="fade-in" style="margin-top: 80px; opacity: 0.6; font-size: 0.8rem; padding-bottom: 20px; color: #000000; font-weight: bold;">
-            &copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.
-        </footer>
-    </div>
+        <footer>&copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.</footer>
+    </main>
 
-    <div id="copy-toast" class="copy-notification">
-        📋 IP ERFOLGREICH KOPIERT!
-    </div>
-
-    <audio id="bgMusic"></audio>
-
-    <script>
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOnScroll = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
-                }
-            });
-        }, { rootMargin: "0px 0px 200px 0px", threshold: 0.0 });
-        faders.forEach(fader => { appearOnScroll.observe(fader); });
-
-        function updatePlayerCount() {
-            fetch('https://api.mcstatus.io/v2/status/java/ManuSMP.gleeze.com')
-                .then(response => response.json())
-                .then(data => {
-                    const dot = document.getElementById('status-dot');
-                    const text = document.getElementById('status-text');
-                    const count = document.getElementById('player-count');
-                    if (data.online) {
-                        dot.style.background = '#2ed573';
-                        text.innerText = 'STATUS: ONLINE';
-                        count.innerText = data.players.online + ' / ' + data.players.max;
-                    } else {
-                        dot.style.background = '#ff4757';
-                        text.innerText = 'STATUS: OFFLINE';
-                        count.innerText = '0 / 0';
-                    }
-                })
-                .catch(error => {
-                    document.getElementById('status-text').innerText = 'STATUS: ONLINE';
-                    document.getElementById('player-count').innerText = '0 / 100';
-                });
-        }
-        updatePlayerCount();
-
-        function copyIP() {
-            navigator.clipboard.writeText("ManuSMP.gleeze.com").then(() => {
-                const statusBtn = document.getElementById('copy-status');
-                statusBtn.innerText = 'KOPIERT!';
-                setTimeout(() => { statusBtn.innerText = 'IP KOPIEREN'; }, 2500);
-                const toast = document.getElementById('copy-toast');
-                toast.classList.add('show');
-                setTimeout(() => { toast.classList.remove('show'); }, 2500);
-            });
-        }
-    </script>
     <script src="music-player.js"></script>
 </body>
 </html>
