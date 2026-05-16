@@ -1,107 +1,54 @@
-:root {
-    --bg-dark: #050805;
-    --accent-green: #2ed573;
-    --glass: rgba(255, 255, 255, 0.03);
-    --border: rgba(46, 213, 115, 0.2);
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-    background-color: var(--bg-dark) !important;
-    background-image: radial-gradient(circle at 50% -20%, #10331d, transparent 1000px);
-    background-attachment: fixed;
-    color: white !important;
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    overflow-x: hidden;
-}
-
-/* Reibungslose Fade-In Animation */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.fade-in.appear {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.navbar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 8%; background: rgba(0,0,0,0.9);
-    border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 1000;
-}
-
-.nav-logo {
-    color: white; text-decoration: none; font-size: 1.5rem; font-weight: 900;
-    cursor: pointer; transition: color 0.3s;
-}
-
-.nav-logo:hover { color: var(--accent-green); }
-
-.nav-links a {
-    color: white !important; text-decoration: none; margin-left: 25px;
-    font-weight: 700; transition: color 0.3s ease;
-}
-
-.nav-links a:hover, .nav-links a.active { color: var(--accent-green) !important; }
-
-.main-content { max-width: 800px; margin: 0 auto; padding: 60px 20px; text-align: center; }
-
-.hero-title { font-size: clamp(3rem, 10vw, 5rem); color: var(--accent-green); font-weight: 900; margin-top: 0;}
-
-.server-card {
-    background: var(--glass); border: 1px solid var(--border);
-    border-radius: 20px; padding: 25px; margin: 30px 0;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.server-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-green);
-    box-shadow: 0 10px 40px rgba(46, 213, 115, 0.15);
-}
-
-.ip-box {
-    background: rgba(0,0,0,0.6); border: 1px solid var(--border);
-    padding: 20px; border-radius: 15px; cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center; transition: 0.3s;
-}
-
-.glass-btn {
-    display: block; width: 100%; padding: 22px; margin-bottom: 15px;
-    background: var(--glass); border: 1px solid var(--border);
-    color: white !important; text-decoration: none !important;
-    border-radius: 15px; font-weight: 900; transition: all 0.3s ease;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.glass-btn:hover {
-    background: var(--accent-green); color: black !important;
-    transform: scale(1.03); box-shadow: 0 0 25px rgba(46, 213, 115, 0.5);
-}
-
-audio { display: none; }
-
-#music-player-btn {
-    position: fixed; bottom: 24px; right: 24px;
-    width: 50px; height: 50px; border-radius: 50%;
-    background: rgba(46, 213, 115, 0.12);
+#music-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(0, 0, 0, 0.85);
     border: 1px solid rgba(46, 213, 115, 0.4);
-    color: var(--accent-green); cursor: pointer; z-index: 9000;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-    backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    z-index: 9000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+}
+#music-main-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(46, 213, 115, 0.15);
+    border: 1px solid #2ed573;
+    color: #2ed573;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
     padding: 0;
 }
-
-#music-player-btn:hover {
-    background: rgba(46, 213, 115, 0.28);
-    box-shadow: 0 0 22px rgba(46, 213, 115, 0.45);
-    transform: scale(1.12);
+#music-main-btn:hover {
+    background: #2ed573;
+    color: black;
+    transform: scale(1.08);
+}
+.music-sub-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.6rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity 0.2s, color 0.2s;
+    padding: 0;
+    line-height: 1;
+}
+.music-sub-btn:hover {
+    opacity: 1;
+    color: #2ed573;
 }
