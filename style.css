@@ -1,11 +1,11 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES - STABLE & FIXED PLAYER
+   MANUSMP GLOBAL CORE STYLES - FIXED TEXT VISIBILITY & DARK DESIGN
    ========================================================================= */
 :root {
     --bg-dark: #121212;
     --accent-green: #2ed573;
-    --card-bg: rgba(20, 20, 20, 0.8); /* Etwas dunkler für besseren Kontrast */
-    --text-main: #ffffff;
+    --card-bg: rgba(25, 25, 25, 0.85); /* Schön dunkel für den Kontrast */
+    --text-main: #ffffff !important;   /* Zwingt alle Haupttexte auf Weiß */
 }
 
 * {
@@ -16,7 +16,7 @@
 
 html, body {
     background-color: var(--bg-dark) !important;
-    color: var(--text-main) !important;
+    color: #ffffff !important; /* Standard-Textfarbe ist WEISS */
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     width: 100%;
@@ -28,7 +28,7 @@ html, body {
     align-items: center;
 }
 
-/* FADE IN EFFECT - WIRD NUR EINMAL GELADEN */
+/* FADE IN EFFECT */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -54,7 +54,7 @@ html, body {
 .nav-logo {
     font-weight: 900;
     font-size: 1.5rem;
-    color: var(--text-main) !important;
+    color: #ffffff !important; /* Weißes Logo */
     text-decoration: none;
     letter-spacing: 1px;
 }
@@ -72,11 +72,7 @@ html, body {
     transition: color 0.2s ease;
 }
 
-.nav-links a:hover {
-    color: var(--accent-green) !important;
-}
-
-.nav-links a.active {
+.nav-links a:hover, .nav-links a.active {
     color: var(--accent-green) !important;
 }
 
@@ -98,13 +94,13 @@ html, body {
     font-weight: 900;
     letter-spacing: 4px;
     margin-bottom: 10px;
-    color: var(--text-main) !important;
+    color: #ffffff !important; /* Weißer Titel */
 }
 
-/* SERVER CARDS & SECTIONS - FIX: KEIN VERGRÖSSERN BEIM HOVER */
+/* SERVER CARDS & SECTIONS (Texte auf Weiß fixiert) */
 .server-card {
     background: var(--card-bg) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 25px;
@@ -112,16 +108,22 @@ html, body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     width: 100%;
     box-sizing: border-box;
-    transition: border-color 0.3s ease; /* NUR DER RAND ÄNDERT SICH */
+    transition: border-color 0.3s ease;
+    color: #ffffff !important; /* Macht allen Text in den Boxen WEISS */
+    text-align: left;
 }
 
-/* Hover-Effekt: NUR SANFTER GRÜNER RAND, KEINE GRÖSSENÄNDERUNG */
+/* Erzwingt Weiß für alle Absätze, Listen und Überschriften in den Boxen */
+.server-card p, .server-card li, .server-card h2, .server-card h3 {
+    color: #ffffff !important;
+}
+
 .server-card:hover {
     border-color: rgba(46, 213, 115, 0.4) !important;
 }
 
 .ip-box {
-    background: rgba(0, 0, 0, 0.3) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
     border: 1px solid rgba(46, 213, 115, 0.3) !important;
     border-radius: 12px;
     padding: 15px 20px;
@@ -171,26 +173,34 @@ html, body {
 .glass-btn:hover {
     background: rgba(46, 213, 115, 0.1) !important;
     border-color: var(--accent-green) !important;
+    color: var(--accent-green) !important;
 }
 
-/* MUSIC CONTROL PANEL - REPAIRED & FIXED */
+/* FOOTER WEISS STATT SCHWARZ */
+footer {
+    margin-top: 60px;
+    opacity: 0.5;
+    font-size: 0.8rem;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+/* MUSIC CONTROL PANEL - FIXED STABLE */
 #music-container {
-    position: fixed; /* FIXIERT AM BILDSCHIRM */
-    bottom: 24px;   /* ABSTAND UNTEN */
-    right: 24px;    /* ABSTAND RECHTS */
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
     background: rgba(15, 15, 15, 0.95) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 30px;
-    display: flex; /* ZENTRIERT DEN INHALT */
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     padding: 6px 12px;
-    height: 54px; /* FIXE HÖHE */
-    width: auto;  /* BREITE PASST SICH AN */
-    z-index: 9999; /* IMMER GANZ OBEN */
+    height: 54px;
+    z-index: 9999;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    pointer-events: auto; /* KANN ANGEKLICKT WERDEN */
 }
 
 #music-main-btn {
@@ -207,7 +217,6 @@ html, body {
     transition: transform 0.2s;
     font-weight: bold;
     padding: 0;
-    margin: 0;
 }
 
 #music-main-btn:hover {
@@ -228,7 +237,6 @@ html, body {
     opacity: 0.6;
     transition: opacity 0.2s, color 0.2s;
     padding: 0;
-    margin: 0;
 }
 
 .music-sub-btn:hover {
