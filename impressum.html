@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="nav-logo" style="color: #2ed573;">ManuSMP</a>
+        <a href="index.html" class="nav-logo">ManuSMP</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -20,7 +20,7 @@
     </nav>
 
     <div class="main-content">
-        <h1 class="hero-title fade-in" style="font-size: 3rem; margin-bottom: 30px; color: #2ed573;">IMPRESSUM</h1>
+        <h1 class="hero-title fade-in" style="font-size: 3rem; margin-bottom: 30px;">IMPRESSUM</h1>
         
         <div style="display: grid; gap: 20px; text-align: left; width: 100%;">
             <div class="server-card fade-in" style="border-left: 5px solid #2ed573; padding: 30px;">
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <footer class="fade-in" style="margin-top: 80px; opacity: 0.4; font-size: 0.8rem; padding-bottom: 20px;">
+        <footer class="fade-in" style="margin-top: 80px; opacity: 0.6; font-size: 0.8rem; padding-bottom: 20px; color: #000000; font-weight: bold;">
             &copy; 2026 ManuSMP Network. Alle Rechte vorbehalten.
         </footer>
     </div>
@@ -61,16 +61,7 @@
 
     <script>
         const faders = document.querySelectorAll('.fade-in');
-        const appearOnScroll = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
-                } else {
-                    entry.target.classList.remove('appear');
-                }
-            });
-        }, { threshold: 0.01 });
-        faders.forEach(fader => { appearOnScroll.observe(fader); });
+        faders.forEach(fader => { fader.classList.add('appear'); }); // Sofort anzeigen, um Fehler auf kurzen Seiten zu verhindern
     </script>
     <script src="music-player.js"></script>
 </body>
