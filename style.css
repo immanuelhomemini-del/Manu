@@ -1,11 +1,11 @@
 /* ==========================================================================
    MANUSMP GLOBAL CORE STYLES
-   ========================================================================== */
+   ========================================================================= */
 :root {
     --bg-dark: #0f0f12;
     --card-bg: rgba(255, 255, 255, 0.03);
     --card-border: rgba(255, 255, 255, 0.08);
-    --accent-green: #2ed573;
+    --accent-green: #2ed573; /* Das originale, helle Grün */
     --text-main: #ffffff;
     --text-muted: rgba(255, 255, 255, 0.6);
 }
@@ -30,7 +30,7 @@ html, body {
     align-items: center;
 }
 
-/* NAVBAR DESIGN WITH WORKING HOVER */
+/* NAVBAR DESIGN */
 .navbar {
     width: 100%;
     max-width: 1200px;
@@ -55,14 +55,13 @@ html, body {
 }
 
 .nav-links a {
-    color: var(--text-muted) !important;
+    color: var(--text-muted);
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
-    transition: color 0.2s ease-in-out;
+    transition: color 0.3s ease;
 }
 
-/* Der Hover-Effekt, der jetzt überall greift */
 .nav-links a:hover, .nav-links a.active {
     color: var(--accent-green) !important;
 }
