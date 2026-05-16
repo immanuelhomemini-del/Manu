@@ -1,11 +1,11 @@
 /* ==========================================================================
-   MANUSMP GLOBAL CORE STYLES
-   ========================================================================= */
+   MANUSMP GLOBAL CORE STYLES - FIXED FADE & ORIGINAL DARK BG
+   ========================================================================== */
 :root {
     --bg-dark: #0f0f12;
     --card-bg: rgba(255, 255, 255, 0.03);
     --card-border: rgba(255, 255, 255, 0.08);
-    --accent-green: #2ed573; /* Das originale, helle Grün */
+    --accent-green: #2ed573;
     --text-main: #ffffff;
     --text-muted: rgba(255, 255, 255, 0.6);
 }
@@ -17,7 +17,7 @@
 }
 
 html, body {
-    background-color: #0f0f12 !important;
+    background-color: #0f0f12 !important; /* Zurück zum dunklen Background von heute Morgen! */
     color: #ffffff !important;
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
@@ -30,7 +30,19 @@ html, body {
     align-items: center;
 }
 
-/* NAVBAR DESIGN */
+/* FADE IN EFFECT CORRECTION */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.appear {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* NAVBAR DESIGN WITH WORKING HOVER */
 .navbar {
     width: 100%;
     max-width: 1200px;
@@ -55,11 +67,11 @@ html, body {
 }
 
 .nav-links a {
-    color: var(--text-muted);
+    color: var(--text-muted) !important;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease-in-out;
 }
 
 .nav-links a:hover, .nav-links a.active {
